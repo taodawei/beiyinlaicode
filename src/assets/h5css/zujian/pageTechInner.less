@@ -1,0 +1,307 @@
+@media screen and (max-width: 1199px) {
+  .page {
+    padding-bottom: 0;
+    .page-box {
+      background: #f7f7f7;
+      background: #fff;
+    }
+    .page-inner {
+      .page-block {
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .ctx-box {
+    .flex-between();
+    align-items: flex-start;
+    flex-direction: column;
+
+    .ctx-left {
+      display: none;
+      width: 100%;
+    }
+
+    .ctx-right {
+      flex: 1;
+      width: 100%;
+    }
+  }
+
+  // 左侧导航
+
+  // 搜索
+  .search-box {
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+    height: 36px;
+    background: #ffffff;
+    border-radius: 4px 4px 4px 4px;
+    border: 1px solid #c2c2c2;
+
+    .img-search {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translate(0, -50%);
+      width: 16px;
+    }
+    input {
+      padding-left: 40px;
+      width: 100%;
+      height: 100%;
+    }
+    button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      background: @theme;
+      color: #fff;
+    }
+  }
+
+  // 问题列表
+  .video-list {
+    padding-top: 32px;
+    .flex();
+    flex-wrap: wrap;
+
+    .video-item {
+      width: 350px;
+      margin-right: 25px;
+      margin-bottom: 32px;
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+      .img-box {
+        img {
+          width: 350px;
+          height: 197px;
+          object-fit: cover;
+        }
+      }
+      .info-box {
+        border-bottom: 1px solid #ededed;
+        padding: 15px 0;
+        .date {
+          font-size: 12px;
+          font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+          font-weight: 400;
+          color: #999999;
+        }
+        .title {
+          .line-2();
+          margin: 12px 0;
+          height: 48px;
+          font-size: 14px;
+          font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+          font-weight: 400;
+          color: #333333;
+          line-height: 24px;
+        }
+        .study {
+          .flex();
+
+          font-size: 12px;
+          font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+          font-weight: 400;
+          color: #ea3200;
+
+          img {
+            margin-left: 10px;
+            width: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  // 新闻列表
+  .news-list {
+    .news-item {
+      .flex-between();
+      padding: 32px 0;
+      padding: 15px 0;
+      border-bottom: 1px solid #d5d8de;
+      flex-direction: column-reverse;
+
+      .news-date {
+        margin-top: 10px;
+        .flex-center();
+        justify-content: flex-end;
+        flex-direction: row-reverse;
+        width: 100%;
+        height: auto;
+        border-right: none;
+
+        .date {
+          font-size: 14px;
+          font-family: DIN-Black-, DIN-Black;
+          font-weight: normal;
+          color: #b1b1b1;
+        }
+        .month {
+          margin-top: 0;
+          font-size: 14px;
+          font-family: MicrosoftYaHei-, MicrosoftYaHei;
+          font-weight: normal;
+          color: #b1b1b1;
+        }
+      }
+
+      .news-right {
+        flex: 1;
+        padding-left: 10px;
+        .title {
+          .line-1();
+          font-size: 14px;
+          font-family: MicrosoftYaHei-, MicrosoftYaHei;
+          font-weight: normal;
+          color: #333333;
+        }
+
+        .desc {
+          .line-3();
+          display: none;
+          margin-top: 24px;
+          font-size: 14px;
+          font-family: MicrosoftYaHei-, MicrosoftYaHei;
+          font-weight: normal;
+          color: #999999;
+          line-height: 32px;
+          height: 96px;
+        }
+      }
+    }
+  }
+
+  .file-group-list {
+    .file-group {
+      margin-bottom: 15px;
+      .file-section-title {
+        .flex-between();
+        padding: 0 10px;
+        height: 40px;
+        background: #f4f4f4;
+        border-radius: 0px 0px 0px 0px;
+        margin-bottom: 15px;
+
+        .text {
+          font-size: 14px;
+          font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+          font-weight: bold;
+          color: #333333;
+        }
+
+        .more-box {
+          .flex();
+
+          font-size: 12px;
+          font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+          font-weight: 400;
+          color: #ea3200;
+          img {
+            margin-left: 5px;
+            width: 16px;
+          }
+        }
+      }
+      .file-section {
+        .file-list {
+          display: flex;
+          justify-content: space-between;
+
+          .file-item {
+            width: calc((100% - 15px) / 2);
+            margin-right: 0;
+            margin-bottom: 15px;
+            cursor: pointer;
+            &:nth-child(4n) {
+              margin-right: 0;
+            }
+
+            &:hover {
+              .modal-box {
+                opacity: 1 !important;
+              }
+              .title-box {
+                background: #f8f8f8 !important;
+              }
+            }
+
+            .img-box {
+              position: relative;
+              width: 100%;
+              height: 200px;
+              .flex-center();
+
+              .poster {
+                width: 100%;
+                height: 200px;
+                object-fit: contain;
+              }
+
+              .modal-box {
+                opacity: 0;
+                position: absolute;
+                z-index: 8;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                transition: 0.4s linear;
+                .mask {
+                  width: 100%;
+                  height: 100%;
+                  background: rgba(0, 0, 0, 0.28);
+                  z-index: 10;
+                }
+                .btn {
+                  position: absolute;
+                  left: 50%;
+                  transform: translate(-50%);
+                  bottom: 40%;
+                  width: fit-content;
+                  height: 36px;
+                  line-height: 36px;
+                  padding: 0 15px;
+                  text-align: center;
+                  background: #ea3200;
+                  border-radius: 4px 4px 4px 4px;
+                  font-size: 14px;
+                  font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+                  font-weight: 400;
+                  color: #ffffff;
+
+                  &.btn-preview {
+                    // bottom: 80px;
+                  }
+                }
+              }
+            }
+
+            .title-box {
+              .line-1();
+              background: #fff;
+              transition: 0.3s;
+              padding: 0 20px;
+              height: 51px;
+              line-height: 51px;
+              text-align: center;
+              font-size: 14px;
+              font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+              font-weight: 400;
+              color: #333333;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@import "~@/assets/h5css/common/aboutCommon.less";

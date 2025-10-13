@@ -1,0 +1,116 @@
+@media screen and (max-width: 1199px) {
+  .news-right {
+    .right-title {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+
+      display: none;
+
+      width: 307px;
+      height: 104px;
+      background: #ea3200;
+      border-radius: 0px 16px 0px 0px;
+      padding-left: 33px;
+      font-size: 24px;
+      font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+      font-weight: 400;
+      color: #ffffff;
+
+      span {
+        margin-top: 15px;
+        display: inline-block;
+        width: 21px;
+        height: 2px;
+        background: #ffffff;
+      }
+    }
+
+    .right-cates {
+      display: none;
+      .cate-item {
+        border: 1px solid #e6e6e6;
+        border-top: none;
+        height: 48px;
+        line-height: 48px;
+        padding: 0 30px;
+
+        a {
+          font-size: 14px;
+          font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+          font-weight: 400;
+          color: #666666;
+
+          &.router-link-active,
+          &.active {
+            color: @theme;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .suggest-box {
+      margin-top: 20px;
+
+      width: 100%;
+      padding: 15px;
+      padding-top: 0;
+      background: #ffffff;
+      border-radius: 0px 0px 0px 0px;
+      border: 1px solid #e6e6e6;
+
+      .suggest-tags {
+        .tabs {
+          display: flex;
+          justify-content: center;
+          border-bottom: 1px solid #eee;
+          .tab-item {
+            position: relative;
+            flex: 1;
+            margin: 0 0;
+            padding: 15px 0;
+
+            font-size: 14px;
+            font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+            font-weight: 400;
+            color: #b1b1b1;
+            text-align: center;
+            cursor: pointer;
+
+            &.active {
+              &::after {
+                position: absolute;
+                content: "";
+                height: 3px;
+                background: #ea3200;
+                width: 100%;
+                left: 0;
+                right: 0;
+                bottom: 0;
+              }
+            }
+          }
+        }
+      }
+      .suggest-list {
+        .suggest-item {
+          margin-top: 15px;
+          .line-1();
+
+          a {
+            font-size: 14px;
+            font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+            font-weight: 400;
+            color: #333333;
+
+            &:hover {
+              color: @theme;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,475 @@
+[
+  {
+    "id": 371,
+    "name": "北爱尔兰",
+    "parent_id": 237,
+    "code": 371,
+    "child": [
+      {
+        "id": 4107,
+        "name": "贝尔法斯特",
+        "parent_id": 371,
+        "code": 4107,
+        "child": null
+      },
+      {
+        "id": 4108,
+        "name": "德里",
+        "parent_id": 371,
+        "code": 4108,
+        "child": null
+      },
+      {
+        "id": 4109,
+        "name": "利斯本",
+        "parent_id": 371,
+        "code": 4109,
+        "child": null
+      },
+      {
+        "id": 4110,
+        "name": "纽里",
+        "parent_id": 371,
+        "code": 4110,
+        "child": null
+      }
+    ]
+  },
+  {
+    "id": 372,
+    "name": "苏格兰",
+    "parent_id": 237,
+    "code": 372,
+    "child": [
+      {
+        "id": 4111,
+        "name": "阿伯丁",
+        "parent_id": 372,
+        "code": 4111,
+        "child": null
+      },
+      {
+        "id": 4112,
+        "name": "爱丁堡",
+        "parent_id": 372,
+        "code": 4112,
+        "child": null
+      },
+      {
+        "id": 4113,
+        "name": "丹迪",
+        "parent_id": 372,
+        "code": 4113,
+        "child": null
+      },
+      {
+        "id": 4114,
+        "name": "格拉斯哥",
+        "parent_id": 372,
+        "code": 4114,
+        "child": null
+      },
+      {
+        "id": 4115,
+        "name": "斯特灵",
+        "parent_id": 372,
+        "code": 4115,
+        "child": null
+      },
+      {
+        "id": 4116,
+        "name": "因弗内斯",
+        "parent_id": 372,
+        "code": 4116,
+        "child": null
+      }
+    ]
+  },
+  {
+    "id": 373,
+    "name": "威尔士",
+    "parent_id": 237,
+    "code": 373,
+    "child": [
+      {
+        "id": 4117,
+        "name": "班戈",
+        "parent_id": 373,
+        "code": 4117,
+        "child": null
+      },
+      {
+        "id": 4118,
+        "name": "卡迪夫",
+        "parent_id": 373,
+        "code": 4118,
+        "child": null
+      },
+      {
+        "id": 4119,
+        "name": "纽波特",
+        "parent_id": 373,
+        "code": 4119,
+        "child": null
+      },
+      {
+        "id": 4120,
+        "name": "斯旺西",
+        "parent_id": 373,
+        "code": 4120,
+        "child": null
+      }
+    ]
+  },
+  {
+    "id": 374,
+    "name": "英格兰",
+    "parent_id": 237,
+    "code": 374,
+    "child": [
+      {
+        "id": 4121,
+        "name": "埃克塞特",
+        "parent_id": 374,
+        "code": 4121,
+        "child": null
+      },
+      {
+        "id": 4122,
+        "name": "巴斯",
+        "parent_id": 374,
+        "code": 4122,
+        "child": null
+      },
+      {
+        "id": 4123,
+        "name": "彼得伯勒",
+        "parent_id": 374,
+        "code": 4123,
+        "child": null
+      },
+      {
+        "id": 4124,
+        "name": "伯明翰",
+        "parent_id": 374,
+        "code": 4124,
+        "child": null
+      },
+      {
+        "id": 4125,
+        "name": "布拉德福德",
+        "parent_id": 374,
+        "code": 4125,
+        "child": null
+      },
+      {
+        "id": 4126,
+        "name": "布莱顿与赫福",
+        "parent_id": 374,
+        "code": 4126,
+        "child": null
+      },
+      {
+        "id": 4127,
+        "name": "布里斯托尔",
+        "parent_id": 374,
+        "code": 4127,
+        "child": null
+      },
+      {
+        "id": 4128,
+        "name": "德比",
+        "parent_id": 374,
+        "code": 4128,
+        "child": null
+      },
+      {
+        "id": 4129,
+        "name": "德罕",
+        "parent_id": 374,
+        "code": 4129,
+        "child": null
+      },
+      {
+        "id": 4130,
+        "name": "格洛斯特",
+        "parent_id": 374,
+        "code": 4130,
+        "child": null
+      },
+      {
+        "id": 4131,
+        "name": "赫尔河畔京斯敦",
+        "parent_id": 374,
+        "code": 4131,
+        "child": null
+      },
+      {
+        "id": 4132,
+        "name": "赫里福德",
+        "parent_id": 374,
+        "code": 4132,
+        "child": null
+      },
+      {
+        "id": 4133,
+        "name": "剑桥",
+        "parent_id": 374,
+        "code": 4133,
+        "child": null
+      },
+      {
+        "id": 4134,
+        "name": "卡莱尔",
+        "parent_id": 374,
+        "code": 4134,
+        "child": null
+      },
+      {
+        "id": 4135,
+        "name": "坎特伯雷",
+        "parent_id": 374,
+        "code": 4135,
+        "child": null
+      },
+      {
+        "id": 4136,
+        "name": "考文垂",
+        "parent_id": 374,
+        "code": 4136,
+        "child": null
+      },
+      {
+        "id": 4137,
+        "name": "兰开斯特",
+        "parent_id": 374,
+        "code": 4137,
+        "child": null
+      },
+      {
+        "id": 4138,
+        "name": "里彭",
+        "parent_id": 374,
+        "code": 4138,
+        "child": null
+      },
+      {
+        "id": 4139,
+        "name": "利奇菲尔德",
+        "parent_id": 374,
+        "code": 4139,
+        "child": null
+      },
+      {
+        "id": 4140,
+        "name": "利物浦",
+        "parent_id": 374,
+        "code": 4140,
+        "child": null
+      },
+      {
+        "id": 4141,
+        "name": "利茲",
+        "parent_id": 374,
+        "code": 4141,
+        "child": null
+      },
+      {
+        "id": 4142,
+        "name": "列斯特",
+        "parent_id": 374,
+        "code": 4142,
+        "child": null
+      },
+      {
+        "id": 4143,
+        "name": "林肯",
+        "parent_id": 374,
+        "code": 4143,
+        "child": null
+      },
+      {
+        "id": 4144,
+        "name": "伦敦",
+        "parent_id": 374,
+        "code": 4144,
+        "child": null
+      },
+      {
+        "id": 4145,
+        "name": "曼彻斯特",
+        "parent_id": 374,
+        "code": 4145,
+        "child": null
+      },
+      {
+        "id": 4146,
+        "name": "南安普敦",
+        "parent_id": 374,
+        "code": 4146,
+        "child": null
+      },
+      {
+        "id": 4147,
+        "name": "牛津",
+        "parent_id": 374,
+        "code": 4147,
+        "child": null
+      },
+      {
+        "id": 4148,
+        "name": "纽卡斯尔",
+        "parent_id": 374,
+        "code": 4148,
+        "child": null
+      },
+      {
+        "id": 4149,
+        "name": "诺丁汉",
+        "parent_id": 374,
+        "code": 4149,
+        "child": null
+      },
+      {
+        "id": 4150,
+        "name": "诺里奇",
+        "parent_id": 374,
+        "code": 4150,
+        "child": null
+      },
+      {
+        "id": 4151,
+        "name": "朴茨茅斯",
+        "parent_id": 374,
+        "code": 4151,
+        "child": null
+      },
+      {
+        "id": 4152,
+        "name": "普雷斯顿",
+        "parent_id": 374,
+        "code": 4152,
+        "child": null
+      },
+      {
+        "id": 4153,
+        "name": "普利茅斯",
+        "parent_id": 374,
+        "code": 4153,
+        "child": null
+      },
+      {
+        "id": 4154,
+        "name": "奇切斯特",
+        "parent_id": 374,
+        "code": 4154,
+        "child": null
+      },
+      {
+        "id": 4155,
+        "name": "切斯特",
+        "parent_id": 374,
+        "code": 4155,
+        "child": null
+      },
+      {
+        "id": 4156,
+        "name": "桑德兰",
+        "parent_id": 374,
+        "code": 4156,
+        "child": null
+      },
+      {
+        "id": 4157,
+        "name": "圣阿本斯",
+        "parent_id": 374,
+        "code": 4157,
+        "child": null
+      },
+      {
+        "id": 4158,
+        "name": "索尔斯堡",
+        "parent_id": 374,
+        "code": 4158,
+        "child": null
+      },
+      {
+        "id": 4159,
+        "name": "索福特",
+        "parent_id": 374,
+        "code": 4159,
+        "child": null
+      },
+      {
+        "id": 4160,
+        "name": "特鲁罗",
+        "parent_id": 374,
+        "code": 4160,
+        "child": null
+      },
+      {
+        "id": 4161,
+        "name": "特伦特河畔斯多克",
+        "parent_id": 374,
+        "code": 4161,
+        "child": null
+      },
+      {
+        "id": 4162,
+        "name": "威尔斯",
+        "parent_id": 374,
+        "code": 4162,
+        "child": null
+      },
+      {
+        "id": 4163,
+        "name": "韦克菲尔德",
+        "parent_id": 374,
+        "code": 4163,
+        "child": null
+      },
+      {
+        "id": 4164,
+        "name": "温彻斯特",
+        "parent_id": 374,
+        "code": 4164,
+        "child": null
+      },
+      {
+        "id": 4165,
+        "name": "伍尔弗汉普顿",
+        "parent_id": 374,
+        "code": 4165,
+        "child": null
+      },
+      {
+        "id": 4166,
+        "name": "伍斯特",
+        "parent_id": 374,
+        "code": 4166,
+        "child": null
+      },
+      {
+        "id": 4167,
+        "name": "谢菲尔德",
+        "parent_id": 374,
+        "code": 4167,
+        "child": null
+      },
+      {
+        "id": 4168,
+        "name": "伊利",
+        "parent_id": 374,
+        "code": 4168,
+        "child": null
+      },
+      {
+        "id": 4169,
+        "name": "约克",
+        "parent_id": 374,
+        "code": 4169,
+        "child": null
+      }
+    ]
+  }
+]

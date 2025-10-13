@@ -1,0 +1,212 @@
+@media screen and (max-width: 1199px) {
+  /deep/ .code-box {
+    text-align: center;
+    padding-bottom: 10px;
+    .img-box {
+      img {
+        width: 120px;
+      }
+    }
+
+    .text-box {
+      margin-top: 15px;
+      font-size: 14px;
+      font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+      font-weight: 400;
+      color: #333333;
+    }
+  }
+
+  .logo-box {
+    display: block;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+
+    img {
+      // width: 220px;
+      // height: 3.5rem;
+      height: 35px;
+    }
+  }
+
+  @media print {
+    .toggle-lang-box {
+      display: none;
+    }
+
+
+    .logo-box {
+      img {
+        // width: 220px;
+        height: 50px;
+      }
+    }
+  }
+
+  .toggle-lang-box {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    top: 15px;
+
+    .el-select {
+      height: 32px;
+      width: 120px;
+
+      /deep/ .el-input {
+        height: 32px;
+        font-size: 14px;
+        input {
+          height: 32px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  .page {
+    position: relative;
+    min-height: 50vh;
+    text-align: left;
+    line-height: 1.7;
+    padding: 20px;
+    width: 210mm;
+    margin: 0 auto;
+    width: 100%;
+    padding-top: 55px;
+    padding-top: 60px;
+    word-break: break-all;
+
+    .page-box {
+      background: #f7f7f7;
+      background: #fff;
+    }
+    .page-inner {
+      width: 100%;
+      margin: 0 auto;
+      padding: 32px 0;
+      padding-bottom: 80px;
+      text-align: left;
+    }
+  }
+
+  /deep/ .page-title {
+    // .flex-between();
+    width: 100% ;
+
+    .text {
+      padding-right: 0;
+      font-size: 14px;
+      font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+      font-weight: bold;
+      color: #333333;
+    }
+    .right {
+    }
+  }
+
+  /deep/ .huohao {
+    margin-top: 15px;
+
+    .label {
+      font-size: 12px;
+    }
+    .val {
+      font-size: 14px;
+    }
+  }
+  .divider {
+    margin: 20px auto;
+    background: #ccc;
+    height: 1px;
+  }
+  .ctx-box {
+  }
+
+  /deep/ .zhaiyao-box {
+    margin-bottom: 20px;
+    font-size: 12px;
+    font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+    font-weight: bold;
+    color: #333333;
+    line-height: 1.7;
+
+    ul {
+    }
+  }
+
+  /deep/ li {
+    .flex();
+    padding-left: 10px;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      margin-right: 10px;
+      background: #333333;
+      border-radius: 50%;
+      line-height: 1.7;
+      // top: 50%;
+      top: 0.8rem;
+      left: 0;
+      // margin-top: .5rem;
+
+      // transform: translate(0, -50%);
+    }
+  }
+
+  /deep/ .section-title {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #ea3200;
+  }
+  /deep/ .section-desc {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px dashed #afafaf;
+    font-size: 12px;
+  }
+
+  // 子组件样式
+  /deep/ .divider {
+    margin: 15px 0;
+  }
+
+  /deep/.w-table tr td {
+    padding: 5px;
+  }
+  /deep/ .w-table tr th {
+    padding: 5px;
+  }
+
+
+
+  /deep/ .w-table-2 tr td:first-child, 
+  /deep/ .w-table-2 tr th:first-child {
+    width: fit-content;
+    padding: 5px;
+  }
+
+
+  /deep/ .w-table-2 tr td, 
+  /deep/ .w-table-2 tr th {
+    width: fit-content;
+    padding: 5px;
+  }
+
+
+  /deep/ .size-box .label {
+    font-size: 12px;
+  }
+  /deep/ .size-box .val {
+    font-size: 12px;
+  }
+
+  /deep/ .info-items .info-item .info-text {
+    font-size: 12px;
+  }
+}

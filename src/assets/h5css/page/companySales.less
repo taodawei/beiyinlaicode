@@ -1,0 +1,55 @@
+@media screen and (max-width: 1199px) {
+  .page .page-inner .detail-desc {
+    font-size: 14px;
+  }
+  // 销售人员
+  .detail-content {
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 10px #eee;
+  }
+  .groups {
+    text-align: left;
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .group-item {
+      width: 50%;
+      width: 100%;
+      margin-bottom: 15px;
+      .group-title {
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .user-items {
+        // display: flex;
+        // flex-wrap: wrap;
+      }
+      .user-item {
+        // width: 50%;
+        margin-top: 15px;
+        .flex();
+        // flex-direction: column;
+        // justify-content: flex-start;
+        // align-items: flex-start;
+        .user-name {
+          // min-width: 80px;
+        }
+        .user-phone {
+          min-width: fit-content;
+          margin-left: 15px
+        }
+        .user-email {
+          min-width: fit-content;
+          margin-left: 15px
+        }
+      }
+    }
+  }
+}
+
+
+@import "~@/assets/h5css/common/aboutCommon.less";

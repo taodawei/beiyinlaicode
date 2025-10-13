@@ -1,0 +1,244 @@
+@media screen and (max-width: 1199px) {
+  .shijihe-qianru-box {
+    img {
+      display: block;
+      max-width: 90%;
+      margin: 20px auto;
+    }
+  }
+
+  .page-shuomingshu {
+    line-height: 1.7;
+  }
+  .w-921 {
+    width: 921px;
+  }
+
+  .code-box {
+    text-align: right;
+    padding-bottom: 30px;
+    .img-box {
+      img {
+        width: 200px;
+      }
+    }
+    
+    .text-box {
+      margin-top: 15px;
+      font-size: 18px;
+      font-size: 1.8rem;
+      font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+      font-weight: 400;
+      color: #333333;
+    }
+  }
+
+  ul {
+  }
+  li {
+    .flex();
+    align-items: flex-start;
+    position: relative;
+    padding-left: 20px;
+    &::before {
+      content: "";
+      position: absolute;
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 10px;
+      background: #333333;
+      border-radius: 50%;
+      line-height: 1.7;
+      // top: 50%;
+      top: 1rem;
+      left: 0;
+      // margin-top: .5rem;
+
+      // transform: translate(0, -50%);
+    }
+  }
+
+  .page-top {
+    display: none;
+    position: relative;
+    .page-top-banner {
+      img {
+        width: 100%;
+      }
+    }
+    .page-bread {
+      width: 100%;
+      margin: 0 auto;
+      height: 44px;
+      background: #f5f5f5;
+      padding: 0 15px;
+
+      .bread-box {
+        height: 44px;
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 15px;
+          margin-right: 10px;
+        }
+        .bread-divider {
+          margin: 0 10px;
+          font-size: 14px;
+          font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+          font-weight: 400;
+          color: #999999;
+
+          font-size: 1.4rem;
+        }
+        a {
+          font-size: 14px;
+          font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+          font-weight: 400;
+          color: #999999;
+
+          font-size: 1.4rem;
+
+          &:hover {
+            color: @theme;
+          }
+        }
+      }
+    }
+  }
+
+  .page {
+    padding-top: 32px;
+    .page-box {
+      background: #f7f7f7;
+      background: #fff;
+    }
+    .page-inner {
+      // width: 100%;
+      // margin: 0 auto;
+      // padding: 32px 0;
+      // padding-bottom: 80px;
+      text-align: left;
+      text-align: justify;
+    }
+  }
+
+  .page-title {
+    .flex-between();
+    // width: calc(100% - 24rem);
+    width: 100%;
+
+    .text {
+      padding-right: 50px;
+      font-size: 16px;
+      font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+      font-weight: bold;
+      color: #333333;
+      font-size: 16px;
+    }
+    .right {
+    }
+  }
+
+  .huohao {
+    margin-top: 12px;
+    display: flex;
+    align-items: flex-end;
+    align-items: center;
+    .label {
+      font-size: 14px;
+      color: #333;
+
+      font-size: 1.4rem;
+    }
+    .val {
+      font-size: 20px;
+      font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+      font-weight: bold;
+      color: #ea3219;
+
+      font-size: 2rem;
+    }
+  }
+  .divider {
+    margin: 20px auto;
+    margin: 40px auto;
+    background: #ccc;
+    height: 1px;
+  }
+  .ctx-box {
+    line-height: 1.7;
+  }
+
+  .zhaiyao-box {
+    margin-bottom: 43px;
+    margin-bottom: 60px;
+    font-size: 14px;
+    font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+    font-weight: bold;
+    color: #333333;
+    line-height: 1.7;
+
+    font-size: 1.4rem;
+  }
+  .section-title {
+    margin-bottom: 22px;
+    margin-bottom: 30px;
+    font-size: 16px;
+    font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+    font-weight: bold;
+    color: #ea3200;
+
+    font-size: 1.6rem;
+  }
+  .section-desc {
+    padding-bottom: 48px;
+    margin-bottom: 48px;
+    margin-bottom: 68px;
+    border-bottom: 1px dashed #afafaf;
+    font-size: 14px;
+    font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+    font-weight: 400;
+    color: #333333;
+
+    line-height: 1.7;
+    font-size: 1.4rem;
+  }
+
+  .w-table {
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 0;
+    border: none;
+
+    tr {
+      td,
+      th {
+        min-height: 48px;
+        height: 48px;
+        border: 1px solid #afafaf;
+        border-right: none;
+        border-bottom: none;
+        padding-left: 2em;
+      }
+
+      td:last-child,
+      th:last-child {
+        border-right: 1px solid #afafaf;
+      }
+    }
+
+    tr:last-child {
+      td {
+        border-bottom: 1px solid #afafaf;
+      }
+    }
+  }
+
+  .bottom-list {
+    & > div {
+      margin-bottom: 15px;
+    }
+  }
+}

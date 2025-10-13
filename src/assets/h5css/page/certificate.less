@@ -1,0 +1,124 @@
+@media screen and (max-width: 1199px) {
+  // 轮播样式调整
+  /deep/ .swiper-pagination-bullet {
+    width: 6px;
+    height: 6px;
+    margin: 0 2px !important;
+  }
+
+  .swiper-arrow {
+    background: transparent;
+    img {
+      width: 30px;
+      display: block;
+    }
+
+    .img-default {
+    }
+    .img-active {
+      display: none;
+    }
+    .img-disabled {
+      display: none;
+    }
+
+    &:not(:disabled):hover {
+      .img-default {
+        display: none;
+      }
+      .img-active {
+        display: block;
+      }
+    }
+  }
+
+  .lunbo-box {
+    padding: 0 20px;
+  }
+
+  .wenxian-list-inner {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+
+    .arrow {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      transform: translate(0, -50%);
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+
+    .wenxian-arrow-left {
+      left: -20px;
+    }
+
+    .wenxian-arrow-right {
+      right: -20px;
+    }
+  }
+
+  /deep/ .swiper-pagination-bullet-active {
+    background: @theme;
+  }
+
+  .swiper-wenxian {
+    width: calc(100vw - 100px);
+    padding: 10px 2px;
+    padding-bottom: 0;
+    margin: 0 auto;
+
+    padding-bottom: 30px;
+  }
+
+  .wenxian-list {
+    display: flex;
+    align-items: center;
+  }
+  .wenxian-item {
+    width: 100%;
+    min-height: 204px;
+    margin-right: 0;
+    margin-bottom: 0;
+    background: #ffffff;
+    border-radius: 0px 0px 0px 0px;
+    border: 1px solid #e6e6e6;
+
+    &:nth-child(4n) {
+      margin-right: 0;
+    }
+
+    .img-box {
+      img {
+        width: 100%;
+        max-width: 100vw;
+        height: auto;
+      }
+    }
+  }
+}
+
+@import "~@/assets/h5css/common/aboutCommon.less";
+
+
+
+// pad端
+@media screen and (max-width: 1199px) and (min-width: 768px) {
+    // 轮播样式调整
+    /deep/ .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      margin: 0 5px !important;
+    }
+
+
+  .swiper-wenxian {
+    padding-bottom: 30px;
+  }
+  .wenxian-item {
+    padding: 0 15px;
+    border: none;
+  }
+}

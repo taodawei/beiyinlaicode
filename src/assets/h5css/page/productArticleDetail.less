@@ -1,0 +1,133 @@
+@media screen and (max-width: 1199px) {
+  .page {
+    .page-box {
+      background: #f7f7f7;
+      background: #fff;
+    }
+    .page-inner {
+      padding: 0;
+      text-align: left;
+
+      .page-block {
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .detail-title {
+        text-align: center;
+        position: relative;
+        font-size: 36px;
+        font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+        font-weight: bold;
+        color: #333333;
+
+        .btn-xunjia {
+          display: inline-block;
+          position: absolute;
+          right: 0;
+          top: 20px;
+
+          width: 140px;
+          height: 40px;
+          line-height: 40px;
+          background: #ffffff;
+          border-radius: 4px 4px 4px 4px;
+          border: 1px solid #ea3200;
+          font-size: 14px;
+          font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+          font-weight: 400;
+          color: #ea3200;
+        }
+      }
+
+      .detail-title-line {
+        width: 80px;
+        margin: 24px auto;
+        height: 5px;
+        background: #ea3200;
+        border-radius: 3px 3px 3px 3px;
+      }
+
+      .detail-html {
+        padding-top: 0;
+        padding-bottom: 30px;
+        .flex-between();
+        align-items: flex-start;
+        flex-direction: column;
+
+        .detail-left {
+          flex: 1;
+        }
+        .detail-right {
+          width: 100%;
+          margin-left: 0;
+          .img-box {
+            width: 100%;
+
+            img {
+              width: 100%;
+            }
+          }
+        }
+
+        .detail-rich {
+          text-align: left;
+          font-size: 16px;
+          font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+          font-weight: 400;
+          color: #666666;
+          line-height: 1.7;
+          text-indent: 0;
+          text-align: justify;
+
+          /deep/ img {
+            display: block;
+            margin: 10px auto;
+            max-width: 100%;
+            vertical-align: bottom;
+          }
+
+          /deep/ p {
+            font-size: 14px !important;
+            line-height: 1.7 !important;
+            margin: 0 !important;
+          }
+
+          /deep/ span {
+            font-size: 14px !important;
+            line-height: 1.7 !important;
+            margin: 0 !important;
+          }
+
+        }
+      }
+
+      .detail-action {
+        margin-top: 0;
+        text-align: center;
+        a {
+          .flex-center();
+          margin: 0 auto;
+          min-width: 100px;
+          width: fit-content;
+          padding: 0 10px;
+          height: 40px;
+          background: #ffffff;
+          border-radius: 4px 4px 4px 4px;
+          border: 1px solid #ea3200;
+
+          font-size: 14px;
+          font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+          font-weight: 400;
+          color: #ea3200;
+
+          img {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@import "~@/assets/h5css/common/aboutCommon.less";

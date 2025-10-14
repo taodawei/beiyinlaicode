@@ -13,10 +13,10 @@ module.exports = {
   // 部署应用包时的基本 URL,从 Vue CLI 3.3 起已弃用baseUrl
   // publicPath: process.env.NODE_ENV !== "production" ? "./" : '/',
   // publicPath: process.env.NODE_ENV !== "production" ? "/" : "/", //本地开发用
-  publicPath: process.env.NODE_ENV !== "production" ? "/" : "/dist_pc_beiyinlai", //本地开发用
+  publicPath: process.env.NODE_ENV !== "production" ? "/" : "/", //本地开发用
 
   // build时构建文件的目录 构建时传入 --no-clean 可关闭该行为
-  outputDir: "dist_pc_beiyinlai",
+  outputDir: "dist",
 
   // build时放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录
   // assetsDir: "dist_pc_hemeixin",
@@ -80,7 +80,8 @@ module.exports = {
                 // 生成文件的路径，也可以与webpakc打包的一致。
                 // 这个目录只能有一级，如果目录层次大于一级，在生成的时候不会有任何错误提示，在预渲染的时候只会卡着不动。
                 // staticDir: path.join(__dirname, "dist_jinsu_pc"),
-                staticDir: path.join(__dirname, "dist_pc_beiyinlai"),
+                //staticDir: path.join(__dirname, "dist_pc_beiyinlai"),
+                staticDir: path.join(__dirname, "dist"),
                 // 对应自己的路由文件，比如about有参数，就需要写成 /about/param1。
                 routes: [
                   "/",

@@ -39,12 +39,32 @@
                 type="text"
                 placeholder="请输入要搜索的关键词"
                 @keyup.enter="toSearch"
+                @input="handleSearchInput"
               />
               <button @click="toSearch">
                 <img class="img-search" src="@img/home-search.png" alt="" />
               </button>
             </div>
           </div>
+
+          <!-- 搜索建议 -->
+          <!-- v-if="search_suggest_list.length" -->
+          <div class="search-suggest-list" v-if="search_suggest_list.length">
+            <div
+              class="search-suggest-item"
+              v-for="(item, index) in search_suggest_list"
+              :key="index"
+            >
+              <router-link
+                :to="'/goodsDetail/' + item.inventoryId"
+                :alt="item.title"
+                :title="item.title"
+              >
+                【{{ item.skuId }}】 {{ item.title }}
+              </router-link>
+            </div>
+          </div>
+
           <div class="hot-words">
             热卖产品：
             <!-- <router-link :to="'/productCates?keyword=' + item" class="words" v-for="(item, index) in hotSearchWords" :key="index">
@@ -280,6 +300,8 @@ export default {
       group_length: 1,
 
       index_show_cates: [],
+      search_suggest_list: [],
+      searchLock : false,
     };
   },
   computed: {
@@ -325,7 +347,17 @@ export default {
     },
   },
 
-  watch: {},
+  watch: {
+    keyword(val) {
+      if (val) {
+        if (!this.searchLock) {
+          this.handleSearchChange();
+        }
+      } else {
+        this.search_suggest_list = [];
+      }
+    },
+  },
 
   created() {
     this.setMobileInfo();
@@ -609,6 +641,46 @@ export default {
         this.$router.push("/goodsDetail/" + item.inventory_id);
       }
     },
+
+    kwywordSearch() {
+      // search_suggest_list
+
+      this.$api("product_searchPlist", {
+        channel_id: this.selectCate || "",
+        page: 1,
+        pagenum: 8,
+        keyword: this.keyword.trim() || "",
+      }).then((res) => {
+        //console.log("搜索相关");
+        this.search_suggest_list = res.data.list.slice(0, 8);
+
+        // setTimeout(() => {
+        // this.disabledSearchQuery = false;
+        // }, 500);
+      });
+    },
+
+    handleSearchChange() {
+      //console.log("监视 change 事件", this.keyword);
+
+      if (this.disabledSearchQuery) {
+        return false;
+      }
+
+      this.cutdown();
+      this.kwywordSearch();
+    },
+
+    cutdown() {
+      this.disabledSearchQuery = true;
+      setTimeout(() => {
+        this.disabledSearchQuery = false;
+      }, 200);
+    },
+
+    handleSearchInput() {
+      this.searchLock = false;
+    },
   },
 };
 </script>
@@ -832,6 +904,55 @@ export default {
             opacity: 0.7;
           }
         }
+      }
+    }
+  }
+
+  
+
+  &:hover {
+    .search-suggest-list {
+      display: block;
+      position: relative;
+    }
+  }
+}
+
+.search-suggest-list {
+  display: none;
+  margin: auto;
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  right: 0;
+  // top: 43px;
+  width: 1040px;
+  border: 1px solid #ddd;
+  border-top: none;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  .search-suggest-item {
+    .line-1();
+    line-height: 3.5rem;
+    height: 3.5rem;
+    padding: 0 5px;
+    text-align: left;
+    transition: 0.3s;
+
+    &:hover {
+      background: #f5f5f5;
+    }
+
+    a {
+      .line-1();
+      display: block;
+      width: 100%;
+      height: 100%;
+      color: #888;
+      font-size: 1.3rem;
+      &:hover {
+        color: @theme;
       }
     }
   }

@@ -3,10 +3,10 @@
     <div class="product-inner" v-if="apiCompleted">
       <!-- 卡片形式的展示形式 v-if="!isViewProductTable" -->
       <div class="card-wrap" v-if="!isViewProductTable">
-        <div class="product-list">
+        <div v-if="product_list.length>1" class="product-list">
           <div class="product-item" v-for="(item, index) in product_list" :key="index">
             <div class="product-left">
-              <router-link :to="'/goodsDetail/' + item.inventoryId" class="title">
+              <router-link :to="'/goodsDetail/' + item.inventoryId" class="title" target="_blank">
                 {{ item.title }}
               </router-link>
 
@@ -14,7 +14,7 @@
                 <router-link
                   v-if="+item.paper_num"
                   :to="'/goodsDetail/' + item.inventoryId + '?item=3'"
-                  class="shuoming-item"
+                  class="shuoming-item" target="_blank"
                 >
                   <img src="@img/wenxian.png" alt="" />
                   <span> 文献引用（{{ item.paper_num }}） </span>
@@ -42,7 +42,7 @@
                         ? '/productSpecificationPdf/' + item.inventoryId
                         : '/productSpecification/' + item.id + '?ggid=' + item.inventoryId
                     "
-                    class="shuoming-item"
+                    class="shuoming-item" target="_blank"
                   >
                     <img src="@img/pdf.png" alt="" />
                     <span> 说明书 </span>
@@ -52,7 +52,7 @@
               <div class="text-box">
                 <div class="label">货号：</div>
                 <div class="val">
-                  <router-link :to="'/goodsDetail/' + item.inventoryId">
+                  <router-link :to="'/goodsDetail/' + item.inventoryId" target="_blank">
                     {{ item.skuId }}
                   </router-link>
                 </div>
@@ -97,12 +97,15 @@
             </div>
           </div>
         </div>
+        <div v-else>
+          <p>没有找到相关内容，请换一个词试试</p>
+        </div>
       </div>
 
       <!-- 表格形式数据 -->
       <!-- v-if="isViewProductTable" -->
-      <div class="info-list" v-else>
-        <div class="info-list-inner">
+      <div  class="info-list" v-else>
+        <div v-if="product_list.length>1" class="info-list-inner">
           <!-- 货号，名称，同义词，基因ID，应用 -->
           <div class="info-item title-item">
             <div class="item">货号</div>
@@ -119,12 +122,12 @@
           </div>
           <div class="info-item" v-for="(item, index) in product_list" :key="index">
             <div class="item">
-              <router-link :to="item.route">
+              <router-link :to="item.route" target="_blank">
                 <div v-html="item.html_skuId"></div>
               </router-link>
             </div>
             <div class="item">
-              <router-link :to="item.route">
+              <router-link :to="item.route" target="_blank">
                 <div v-html="item.html_title"></div>
               </router-link>
             </div>
@@ -136,9 +139,12 @@
             </div>
           </div>
         </div>
+        <div v-else>
+          <p>没有找到相关内容，请换一个词试试</p>
+        </div>
       </div>
 
-      <div class="pagination-box" style="margin-top: 40px">
+      <div v-show="product_list.length>1" class="pagination-box" style="margin-top: 40px">
         <el-pagination
           background
           layout="total,prev, pager, next"

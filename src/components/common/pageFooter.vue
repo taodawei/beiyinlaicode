@@ -46,6 +46,14 @@
           <img :src="webConfig.qrcode_gongzhonghao" alt="" />
           <div class="text">贝茵莱公众号</div>
         </div>
+        <div class="qrcode-item">
+          <img src="@img/App_QRcode.jpg" alt="" />
+          <div class="text">贝茵莱小程序号</div>
+        </div>
+        <div class="qrcode-item">
+          <img src="@img/vedio_QRcode.jpg" alt="" />
+          <div class="text">贝茵莱视频号</div>
+        </div>
       </div>
     </div>
 
@@ -231,6 +239,9 @@ export default {
     }
   }
   .footer-right {
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
     .qrcode-item {
       img {
         width: 95px;

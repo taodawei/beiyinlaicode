@@ -252,7 +252,7 @@
                           </div>
                         </div>
 
-                        <div class="box-wenxian">
+                        <!-- <div class="box-wenxian">
                           <div class="pop-product-group">
                             <div class="group-title">
                               <router-link to="/productDocument"
@@ -273,7 +273,7 @@
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>
@@ -1084,6 +1084,7 @@ export default {
     width: @width;
     margin: 0 auto;
     display: flex;
+    justify-content: space-between;
     align-items: stretch;
     line-height: 1.1;
     text-align: left;
@@ -1108,7 +1109,7 @@ export default {
       padding-left: 18px;
       padding-right: 18px;
       height: fit-content;
-      width: 230px;
+      // width: 230px;
     }
 
     .box-wenxian {

@@ -82,6 +82,18 @@
           </div>
         </div>
 
+         <!--测试模块-->
+        <!-- <div class="footbanner-text">
+          <div style="color: blue;font-size: 50px;margin-top: 100px;">
+            数字：
+            <VueCountUp ref="refcountofore" :start-value="0" :end-value="5000" :duration="1" :options="options"  />
+          </div>
+          <div style="color: #b72830;font-size: 50px;margin-top: 100px;">
+            数字：
+            <VueCountUp :start-value="0" :end-value="5000" :duration="1"  />
+          </div>
+        </div> -->
+
         <!-- 主营业务 -->
         <div class="section-yewu">
           <div class="section-title">
@@ -257,6 +269,8 @@
             </div>
           </div>
         </div>
+
+       
       </div>
     </div>
   </div>
@@ -265,14 +279,14 @@
 <script>
 import DPlayer from "dplayer";
 
+import VueCountUp from 'vue-countupjs'
 import { Swiper, SwiperOptions, Pagination, Navigation } from "swiper";
 import "swiper/swiper-bundle.min.css";
 
 import { mapState } from "vuex";
-
 export default {
   name: "index",
-  components: {},
+  components: {VueCountUp},
   data() {
     return {
       is_h5: false,
@@ -302,11 +316,21 @@ export default {
       index_show_cates: [],
       search_suggest_list: [],
       searchLock : false,
+
+      options : {
+          useEasing: true, // 是否使用缓动动画，默认为缓动，可以设置为false让其匀速
+          useGrouping: true, // 对数字进行分组，如12345，按三位一组变为类似123,45这样的
+          separator: ',', // 分组时使用的分隔符默认是逗号，
+          decimal: '.', // 小数点
+          prefix: '', // 添加前缀如12345，变为￥12345
+          suffix: '%', // 添加后缀如12345 通过添加后缀变为12345$，12345元之类的
+          numerals: [] // 用来做替换操作，一般用不到，默认为空就是不用他
+      },
     };
   },
+  
   computed: {
     ...mapState(["hotSearchWords", "index_banners"]),
-
     index_hotSearchWords() {
       let arr = [];
 
@@ -471,7 +495,7 @@ export default {
       }
 
       var scrollTop = $target.scrollTop;
-
+      let countup = document.documentElement.scrollTop;
       if (scrollTop) {
         // $header.classList.add('theme-white');
         that.$store.commit("set_header_theme", "white");
@@ -479,6 +503,12 @@ export default {
         that.$store.commit("set_header_theme", "transparent");
         // $header.classList.remove('theme-white');
       }
+      // if(countup>300&&countup<=400){
+      //   const refname = 'refcountofore';
+      //   this.$refs[refname].reset();
+      //   this.$refs[refname].start();
+      //   // $target.start();
+      // }
       // //console.log("滚动监听", new Date(), scrollTop);
     },
 

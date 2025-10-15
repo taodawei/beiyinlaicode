@@ -334,6 +334,7 @@
                     class="product-item"
                     v-for="(item, index) in product_list"
                     :key="index"
+                    target="_blank"
                   >
                     <div class="img-box scale-box">
                       <img :src="item.img" class="scale-img" />

@@ -98,7 +98,7 @@
           </div>
         </div>
         <div v-else>
-          <p>没有找到相关内容，请换一个词试试</p>
+          <el-empty description="没有查询到相关内容..."></el-empty>
         </div>
       </div>
 
@@ -140,7 +140,7 @@
           </div>
         </div>
         <div v-else>
-          <p>没有找到相关内容，请换一个词试试</p>
+          <el-empty description="没有查询到相关内容..."></el-empty>
         </div>
       </div>
 

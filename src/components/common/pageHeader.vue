@@ -120,6 +120,143 @@
                   <div class="pop-product-box">
                     <div class="pop-product">
                       <div class="pop-product-inner">
+                        <div class="box-cate" 
+                          v-for="(level1, index) in product_cates"
+                          :key="index"
+                        >
+                          <div class="pop-product-group pop-product-group-leixing">
+                            <div class="group-title">
+                              <router-link to="/productCates">{{ level1.title }}</router-link>
+                            </div>
+                            <div class="group-list group-leixing">
+                              <div
+                                class="list-level2"
+                              >
+                                <div
+                                  class="item"
+                                  v-for="(
+                                    level2, yindex
+                                  ) in level1.channels.filter(
+                                    (v) => v.is_show
+                                  )"
+                                  :key="yindex"
+                                >
+                                  <router-link :to="'/productCates?id=' + level2.id">{{
+                                    level2.title
+                                  }}</router-link>
+                                </div>
+                              </div>
+                              <!-- <div class="list">
+                                <div
+                                  class="link-item"
+                                  v-for="(level1, index) in product_cates"
+                                  :key="index"
+                                  @mouseover="handleHoverCate(level1, index)"
+                                >
+                                  <router-link
+                                    :to="'/productCates?id=' + level1.id"
+                                    class="item"
+                                    :class="{
+                                      active: active_product_cate.id == level1.id,
+                                    }"
+                                  >
+                                    {{ level1.title }}
+                                  </router-link>
+                                </div>
+                              </div>
+                              <div
+                                class="list-level2"
+                                v-if="active_product_cate && active_product_cate.channels"
+                              >
+                                <div
+                                  class="item"
+                                  v-for="(
+                                    level2, index
+                                  ) in active_product_cate.channels.filter(
+                                    (v) => v.is_show
+                                  )"
+                                  :key="index"
+                                >
+                                  <router-link :to="'/productCates?id=' + level2.id">{{
+                                    level2.title
+                                  }}</router-link>
+                                </div>
+                              </div> -->
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="box-haocai">
+                          <div class="pop-product-group">
+                            <!-- 路由修改 /productApparatusesCates -->
+
+                            <div class="group-title">
+                              <router-link :to="'/productCates?id=855'"
+                                >其他产品</router-link
+                              >
+                            </div>
+                            <div class="group-list group-haocai">
+                              <div class="list">
+                                <div
+                                  class="item"
+                                  v-for="(level1, index) in haocai_cates"
+                                  :key="index"
+                                  :class="{ active: active_haocai_cate.id == level1.id }"
+                                >
+                                  <router-link
+                                    :to="level1.route"
+                                    class="item-title"
+                                    @click="toggleHaocai(level1)"
+                                  >
+                                    {{ level1.title }}
+                                  </router-link>
+
+                                  <!-- v-if="active_haocai_cate.id == level1.id" -->
+                                  <div class="sub-list">
+                                    <router-link
+                                      :to="level2.route"
+                                      class="sub"
+                                      v-for="(level2, level2_index) in level1.channels"
+                                      :key="level2_index"
+                                    >
+                                      {{ level2.title }}
+                                    </router-link>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- <div class="box-wenxian">
+                          <div class="pop-product-group">
+                            <div class="group-title">
+                              <router-link to="/productDocument"
+                                >产品文献引用</router-link
+                              >
+                            </div>
+                            <div class="group-list group-wenxian">
+                              <div class="list">
+                                <div
+                                  class="wenxian-item"
+                                  v-for="(item, index) in list_wenxian"
+                                  :key="index"
+                                >
+                                  <a target="_blank" :href="item.url" class="item">
+                                    {{ item.title }}
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!-- <div class="pop-product-box">
+                    <div class="pop-product">
+                      <div class="pop-product-inner">
                         <div class="box-cate">
                           <div class="pop-product-group pop-product-group-leixing">
                             <div class="group-title">
@@ -168,7 +305,6 @@
 
                         <div class="box-haocai">
                           <div class="pop-product-group">
-                            <!-- 路由修改 /productApparatusesCates -->
 
                             <div class="group-title">
                               <router-link :to="'/productCates?id=855'"
@@ -191,7 +327,6 @@
                                     {{ level1.title }}
                                   </router-link>
 
-                                  <!-- v-if="active_haocai_cate.id == level1.id" -->
                                   <div class="sub-list">
                                     <router-link
                                       :to="level2.route"
@@ -251,32 +386,9 @@
                             </div>
                           </div>
                         </div>
-
-                        <!-- <div class="box-wenxian">
-                          <div class="pop-product-group">
-                            <div class="group-title">
-                              <router-link to="/productDocument"
-                                >产品文献引用</router-link
-                              >
-                            </div>
-                            <div class="group-list group-wenxian">
-                              <div class="list">
-                                <div
-                                  class="wenxian-item"
-                                  v-for="(item, index) in list_wenxian"
-                                  :key="index"
-                                >
-                                  <a target="_blank" :href="item.url" class="item">
-                                    {{ item.title }}
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div> -->
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </template>
                 <!-- 产品中心结束 -->
 
@@ -1134,7 +1246,8 @@ export default {
         top: 0;
         width: 1px;
         background: #ccc;
-        height: 33rem;
+        // height: 33rem;
+        height: 100%;
       }
     }
 
@@ -1142,7 +1255,7 @@ export default {
     .box-haocai,
     .box-zhuanti {
       // border-right: 1px solid #ccc;
-      height: 33rem;
+      height: 50rem;
     }
 
     .box-lingyu {
@@ -1162,7 +1275,7 @@ export default {
         font-size: 16px;
         font-weight: bold;
         color: #000000;
-
+        text-align: center;
         a {
           padding: 5px 3px;
           display: block;
@@ -1236,8 +1349,8 @@ export default {
             width: calc((100% - 0) / 2);
             width: 50%;
             width: 100%;
-            // text-align: center;
-            padding-left: 20px;
+            text-align: center;
+            // padding-left: 20px;
             height: 30px;
             line-height: 30px;
 
@@ -1271,7 +1384,7 @@ export default {
             height: 36px;
             line-height: 36px;
             padding-left: 9px;
-            text-align: left;
+            text-align: center;
             background: #f7f7f7;
             margin-bottom: 5px;
             cursor: pointer;
@@ -1290,9 +1403,9 @@ export default {
           .sub-list {
             padding-left: 17px;
             padding-left: 0;
-
+            text-align: center;
             .sub {
-              width: fit-content;
+              //width: fit-content;
               display: block;
               font-size: 12px;
               font-family: Microsoft YaHei-Regular, Microsoft YaHei;

@@ -3,36 +3,102 @@
     <div class="section-1">
       <div class="header-info">
         <div class="info-left">
-          <img class="img-1" src="@img/icon-phone.png" alt="" />
+          <div class="top-exterLinks">
+            <div class="top-exterLink">
+              <a target="_blank" href="http://www.hlkbio.cn/" class="top-exterLink-flex">
+                <img class="top-exterLink-logo" src="@img/top/hualian.png"></img>
+                <p>华联科</p>
+              </a>
+            </div>
+            <div class="top-exterLink" >
+              <a target="_blank" href="http://www.jymbio.com/" class="top-exterLink-flex">
+                <img class="top-exterLink-logo" src="@img/top/jinyinmei.png"></img>
+                <p>基因美</p>
+              </a>
+            </div>
+            <div class="top-exterLink">
+              <a target="_blank" href="http://www.daucell.cn/" class="top-exterLink-flex">
+                <img class="top-exterLink-logo" src="@img/top/daosaier.png"></img>
+                <p>道赛尔</p>
+              </a>
+            </div>
+          </div>
+          <!-- <img class="img-1" src="@img/icon-phone.png" alt="" />
           <span class="text-1">{{ webConfig.hotLine }}</span>
           <img class="img-2" src="@img/icon-env.png" alt="" />
-          <span class="text-2">{{ webConfig.email }}</span>
+          <span class="text-2">{{ webConfig.email }}</span> -->
         </div>
         <div class="info-right">
-          <router-link v-if="!is_login" class="login" to="/login"> 登录 </router-link>
-          <router-link v-else class="login" to="/userIndex">
-            {{ baseInfo.username }}
-          </router-link>
-          <span class="divider"></span>
-          <router-link v-if="!is_login" class="register" to="/register">
-            注册
-          </router-link>
-          <a v-else class="register" href="javascript:void(0)" @click="logout"> 退出 </a>
-
-          <router-link class="shopcart" to="/shoppingCart">
-            购物车 ({{ shopcart_count || 0 }})
-          </router-link>
-
-          <router-link class="lang" to="/login">
-            <img src="@img/icon-language.png" alt="" />
-            简体中文
-          </router-link>
+          <div class="top-certifs">
+            <div class="top-certif">
+              <img class="top-certif-img" src="@img/top/certificate1.png"></img>
+            </div>
+            <div class="top-certif">
+              <img class="top-certif-img" src="@img/top/certificate2.png"></img>
+            </div>
+            <div class="top-certif">
+              <img class="top-certif-img" src="@img/top/certificate3.png"></img>
+            </div>
+            <div class="top-certif">
+              <img class="top-certif-img" src="@img/top/certificate4.png"></img>
+            </div>
+            <div class="top-certif">
+              <!-- <div class="top-certif-right"></div> -->
+              <router-link
+                to="/certificate" 
+                class="top-certif-right el-button el-button--info is-circle">
+                <i class="el-icon-right"></i>
+              </router-link>
+            </div>
+          </div>
+          <span class="cut-line">|</span>
+          <div class="top-qrcodes">
+            <div class="top-qrcode-box">
+              <img class="qrcode-img" src="@img/top/xiaohongshu.png" alt="" />
+              <div class="qrcode-imgshow">
+                <img class="qrcode-img-qr" src="@img/gongzhonghao_code.png" alt="" />
+              </div>
+            </div>
+            <div class="top-qrcode-box">
+              <img class="qrcode-img" src="@img/top/gongzhonghao.png" alt="" />
+              <div class="qrcode-imgshow">
+                <img class="qrcode-img-qr" src="@img/gongzhonghao_code.png" alt="" />
+              </div>
+            </div>
+            <div class="top-qrcode-box">
+              <img class="qrcode-img" src="@img/top/douyin.png" alt="" />
+              <div class="qrcode-imgshow">
+                <img class="qrcode-img-qr" src="@img/gongzhonghao_code.png" alt="" />
+              </div>
+            </div>
+            <div class="top-qrcode-box">
+              <img class="qrcode-img" src="@img/top/bilibili.png" alt="" />
+              <div class="qrcode-imgshow">
+                <img class="qrcode-img-qr" src="@img/gongzhonghao_code.png" alt="" />
+              </div>
+            </div>
+            <div class="top-qrcode-box">
+              <img class="qrcode-img" style="border-radius: 12px;" src="@img/top/xiaochenxu.png" alt="" />
+              <div class="qrcode-imgshow">
+                <img class="qrcode-img-qr" src="@img/gongzhonghao_code.png" alt="" />
+              </div>
+            </div>
+            <div class="top-qrcode-box">
+              <img class="qrcode-img"  src="@img/top/fuwuhao.png" alt="" />
+              <div class="qrcode-imgshow">
+                <img class="qrcode-img-qr" src="@img/gongzhonghao_code.png" alt="" />
+              </div>
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>
 
     <div class="section-2">
-      <div class="header-inner">
+      <div class="header-inner" 
+      :class="[header_theme == 'transparent' ? '' : 'header-inner-top']"
+      >
         <!-- logo -->
         <div class="left">
           <div class="logo" @click="toHome">
@@ -43,36 +109,47 @@
 
         <!-- 搜索 -->
         <div class="center-search-wrap" v-if="!is_page_home || header_theme == 'white'">
-          <div class="center-search">
-            <div class="left-select">
-              <!-- <el-select v-model="selectType" placeholder="">
-              <el-option v-for="item in options" :key="item.id" :label="item.title" :value="item.id"> </el-option>
-            </el-select> -->
+          <div class="center-search-box">
+            <div class="center-search">
+              <div class="left-select">
+                <!-- <el-select v-model="selectType" placeholder="">
+                <el-option v-for="item in options" :key="item.id" :label="item.title" :value="item.id"> </el-option>
+              </el-select> -->
 
-              <el-select v-model="selectCate" placeholder="">
-                <el-option
-                  v-for="item in options_product_cates"
-                  :key="item.id"
-                  :label="item.title"
-                  :value="item.id"
-                >
-                </el-option>
-              </el-select>
+                <el-select v-model="selectCate" placeholder="">
+                  <el-option
+                    v-for="item in options_product_cates"
+                    :key="item.id"
+                    :label="item.title"
+                    :value="item.id"
+                  >
+                  </el-option>
+                </el-select>
+              </div>
+
+              <div class="search-box">
+                <input
+                  v-model="keyword"
+                  type="text"
+                  placeholder="请输入搜索关键词"
+                  @keyup.enter="toSearch"
+                  @input="handleSearchInput"
+                />
+                <button class="btn-search" @click="toSearch">
+                  <img class="img-search" src="@img/icon-search.png" alt="" />
+                </button>
+              </div>
             </div>
-
-            <div class="search-box">
-              <input
-                v-model="keyword"
-                type="text"
-                placeholder="请输入搜索关键词"
-                @keyup.enter="toSearch"
-                @input="handleSearchInput"
-              />
-              <button class="btn-search" @click="toSearch">
-                <img class="img-search" src="@img/icon-search.png" alt="" />
-              </button>
+            <div class="conter-hotsear">
+              <p class="hottxt">大家都在搜：</p>
+              <div class="hot-tags">
+                <span @click="tohotSearch('ElASI')" class="el-tag el-tag--danger el-tag--light">ElASI</span>
+                <span @click="tohotSearch('PBS')" class="el-tag el-tag--danger el-tag--light">PBS</span>
+                <span @click="tohotSearch('SOD')" class="el-tag el-tag--danger el-tag--light">SOD</span>
+              </div>
             </div>
           </div>
+          
 
           <!-- 搜索建议 -->
           <!-- v-if="search_suggest_list.length" -->
@@ -93,8 +170,32 @@
           </div>
         </div>
 
-        <div class="right-nav">
-          <!-- 导航区 -->
+        <div class="right-nav" v-if="!is_page_home || header_theme == 'white'">
+          <div class="top-contact">
+            <div class="text-phone">
+              <span class="el-tag el-tag--danger el-tag--plain">
+                <i class="el-icon-phone-outline"></i>
+                <span class="text-1">{{ webConfig.hotLine }}</span>
+              </span>
+            </div>
+            <div class="text-email">
+              <span class="el-tag el-tag--danger el-tag--plain">
+                <i class="el-icon-message"></i>
+                <span class="text-2">{{ webConfig.email }}</span>
+              </span>
+            </div>
+            <div class="text-work">
+              <p>服务热线 工作日 8:30-17:30</p>
+            </div>
+          </div>
+          
+          
+          
+        </div>
+      </div>
+    </div>
+    <div v-if="!is_page_home || header_theme == 'white'" class="section-3">
+      <!-- 导航区 -->
           <div class="nav-list">
             <div
               class="nav-item"
@@ -102,21 +203,18 @@
               :key="index"
               :class="checkClass(item)"
             >
-              <!-- 无子导航 -->
               <template v-if="!item.child">
                 <router-link class="nav-link" :to="item.route">
                   {{ item.title }}
                 </router-link>
               </template>
 
-              <!-- 有子导航 -->
               <template v-else>
                 <template v-if="item.title == '产品中心'">
                   <router-link class="nav-link" slot="reference" :to="item.route">
                     {{ item.title }}
                   </router-link>
 
-                  <!-- 产品分类弹窗 -->
                   <div class="pop-product-box">
                     <div class="pop-product">
                       <div class="pop-product-inner">
@@ -146,50 +244,13 @@
                                   }}</router-link>
                                 </div>
                               </div>
-                              <!-- <div class="list">
-                                <div
-                                  class="link-item"
-                                  v-for="(level1, index) in product_cates"
-                                  :key="index"
-                                  @mouseover="handleHoverCate(level1, index)"
-                                >
-                                  <router-link
-                                    :to="'/productCates?id=' + level1.id"
-                                    class="item"
-                                    :class="{
-                                      active: active_product_cate.id == level1.id,
-                                    }"
-                                  >
-                                    {{ level1.title }}
-                                  </router-link>
-                                </div>
-                              </div>
-                              <div
-                                class="list-level2"
-                                v-if="active_product_cate && active_product_cate.channels"
-                              >
-                                <div
-                                  class="item"
-                                  v-for="(
-                                    level2, index
-                                  ) in active_product_cate.channels.filter(
-                                    (v) => v.is_show
-                                  )"
-                                  :key="index"
-                                >
-                                  <router-link :to="'/productCates?id=' + level2.id">{{
-                                    level2.title
-                                  }}</router-link>
-                                </div>
-                              </div> -->
                             </div>
                           </div>
                         </div>
 
                         <div class="box-haocai">
                           <div class="pop-product-group">
-                            <!-- 路由修改 /productApparatusesCates -->
-
+                            
                             <div class="group-title">
                               <router-link :to="'/productCates?id=855'"
                                 >其他产品</router-link
@@ -211,7 +272,7 @@
                                     {{ level1.title }}
                                   </router-link>
 
-                                  <!-- v-if="active_haocai_cate.id == level1.id" -->
+                                  
                                   <div class="sub-list">
                                     <router-link
                                       :to="level2.route"
@@ -227,176 +288,18 @@
                             </div>
                           </div>
                         </div>
-                        <!-- <div class="box-wenxian">
-                          <div class="pop-product-group">
-                            <div class="group-title">
-                              <router-link to="/productDocument"
-                                >产品文献引用</router-link
-                              >
-                            </div>
-                            <div class="group-list group-wenxian">
-                              <div class="list">
-                                <div
-                                  class="wenxian-item"
-                                  v-for="(item, index) in list_wenxian"
-                                  :key="index"
-                                >
-                                  <a target="_blank" :href="item.url" class="item">
-                                    {{ item.title }}
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div> -->
+                        
                       </div>
                     </div>
                   </div>
 
 
-                  <!-- <div class="pop-product-box">
-                    <div class="pop-product">
-                      <div class="pop-product-inner">
-                        <div class="box-cate">
-                          <div class="pop-product-group pop-product-group-leixing">
-                            <div class="group-title">
-                              <router-link to="/productCates">产品类型</router-link>
-                            </div>
-                            <div class="group-list group-leixing">
-                              <div class="list">
-                                <div
-                                  class="link-item"
-                                  v-for="(level1, index) in product_cates"
-                                  :key="index"
-                                  @mouseover="handleHoverCate(level1, index)"
-                                >
-                                  <router-link
-                                    :to="'/productCates?id=' + level1.id"
-                                    class="item"
-                                    :class="{
-                                      active: active_product_cate.id == level1.id,
-                                    }"
-                                  >
-                                    {{ level1.title }}
-                                  </router-link>
-                                </div>
-                              </div>
-                              <div
-                                class="list-level2"
-                                v-if="active_product_cate && active_product_cate.channels"
-                              >
-                                <div
-                                  class="item"
-                                  v-for="(
-                                    level2, index
-                                  ) in active_product_cate.channels.filter(
-                                    (v) => v.is_show
-                                  )"
-                                  :key="index"
-                                >
-                                  <router-link :to="'/productCates?id=' + level2.id">{{
-                                    level2.title
-                                  }}</router-link>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="box-haocai">
-                          <div class="pop-product-group">
-
-                            <div class="group-title">
-                              <router-link :to="'/productCates?id=855'"
-                                >其他产品</router-link
-                              >
-                            </div>
-                            <div class="group-list group-haocai">
-                              <div class="list">
-                                <div
-                                  class="item"
-                                  v-for="(level1, index) in haocai_cates"
-                                  :key="index"
-                                  :class="{ active: active_haocai_cate.id == level1.id }"
-                                >
-                                  <router-link
-                                    :to="level1.route"
-                                    class="item-title"
-                                    @click="toggleHaocai(level1)"
-                                  >
-                                    {{ level1.title }}
-                                  </router-link>
-
-                                  <div class="sub-list">
-                                    <router-link
-                                      :to="level2.route"
-                                      class="sub"
-                                      v-for="(level2, level2_index) in level1.channels"
-                                      :key="level2_index"
-                                    >
-                                      {{ level2.title }}
-                                    </router-link>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="box-zhuanti">
-                          <div class="pop-product-group">
-                            <div class="group-title" v-if="first_zhuanti_route">
-                              <router-link :to="first_zhuanti_route"
-                                >专题推荐</router-link
-                              >
-                            </div>
-                            <div class="group-list group-zhuanti">
-                              <div class="list" v-if="zhuanti_cates.length">
-                                <router-link
-                                  :to="item.route"
-                                  class="item"
-                                  v-for="(item, index) in zhuanti_cates"
-                                  :key="index"
-                                >
-                                  {{ item.title }}
-                                </router-link>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="box-lingyu">
-                          <div class="pop-product-group">
-                            <div class="group-title" v-if="lingyu_cates.length">
-                              <router-link :to="lingyu_cates[0] && lingyu_cates[0].route"
-                                >研究领域</router-link
-                              >
-                            </div>
-                            <div class="group-list group-lingyu">
-                              <div class="list" v-if="lingyu_cates.length">
-                                <router-link
-                                  :to="item.route"
-                                  class="item"
-                                  v-for="(item, index) in lingyu_cates"
-                                  :key="index"
-                                >
-                                  {{ item.title }}
-                                </router-link>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> -->
+                  
                 </template>
-                <!-- 产品中心结束 -->
-
-                <!-- 技术服务 -->
                 <template v-else-if="item.title == '技术服务'">
                   <el-popover
                     popper-class="w-nav-popover"
-                    placement="top"
+                    placement="bottom"
                     title=""
                     width=""
                     trigger="hover"
@@ -431,13 +334,10 @@
                     </div>
                   </el-popover>
                 </template>
-                <!-- 技术服务结束 -->
-
-                <!-- 其他子分类导航 -->
                 <template v-else>
                   <el-popover
                     popper-class="w-nav-popover"
-                    placement="top"
+                    placement="bottom"
                     title=""
                     width="150"
                     trigger="hover"
@@ -459,14 +359,10 @@
                     </div>
                   </el-popover>
                 </template>
-                <!-- 其他子分类导航 结束 -->
               </template>
             </div>
           </div>
-        </div>
-      </div>
     </div>
-
     <!-- <div class="section-3">
       <div class="main-title">
         
@@ -512,6 +408,7 @@ export default {
         pagenum: 5,
       },
       list_wenxian: [],
+      topInnerStyle:{},
     };
   },
 
@@ -752,7 +649,10 @@ export default {
 
       alertSucc("退出成功");
     },
-
+    tohotSearch(hotKeyWord){
+      this.keyword=hotKeyWord;
+      this.toSearch();
+    },
     toSearch() {
       this.search_suggest_list = [];
 
@@ -943,12 +843,13 @@ export default {
 }
 
 .section-1 {
-  height: 32px;
-  background: #ea3200;
+  height: 52px;
+  // background: #ea3200;
+  background:#f2f2f2;
 
   .header-info {
     .flex-between();
-    height: 32px;
+    height: 48px;
     width: @width;
     margin: 0 auto;
 
@@ -958,6 +859,8 @@ export default {
     color: #ffffff;
 
     .info-left {
+      height: 100%;
+      padding-top: 3px;
       .flex();
       img {
         margin-right: 5px;
@@ -974,6 +877,37 @@ export default {
       .text-1 {
         margin-right: 40px;
       }
+
+
+      .top-exterLinks{
+        display: flex;
+        flex-direction: row;
+        width: 360px;
+        justify-content: space-between;
+        height: 100%;
+        padding-top: 5px;
+        .top-exterLink-flex{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+          p{
+            font-size: 16px;
+            color: #606266;
+          }
+        }
+        .top-exterLink{
+          cursor: pointer;
+          .top-exterLink-logo{
+            width: 40px;
+            height: 40px;
+          }
+        }
+        .top-exterLink:hover{
+          opacity: 0.8;
+        }
+      }
+      
     }
     .info-right {
       .flex();
@@ -997,6 +931,74 @@ export default {
       .shopcart {
         margin: 0 32px;
       }
+      @keyframes hideIndex{
+        0%{ opacity: 0; transform: scale(0.6); }
+        100%{opacity: 1; transform: scale(1); }
+      }
+      .cut-line{
+        padding: 0 12px;
+        color: #e8e8e8;
+      }
+      .top-qrcodes{
+        width:300px;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .top-qrcode-box{
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          position: relative;
+        }
+        .qrcode-img{
+          width: 25px;
+          height: 25px;
+          border-radius: 8px;
+          cursor: pointer;
+        }
+        .top-qrcode-box:hover >.qrcode-imgshow{
+          display: block!important;
+          animation: hideIndex 0.3s;
+          -moz-animation: hideIndex  0.3s; /* Firefox */
+          -webkit-animation: hideIndex  0.3s; /* Safari and Chrome */
+          -o-animation: hideIndex  0.3s; /* Opera */
+        }
+        .qrcode-imgshow{
+          display: none;
+          position: absolute;
+          top: 40px;
+          left: -100px;
+          z-index: 99;
+          .qrcode-img-qr{
+            width: 180px;
+          }
+        }
+      }
+      .top-certifs{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: end;
+        width: 220px;
+        .top-certif{
+          .top-certif-img{
+            width: 40px;
+            height: 28px;
+          }
+          .top-certif-right{
+            padding: 6px;
+            // width: 20px;
+            // height: 20px;
+            // color: #fff;
+            // background: #666262;
+            // border-radius: 50%;
+            // font-size: 14px;
+            // padding: 2px 3px;
+          }
+        }
+      }
     }
   }
 }
@@ -1013,9 +1015,12 @@ export default {
   // border-bottom: 4px solid #009a44;
   box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.16);
 }
+.header-inner-top{
+  height: 160px!important;
+}
 .header-inner {
   width: 1400px;
-  height: 100px;
+  height: 70px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -1041,16 +1046,22 @@ export default {
     overflow: hidden;
 
     .left-select {
-      width: 120px;
+      width: 220px;
+      height: 60px;
       // width: 140px;
 
       /deep/ .el-input__inner {
         border: none !important;
         background: #f2f2f2;
         padding: 0 10px;
+        width: 22rem;
+        font-size: 18px;
+        height: 6rem;
+        font-weight: 800;
       }
     }
     .search-box {
+      width: 400px;
       .flex();
       overflow: hidden;
       // height: 100%;
@@ -1058,11 +1069,12 @@ export default {
       input {
         display: block;
         height: 100%;
-        width: 190px;
+        width: 100%;
         padding-left: 10px;
+        font-size: 18px;
 
         &::-webkit-input-placeholder {
-          font-size: 12px;
+          font-size: 18px;
           font-family: Microsoft YaHei-Regular, Microsoft YaHei;
           font-weight: 400;
           color: #c2c2c2;
@@ -1081,7 +1093,7 @@ export default {
         }
       }
       .img-search {
-        width: 16px;
+        width: 22px;
         cursor: pointer;
         transition: 0.3s;
         &:hover {
@@ -1091,7 +1103,9 @@ export default {
     }
   }
 
-  .nav-list {
+  
+}
+.nav-list {
     margin-left: 80px;
     .flex-center();
     height: 100%;
@@ -1105,8 +1119,8 @@ export default {
       .nav-link {
         position: relative;
         display: inline-block;
-        height: 90px;
-        line-height: 90px;
+        height: 40px;
+        line-height: 40px;
         font-size: 16px;
         color: #222;
         font-size: 1.6rem;
@@ -1150,8 +1164,6 @@ export default {
       }
     }
   }
-}
-
 // 产品中心弹窗
 
 // .pop-product-inner {
@@ -1451,13 +1463,37 @@ export default {
     }
   }
 }
-
+.section-3{
+    height: 40px;
+    // background: #f2f2f2;
+    border-top: solid 1px #888;
+}
 .center-search-wrap {
   position: relative;
 
   &:hover {
     .search-suggest-list {
       display: block;
+    }
+  }
+  .center-search-box{
+    height: 11rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .conter-hotsear{
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    align-items: center;
+    .hottxt{
+      font-weight: bold;
+      color: #ea3200;
+    }
+    .hot-tags > span{
+      margin:0px 10px;
+      cursor: pointer;
     }
   }
 }
@@ -1498,7 +1534,36 @@ export default {
     }
   }
 }
-
+.top-contact{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+  .text-phone{
+    .el-icon-phone-outline{
+      font-size: 18px;
+    }
+    .text-1{
+      font-size: 18px;
+    }
+  }
+  .text-email{
+    .el-icon-message{
+      font-size: 18px;
+    }
+    .text-2{
+      font-size: 18px;
+    }
+  }
+  .text-work {
+    p{
+      font-size: 18px;
+      color: #303133;
+      line-height: 32px;
+    }
+  }
+}
 @media screen and (max-width: 1600px) {
   .header-inner .nav-list .nav-item {
     margin-left: 10px;

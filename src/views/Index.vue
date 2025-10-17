@@ -326,6 +326,10 @@ export default {
           suffix: '%', // 添加后缀如12345 通过添加后缀变为12345$，12345元之类的
           numerals: [] // 用来做替换操作，一般用不到，默认为空就是不用他
       },
+      top:'',
+      left:'',
+      imgX:'',
+      imgY:'',
     };
   },
   
@@ -711,7 +715,7 @@ export default {
     handleSearchInput() {
       this.searchLock = false;
     },
-  },
+  }
 };
 </script>
 

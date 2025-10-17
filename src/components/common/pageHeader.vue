@@ -1,5 +1,7 @@
 <template>
-  <div id="header" class="header-box" :class="headerTheme">
+  <div id="header" class="header-box"  :class="headerTheme"  :style="{
+                        position: is_page_home?'fixed':'absolute'
+                        }">
     <div class="section-1">
       <div class="header-info">
         <div class="info-left">
@@ -143,9 +145,10 @@
             <div class="conter-hotsear">
               <p class="hottxt">大家都在搜：</p>
               <div class="hot-tags">
-                <span @click="tohotSearch('ElASI')" class="el-tag el-tag--danger el-tag--light">ElASI</span>
-                <span @click="tohotSearch('PBS')" class="el-tag el-tag--danger el-tag--light">PBS</span>
-                <span @click="tohotSearch('SOD')" class="el-tag el-tag--danger el-tag--light">SOD</span>
+                <span @click="tohotSearch('TNF-α')" class="el-tag el-tag--danger el-tag--light">TNF-α</span>
+                <span @click="tohotSearch('丙二醛')" class="el-tag el-tag--danger el-tag--light">丙二醛</span>
+                <span @click="tohotSearch('电泳缓冲液')" class="el-tag el-tag--danger el-tag--light">电泳缓冲液</span>
+                <span @click="tohotSearch('GAPDH')" class="el-tag el-tag--danger el-tag--light">GAPDH</span>
               </div>
             </div>
           </div>
@@ -191,6 +194,174 @@
           
           
           
+        </div>
+        <div class="right-nav" v-else>
+            <div class="nav-list">
+            <div
+              class="nav-item"
+              v-for="(item, index) in opt_nav"
+              :key="index"
+              :class="checkClass(item)"
+            >
+              <template v-if="!item.child">
+                <router-link class="nav-link" :to="item.route">
+                  {{ item.title }}
+                </router-link>
+              </template>
+
+              <template v-else>
+                <template v-if="item.title == '产品中心'">
+                  <router-link class="nav-link" slot="reference" :to="item.route">
+                    {{ item.title }}
+                  </router-link>
+
+                  <div class="pop-product-box">
+                    <div class="pop-product">
+                      <div class="pop-product-inner">
+                        <div class="box-cate" 
+                          v-for="(level1, index) in product_cates"
+                          :key="index"
+                        >
+                          <div class="pop-product-group pop-product-group-leixing">
+                            <div class="group-title">
+                              <router-link to="/productCates">{{ level1.title }}</router-link>
+                            </div>
+                            <div class="group-list group-leixing">
+                              <div
+                                class="list-level2"
+                              >
+                                <div
+                                  class="item"
+                                  v-for="(
+                                    level2, yindex
+                                  ) in level1.channels.filter(
+                                    (v) => v.is_show
+                                  )"
+                                  :key="yindex"
+                                >
+                                  <router-link :to="'/productCates?id=' + level2.id">{{
+                                    level2.title
+                                  }}</router-link>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="box-haocai">
+                          <div class="pop-product-group">
+                            
+                            <div class="group-title">
+                              <router-link :to="'/productCates?id=855'"
+                                >其他产品</router-link
+                              >
+                            </div>
+                            <div class="group-list group-haocai">
+                              <div class="list">
+                                <div
+                                  class="item"
+                                  v-for="(level1, index) in haocai_cates"
+                                  :key="index"
+                                  :class="{ active: active_haocai_cate.id == level1.id }"
+                                >
+                                  <router-link
+                                    :to="level1.route"
+                                    class="item-title"
+                                    @click="toggleHaocai(level1)"
+                                  >
+                                    {{ level1.title }}
+                                  </router-link>
+
+                                  
+                                  <div class="sub-list">
+                                    <router-link
+                                      :to="level2.route"
+                                      class="sub"
+                                      v-for="(level2, level2_index) in level1.channels"
+                                      :key="level2_index"
+                                    >
+                                      {{ level2.title }}
+                                    </router-link>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+
+
+                  
+                </template>
+                <template v-else-if="item.title == '技术服务'">
+                  <el-popover
+                    popper-class="w-nav-popover"
+                    placement="bottom"
+                    title=""
+                    width=""
+                    trigger="hover"
+                    content=""
+                  >
+                    <router-link slot="reference" class="nav-link" :to="item.route">
+                      {{ item.title }}
+                    </router-link>
+                    <div class="pop-child" v-if="item.child">
+                      <router-link
+                        :to="sub.route"
+                        class="child-item service-child-item"
+                        v-for="(sub, index) in item.child"
+                        :key="index"
+                      >
+                        <span>
+                          {{ sub.title }}
+                        </span>
+                        <div class="service-child-box">
+                          <div class="service-child-inner">
+                            <router-link
+                              :to="son.route"
+                              class="child-item"
+                              v-for="(son, son_index) in sub.child"
+                              :key="son_index"
+                            >
+                              {{ son.title }}
+                            </router-link>
+                          </div>
+                        </div>
+                      </router-link>
+                    </div>
+                  </el-popover>
+                </template>
+                <template v-else>
+                  <el-popover
+                    popper-class="w-nav-popover"
+                    placement="bottom"
+                    title=""
+                    width="150"
+                    trigger="hover"
+                    content=""
+                  >
+                    <router-link slot="reference" class="nav-link" :to="item.route">
+                      {{ item.title }}
+                    </router-link>
+
+                    <div class="pop-child" v-if="item.child">
+                      <router-link
+                        :to="sub.route"
+                        class="child-item"
+                        v-for="(sub, index) in item.child"
+                        :key="index"
+                      >
+                        {{ sub.title }}
+                      </router-link>
+                    </div>
+                  </el-popover>
+                </template>
+              </template>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -492,8 +663,9 @@ export default {
         { title: "首页", route: "/" },
         { title: "产品中心", route: "/products", child: [] },
         { title: "技术服务", route: tech_service_route, child: child_tech_service },
-        { title: "技术支持", route: "/technology", child: child_tech_support },
+        { title: "客户服务", route: "/technology", child: child_tech_support },
         { title: "新闻中心", route: first_news_route, child: child_news },
+        { title: "下载中心", route: "/technologyCenter?type=technologyDownload&id=864"},
         { title: "关于我们", route: "/companyProfile", child: child_about },
       ];
       return arr;
@@ -1002,9 +1174,11 @@ export default {
     }
   }
 }
-
-.header-box {
+.index-header-box{
   position: fixed;
+}
+.header-box {
+  position: absolute;
   z-index: 1000;
   top: 0;
   left: 0;
@@ -1046,7 +1220,7 @@ export default {
     overflow: hidden;
 
     .left-select {
-      width: 220px;
+      width: 150px;
       height: 60px;
       // width: 140px;
 
@@ -1054,14 +1228,14 @@ export default {
         border: none !important;
         background: #f2f2f2;
         padding: 0 10px;
-        width: 22rem;
+        width: 150px;
         font-size: 18px;
         height: 6rem;
         font-weight: 800;
       }
     }
     .search-box {
-      width: 400px;
+      width: 500px;
       .flex();
       overflow: hidden;
       // height: 100%;
@@ -1464,9 +1638,22 @@ export default {
   }
 }
 .section-3{
-    height: 40px;
+    height: 70px;
     // background: #f2f2f2;
     border-top: solid 1px #888;
+    .nav-list{
+      width: 1400px;
+      justify-content: space-between;
+      margin: auto;
+      .nav-item{
+        a{
+          font-size: 22px;
+          font-weight: 600;
+          height: 7rem;
+          line-height: 7rem;
+        }
+      }
+    }
 }
 .center-search-wrap {
   position: relative;
@@ -1503,7 +1690,7 @@ export default {
   z-index: 100;
   left: 0;
   right: 0;
-  top: 43px;
+  top: 73px;
   border: 1px solid #ddd;
   border-top: none;
   background: #fff;

@@ -20,7 +20,7 @@ Vue.use(VueRouter);
 // 官网页面1
 const Index = () => import(/* webpackChunkName: "index" */ "@/views/Index.vue");//已适配
 // const page = () => import(/* webpackChunkName: "page" */ "@/views/page.vue");
-// const about = () => import(/* webpackChunkName: "about" */ "@/views/about.vue");
+const about = () => import(/* webpackChunkName: "about" */ "@/views/about.vue");
 //关于我们
 const companyProfile = () => import(/* webpackChunkName: "companyProfile" */ "@/views/companyProfile.vue");//已适配
 const companyAdvantages = () => import(/* webpackChunkName: "companyAdvantages" */ "@/views/companyAdvantages.vue");//已适配
@@ -155,7 +155,7 @@ const refundFeedback = () => import(/* webpackChunkName: "refundFeedback" */ "@/
 // const refundSubmit = () => import("@/views/refund/refundSubmit.vue");
 // const refundServiceDetail = () => import("@/views/refund/refundServiceDetail.vue");
 // const orderRefundStep3 = () => import("@/views/refund/orderRefundStep3.vue");
-
+const test = () => import(/* webpackChunkName: "refundFeedback" */ "@/views/test.vue");//已适配
 
 
 const metaInfo = {
@@ -474,15 +474,15 @@ const routes = [
     },
   },
 
-  // {
-  //   path: "/about/:id",
-  //   name: "about",
-  //   component: about,
-  //   meta: {
-  //     title: "关于我们",
-  //     source: '关于我们-[服务网络,企业优势,企业文化]'
-  //   },
-  // },
+  {
+    path: "/about/:id",
+    name: "about",
+    component: about,
+    meta: {
+      title: "关于我们",
+      source: '关于我们-[服务网络,企业优势,企业文化]'
+    },
+  },
 
   {
     path: "/companyProfile",
@@ -1164,6 +1164,15 @@ const routes = [
           title: "领券中心",
           requireAuth: true,
           metaInfo,
+        },
+      },
+      {
+        path: "/test",
+        name: "test",
+        component: test,
+        meta: {
+          title: "测试功能页",
+          root: "测试功能页",
         },
       },
       // {

@@ -30,433 +30,406 @@
     </div>
 
     <div class="page-box">
-      <div class="page-inner">
-        <div class="main-content">
-          <div class="top-info">
-            <div class="product-title">
-              {{ detail.title }} ({{ detail.skuId }})
+      <div class="page-box-left">
+        <div class="page-inner">
+          <div class="main-content">
+            <div class="top-info">
+              <div class="product-title">
+                {{ detail.title }} ({{ detail.skuId }})
 
-              <span class="state-xiajia" v-if="detail.product_status == -1">
-                (该产品已下架)
-              </span>
-            </div>
-            <div class="product-other-action">
-              <div v-if="+detail.paper_num" class="action-item" @click="toWenxian">
-                <img src="@img/wenxian.png" alt="" />
-                <span>文献引用（{{ detail.paper_num }}）</span>
+                <span class="state-xiajia" v-if="detail.product_status == -1">
+                  (该产品已下架)
+                </span>
               </div>
-
-              <template v-if="is_prod">
-                <a
-                  target="_blank"
-                  :href="
-                    detail.book_url
-                      ? '/productSpecificationPdf/' + detail.inventoryId
-                      : '/productSpecification/' +
-                        detail.productId +
-                        '?ggid=' +
-                        detail.inventoryId
-                  "
-                  class="action-item"
-                >
-                  <img src="@img/pdf.png" alt="" />
-                  <span>说明书</span>
-                </a>
-              </template>
-
-              <template v-else>
-                <a
-                  v-if="detail.book_url"
-                  target="_blank"
-                  :href="'/productSpecificationPdf/' + detail.inventoryId"
-                  class="action-item"
-                >
-                  <img src="@img/pdf.png" alt="" />
-                  <span>说明书</span>
-                </a>
-
-                <router-link
-                  v-else
-                  :to="
-                    '/productSpecification/' +
-                    detail.productId +
-                    '?ggid=' +
-                    detail.inventoryId
-                  "
-                  class="action-item"
-                >
-                  <img src="@img/pdf.png" alt="" />
-                  <span> 说明书 </span>
-                </router-link>
-              </template>
-
-              <a :href="'mailto:' + webConfig.email" class="action-item">
-                <img src="@img/email.png" alt="" />
-                <span>联系我们</span>
-              </a>
-              <div class="action-item" @click="favourite_toggle">
-                <img v-if="!if_shoucang" src="@img/fav-0.png" alt="" />
-                <img v-if="if_shoucang" src="@img/fav-1.png" alt="" />
-
-                <span>{{ if_shoucang ? "已收藏" : "收藏" }}</span>
-              </div>
-            </div>
-
-            <div class="product-filter">
-              <div class="text">筛选：</div>
-              <div class="tabs">
-                <!-- <div class="tab-item active">WB</div> -->
-                <div
-                  class="tab-item"
-                  v-for="(item, index) in tiaojian_shaixuan"
-                  :key="index"
-                >
-                  {{ item }}
-                </div>
-              </div>
-              <!-- <div class="fuli">
-                <img src="@img/product-tag.png" alt="" />
-              </div> -->
-            </div>
-          </div>
-
-          <div class="ctx-top">
-            <div class="ctx-left">
-              <!-- 商品预览 -->
-              <carouselComponent :swiperImgs="swiperImgs" />
-
-              <!-- 收藏分享 -->
-              <div class="shoucang-box" v-if="false">
-                <div class="shoucang-left" @click="favourite_toggle">
-                  <img v-if="if_shoucang" src="@img/yishoucang.png" alt="" />
-                  <img v-else src="@img/weishoucang.png" alt="" />
-                  <span>{{ if_shoucang ? "取消收藏" : "收藏商品" }}</span>
+              <div class="product-other-action">
+                <div v-if="+detail.paper_num" class="action-item" @click="toWenxian">
+                  <img src="@img/wenxian.png" alt="" />
+                  <span>文献引用（{{ detail.paper_num }}）</span>
                 </div>
 
-                <div class="shoucang-right" @click="show_yaoqing">
-                  <img src="@img/fenxiang.png" alt="" />
-                  <span>分享</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="ctx-right">
-              <h2 class="huohao">货号：{{ detail.skuId }}</h2>
-
-              <div class="info-box">
-                <div class="price">
-                  价格： <span class="number">￥{{ view_info.price_sale }}</span>
-                </div>
-
-                <div class="sku-list">
-                  <!-- 没有库存或者下架状态 -->
-                  <button
-                    class="sku-item"
-                    :disabled="!item.kucun || item.status == -1"
-                    v-for="(item, index) in list_specifications"
-                    :key="index"
-                    :class="{
-                      active: item.inventoryId == select_specifications.inventoryId,
-                    }"
-                    @click="toggleSpecifications(item)"
-                  >
-                    <div class="img-box">
-                      <img src="@img/guige-checked.png" alt="" />
-                    </div>
-                    <!-- <div class="text" v-if="!detail.is_yiqi">
-                      {{ item.key_vals | f_guige }}
-                    </div>
-                    <div class="text" v-if="detail.is_yiqi">
-                      {{ yiqi_guige }}
-                    </div> -->
-
-                    <div class="text">
-                      {{ item.key_vals | f_guige }}
-                    </div>
-
-                    <div class="price">￥ {{ +item.price_sale }}</div>
-
-                    <div class="guige-xiajia" v-if="item.status == -1">(已下架)</div>
-                  </button>
-                </div>
-
-                <div class="shuliang-box">
-                  <div class="sel-num-title">数量：</div>
-
-                  <div class="shuliang">
-                    <div
-                      class="minus"
-                      @click="selected_num > 1 ? selected_num-- : (selected_num = 1)"
-                    >
-                      <img src="@img/shuliang-minus.png" alt="" />
-                    </div>
-                    <input
-                      type="number"
-                      v-model="selected_num"
-                      @blur="onBlur_selected_num"
-                    />
-                    <div class="plus" @click="selected_num++">
-                      <img src="@img/shuliang-plus.png" alt="" />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="btn-box">
-                  <div class="huoqi">{{ huoqi_text }}</div>
-                  <!-- <button class="btn-buy" @click="payNow">立即购买</button> -->
-                  <button class="btn-add-cart btn-ripple" @click="shopcart_add">
-                    <!-- <i class="el-icon el-icon-shopping-cart-2"></i> -->
-                    加入购物车
-                  </button>
-                </div>
-
-                <div class="phone-tip">
-                  <el-popover placement="bottom" trigger="click">
-                    <div class="pop-kefu">
-                      <div class="pop-kefu-inner">
-                        <div class="kefu-tip">请微信扫描下方二维码</div>
-                        <!-- <img class="kefu-code" :src="" /> -->
-                        <div ref="qrCodeUrl" class="detail-qrcode erweima"></div>
-                      </div>
-                    </div>
-                    <div slot="reference" class="phone-tip-inner">
-                      <div class="text">手机购买</div>
-                      <img src="@img/phone-buy.png" />
-                    </div>
-                  </el-popover>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="ctx-bottom">
-            <div class="ctx-bottom-inner">
-              <div class="bottom-nav">
-                <div
-                  class="nav-item"
-                  @click="togglePanel('详情')"
-                  :class="active_panel == '详情' ? 'active' : ''"
-                >
-                  产品信息
-                </div>
-                <div
-                  class="nav-item"
-                  @click="togglePanel('相关产品')"
-                  :class="active_panel == '相关产品' ? 'active' : ''"
-                >
-                  相关产品
-                </div>
-                <div
-                  class="nav-item"
-                  @click="togglePanel('文献')"
-                  :class="active_panel == '文献' ? 'active' : ''"
-                >
-                  文献
-                </div>
-                <div
-                  class="nav-item"
-                  @click="togglePanel('评价')"
-                  :class="active_panel == '评价' ? 'active' : ''"
-                >
-                  评论
-                  <!-- <span class="count-num">{{ count_comments }}</span> -->
-                </div>
-
-                <!-- <el-popover placement="bottom" trigger="click">
-                  <div class="pop-kefu">
-                    <div class="pop-kefu-inner">
-                      <div class="kefu-tip">请微信扫描下方二维码</div>
-                      <img class="kefu-code" :src="webConfig.kefu_code" />
-                    </div>
-                  </div>
-                  <button class="contact" slot="reference">
-                    <img src="@img/other/goods-detail-kefu.png" alt />
-                    <span>联系客服</span>
-                  </button>
-                </el-popover> -->
-
-                <!-- <button class="contact" slot="reference" @click="shopcart_add">
-                  <img src="@img/icon-cart-trans.png" alt />
-                  <span>加入购物车</span>
-                </button> -->
-              </div>
-
-              <!-- -show="active_panel == '详情'" -->
-              <div class="detail-content-box">
-                <div class="section-title" data-title="详情">产品信息</div>
-                <!-- 产品参数 -->
-                <div class="params-html" v-if="query_field_done">
-                  <div class="params-box" v-if="!detail.is_yiqi">
-                    <!-- 非仪器产品 -->
-                    <div
-                      class="params-item"
-                      v-for="(field, index) in param_list"
-                      :key="index"
-                      :data-key="field.field_title"
-                    >
-                      <div class="params-label">{{ field.title }}</div>
-                      <div class="params-val" v-html="field.val"></div>
-                    </div>
-                  </div>
-
-                  <div class="params-box" v-if="detail.is_yiqi">
-                    <!-- 仪器分类特殊展示规格 -->
-                    <!-- <div class="params-item">
-                      <div class="params-label">{{ '规格' }}</div>
-                      <div class="params-val">
-                        {{ yiqi_guige  }}
-                      </div>
-                    </div> -->
-
-                    <div
-                      class="params-item"
-                      v-for="(field, index) in param_list"
-                      :key="index"
-                      :data-key="field.field_title"
-                    >
-                      <div class="params-label">{{ field.title }}</div>
-                      <div class="params-val" v-html="field.val"></div>
-                    </div>
-                  </div>
-                </div>
-                <!-- 其他内容 -->
-                <div class="rich-html" v-html="detail.content"></div>
-                <div class="rich-html" v-html="detail.cont2"></div>
-                <div class="rich-html" v-html="detail.cont3"></div>
-              </div>
-
-              <!-- 相关产品 -->
-              <div class="xiangguan-box">
-                <div class="section-title" data-title="相关产品">相关产品</div>
-                <div class="product-list">
-                  <router-link
-                    :to="'/goodsDetail/' + item.inventoryId"
-                    class="product-item"
-                    v-for="(item, index) in product_list"
-                    :key="index"
+                <template v-if="is_prod">
+                  <a
                     target="_blank"
+                    :href="
+                      detail.book_url
+                        ? '/productSpecificationPdf/' + detail.inventoryId
+                        : '/productSpecification/' +
+                          detail.productId +
+                          '?ggid=' +
+                          detail.inventoryId
+                    "
+                    class="action-item"
                   >
-                    <div class="img-box scale-box">
-                      <img :src="item.img" class="scale-img" />
-                    </div>
-                    <div class="title">{{ item.title }}</div>
+                    <img src="@img/pdf.png" alt="" />
+                    <span>说明书</span>
+                  </a>
+                </template>
+
+                <template v-else>
+                  <a
+                    v-if="detail.book_url"
+                    target="_blank"
+                    :href="'/productSpecificationPdf/' + detail.inventoryId"
+                    class="action-item"
+                  >
+                    <img src="@img/pdf.png" alt="" />
+                    <span>说明书</span>
+                  </a>
+
+                  <router-link
+                    v-else
+                    :to="
+                      '/productSpecification/' +
+                      detail.productId +
+                      '?ggid=' +
+                      detail.inventoryId
+                    "
+                    class="action-item"
+                  >
+                    <img src="@img/pdf.png" alt="" />
+                    <span> 说明书 </span>
                   </router-link>
+                </template>
+
+                <a :href="'mailto:' + webConfig.email" class="action-item">
+                  <img src="@img/email.png" alt="" />
+                  <span>联系我们</span>
+                </a>
+                <div class="action-item" @click="favourite_toggle">
+                  <img v-if="!if_shoucang" src="@img/fav-0.png" alt="" />
+                  <img v-if="if_shoucang" src="@img/fav-1.png" alt="" />
+
+                  <span>{{ if_shoucang ? "已收藏" : "收藏" }}</span>
                 </div>
               </div>
 
-              <!-- 文献 -->
-              <div class="wenxian-box">
-                <div class="section-title" data-title="文献">文献</div>
+              <div class="product-filter">
+                <div class="text">筛选：</div>
+                <div class="tabs">
+                  <!-- <div class="tab-item active">WB</div> -->
+                  <div
+                    class="tab-item"
+                    v-for="(item, index) in tiaojian_shaixuan"
+                    :key="index"
+                  >
+                    {{ item }}
+                  </div>
+                </div>
+                <!-- <div class="fuli">
+                  <img src="@img/product-tag.png" alt="" />
+                </div> -->
+              </div>
+            </div>
 
-                <div class="wenxian-list-wrap" v-if="group_list_wenxian.length">
-                  <div class="wenxian-list-inner">
-                    <img
-                      src="@img/product-arrow-left.png"
-                      alt=""
-                      class="arrow wenxian-arrow-left"
-                    />
-                    <img
-                      src="@img/product-arrow-right.png"
-                      alt=""
-                      class="arrow wenxian-arrow-right"
-                    />
+            <div class="ctx-top">
+              <div class="ctx-left">
+                <!-- 商品预览 -->
+                <carouselComponent :swiperImgs="swiperImgs" />
 
-                    <div class="swiper-container swiper-wenxian">
-                      <div class="swiper-wrapper">
-                        <div
-                          class="swiper-slide"
-                          v-for="(group, index) in group_list_wenxian"
-                          :key="index"
-                        >
-                          <div class="inner-box">
-                            <div class="wenxian-list">
-                              <a
-                                target="_blank"
-                                :href="item.url"
-                                class="wenxian-item"
-                                v-for="(item, index) in group"
-                                :key="index"
-                              >
-                                <div class="title">
-                                  <div class="text">
-                                    {{ item.title }}
+                <!-- 收藏分享 -->
+                <div class="shoucang-box" v-if="false">
+                  <div class="shoucang-left" @click="favourite_toggle">
+                    <img v-if="if_shoucang" src="@img/yishoucang.png" alt="" />
+                    <img v-else src="@img/weishoucang.png" alt="" />
+                    <span>{{ if_shoucang ? "取消收藏" : "收藏商品" }}</span>
+                  </div>
+
+                  <div class="shoucang-right" @click="show_yaoqing">
+                    <img src="@img/fenxiang.png" alt="" />
+                    <span>分享</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ctx-right">
+                <h2 class="huohao">货号：{{ detail.skuId }}</h2>
+
+                <div class="info-box">
+                  <div class="price">
+                    价格： <span class="number">￥{{ view_info.price_sale }}</span>
+                  </div>
+
+                  <div class="sku-list">
+                    <!-- 没有库存或者下架状态 -->
+                    <button
+                      class="sku-item"
+                      :disabled="!item.kucun || item.status == -1"
+                      v-for="(item, index) in list_specifications"
+                      :key="index"
+                      :class="{
+                        active: item.inventoryId == select_specifications.inventoryId,
+                      }"
+                      @click="toggleSpecifications(item)"
+                    >
+                      <div class="img-box">
+                        <img src="@img/guige-checked.png" alt="" />
+                      </div>
+                      <!-- <div class="text" v-if="!detail.is_yiqi">
+                        {{ item.key_vals | f_guige }}
+                      </div>
+                      <div class="text" v-if="detail.is_yiqi">
+                        {{ yiqi_guige }}
+                      </div> -->
+
+                      <div class="text">
+                        {{ item.key_vals | f_guige }}
+                      </div>
+
+                      <div class="price">￥ {{ +item.price_sale }}</div>
+
+                      <div class="guige-xiajia" v-if="item.status == -1">(已下架)</div>
+                    </button>
+                  </div>
+
+                  <div class="shuliang-box">
+                    <div class="sel-num-title">数量：</div>
+
+                    <div class="shuliang">
+                      <div
+                        class="minus"
+                        @click="selected_num > 1 ? selected_num-- : (selected_num = 1)"
+                      >
+                        <img src="@img/shuliang-minus.png" alt="" />
+                      </div>
+                      <input
+                        type="number"
+                        v-model="selected_num"
+                        @blur="onBlur_selected_num"
+                      />
+                      <div class="plus" @click="selected_num++">
+                        <img src="@img/shuliang-plus.png" alt="" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="btn-box">
+                    <div class="huoqi">{{ huoqi_text }}</div>
+                    <!-- <button class="btn-buy" @click="payNow">立即购买</button> -->
+                    <button class="btn-add-cart btn-ripple" @click="shopcart_add">
+                      <!-- <i class="el-icon el-icon-shopping-cart-2"></i> -->
+                      加入购物车
+                    </button>
+                  </div>
+
+                  <div class="phone-tip">
+                    <el-popover placement="bottom" trigger="click">
+                      <div class="pop-kefu">
+                        <div class="pop-kefu-inner">
+                          <div class="kefu-tip">请微信扫描下方二维码</div>
+                          <!-- <img class="kefu-code" :src="" /> -->
+                          <div ref="qrCodeUrl" class="detail-qrcode erweima"></div>
+                        </div>
+                      </div>
+                      <div slot="reference" class="phone-tip-inner">
+                        <div class="text">手机购买</div>
+                        <img src="@img/phone-buy.png" />
+                      </div>
+                    </el-popover>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ctx-bottom">
+              <div class="ctx-bottom-inner">
+                <div class="bottom-nav">
+                  <div
+                    class="nav-item"
+                    @click="togglePanel('详情')"
+                    :class="active_panel == '详情' ? 'active' : ''"
+                  >
+                    产品信息
+                  </div>
+                  <div
+                    class="nav-item"
+                    @click="togglePanel('文献')"
+                    :class="active_panel == '文献' ? 'active' : ''"
+                  >
+                    文献
+                  </div>
+                </div>
+
+                <!-- -show="active_panel == '详情'" -->
+                <div v-if="active_panel == '详情'" class="detail-content-box">
+                  <div class="section-title" data-title="详情">产品信息</div>
+                  <!-- 产品参数 -->
+                  <div class="params-html" v-if="query_field_done">
+                    <div class="params-box" v-if="!detail.is_yiqi">
+                      <!-- 非仪器产品 -->
+                      <div
+                        class="params-item"
+                        v-for="(field, index) in param_list"
+                        :key="index"
+                        :data-key="field.field_title"
+                      >
+                        <div class="params-label">{{ field.title }}</div>
+                        <div class="params-val" v-html="field.val"></div>
+                      </div>
+                    </div>
+
+                    <div class="params-box" v-if="detail.is_yiqi">
+                      <!-- 仪器分类特殊展示规格 -->
+                      <!-- <div class="params-item">
+                        <div class="params-label">{{ '规格' }}</div>
+                        <div class="params-val">
+                          {{ yiqi_guige  }}
+                        </div>
+                      </div> -->
+
+                      <div
+                        class="params-item"
+                        v-for="(field, index) in param_list"
+                        :key="index"
+                        :data-key="field.field_title"
+                      >
+                        <div class="params-label">{{ field.title }}</div>
+                        <div class="params-val" v-html="field.val"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 其他内容 -->
+                  <div class="rich-html" v-html="detail.content"></div>
+                  <div class="rich-html" v-html="detail.cont2"></div>
+                  <div class="rich-html" v-html="detail.cont3"></div>
+                </div>
+
+                
+
+                <!-- 文献 -->
+                <div v-else class="wenxian-box">
+                  <div class="section-title" data-title="文献">文献</div>
+
+                  <div class="wenxian-list-wrap" v-if="group_list_wenxian.length">
+                    <div class="wenxian-list-inner">
+                      <img
+                        src="@img/product-arrow-left.png"
+                        alt=""
+                        class="arrow wenxian-arrow-left"
+                      />
+                      <img
+                        src="@img/product-arrow-right.png"
+                        alt=""
+                        class="arrow wenxian-arrow-right"
+                      />
+
+                      <div class="swiper-container swiper-wenxian">
+                        <div class="swiper-wrapper">
+                          <div
+                            class="swiper-slide"
+                            v-for="(group, index) in group_list_wenxian"
+                            :key="index"
+                          >
+                            <div class="inner-box">
+                              <div class="wenxian-list">
+                                <a
+                                  target="_blank"
+                                  :href="item.url"
+                                  class="wenxian-item"
+                                  v-for="(item, index) in group"
+                                  :key="index"
+                                >
+                                  <div class="title">
+                                    <div class="text" :title="item.title">
+                                      {{ item.title }}
+                                    </div>
                                   </div>
-                                </div>
-                                <div class="info-box">
-                                  <div class="info-item">
-                                    <span class="label">发表： </span>
-                                    <span class="text"
-                                      >{{ item.pubTime && item.pubTime.substr(0, 4) }}年
-                                    </span>
+                                  <div class="info-box">
+                                    <div class="info-item">
+                                      <span class="label">发表： </span>
+                                      <span class="text"
+                                        >{{ item.pubTime && item.pubTime.substr(0, 4) }}年
+                                      </span>
+                                    </div>
+                                    <div class="info-item">
+                                      <span class="label">杂志： </span>
+                                      <span class="text zazhi" :title="item.journal">{{ item.journal }} </span>
+                                    </div>
+                                    <div class="info-item">
+                                      <span class="label">应用： </span>
+                                      <span class="text">- </span>
+                                    </div>
+                                    <div class="info-item">
+                                      <span class="label">IF ： </span>
+                                      <span class="text">{{ item.factor }} </span>
+                                    </div>
+                                    <div class="info-item">
+                                      <span class="label">物种：</span>
+                                      <span class="text">-</span>
+                                    </div>
+                                    <div class="info-item">
+                                      <span class="label">PMID：</span>
+                                      <span class="text">{{ item.pmid }}</span>
+                                    </div>
                                   </div>
-                                  <div class="info-item">
-                                    <span class="label">杂志： </span>
-                                    <span class="text zazhi">{{ item.journal }} </span>
-                                  </div>
-                                  <div class="info-item">
-                                    <span class="label">应用： </span>
-                                    <span class="text">- </span>
-                                  </div>
-                                  <div class="info-item">
-                                    <span class="label">IF ： </span>
-                                    <span class="text">{{ item.factor }} </span>
-                                  </div>
-                                  <div class="info-item">
-                                    <span class="label">物种：</span>
-                                    <span class="text">-</span>
-                                  </div>
-                                  <div class="info-item">
-                                    <span class="label">PMID：</span>
-                                    <span class="text">{{ item.pmid }}</span>
-                                  </div>
-                                </div>
-                              </a>
+                                </a>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
 
-                      <div class="swiper-pagination"></div>
+                        <div class="swiper-pagination"></div>
+                      </div>
                     </div>
+                  </div>
+
+                  <div class="detail-empty" v-else>
+                    <el-empty description="没有查询到文献信息..."></el-empty>
                   </div>
                 </div>
 
-                <div class="detail-empty" v-else>
-                  <el-empty description="没有查询到文献信息..."></el-empty>
-                </div>
-              </div>
+                <!-- v-show="active_panel == '评价'" -->
+                <!-- <div class="comment-box">
+                  <div class="section-title" data-title="评论">
+                    评论({{ detail.comment_num }})
+                  </div>
 
-              <!-- v-show="active_panel == '评价'" -->
-              <div class="comment-box">
-                <div class="section-title" data-title="评论">
-                  评论({{ detail.comment_num }})
-                </div>
+                  <commentList :list="list_comments" />
 
-                <commentList :list="list_comments" />
+                  <div
+                    class="pagination-box"
+                    style="margin-top: 80px"
+                    v-if="list_comments.length"
+                  >
+                    <el-pagination
+                      background
+                      layout="total, prev, pager, next"
+                      @current-change="changePage_comment"
+                      :current-page.sync="pagination.page"
+                      :page-size="pagination.pagenum"
+                      :total="count_comments"
+                    ></el-pagination>
+                  </div>
 
-                <div
-                  class="pagination-box"
-                  style="margin-top: 80px"
-                  v-if="list_comments.length"
-                >
-                  <el-pagination
-                    background
-                    layout="total, prev, pager, next"
-                    @current-change="changePage_comment"
-                    :current-page.sync="pagination.page"
-                    :page-size="pagination.pagenum"
-                    :total="count_comments"
-                  ></el-pagination>
-                </div>
-
-                <div class="detail-empty" v-if="!list_comments.length">
-                  <el-empty description="没有查询到评论信息..."></el-empty>
-                </div>
+                  <div class="detail-empty" v-if="!list_comments.length">
+                    <el-empty description="没有查询到评论信息..."></el-empty>
+                  </div>
+                </div> -->
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="page-box-right">
+        <!-- 相关产品 -->
+        <div class="xiangguan-box">
+          <div class="section-title" data-title="相关产品">相关产品</div>
+          <div class="product-list">
+            <router-link
+              :to="'/goodsDetail/' + item.inventoryId"
+              class="product-item"
+              v-for="(item, index) in product_list"
+              :key="index"
+              target="_blank"
+            >
+              <div class="img-box scale-box">
+                <img :src="item.img" class="scale-img" />
+              </div>
+              <div class="title">{{ item.title }}</div>
+            </router-link>
+          </div>
+        </div>
+      </div>
+      
     </div>
 
     <!-- 右侧悬浮工具 -->
@@ -724,31 +697,31 @@ export default {
       var scrollTop = document.documentElement.scrollTop;
       var clientHeight = document.documentElement.clientHeight;
       var screenCenterHeight = clientHeight / 2;
-      var rect_xiangqing = document
-        .querySelector('.section-title[data-title="详情"]')
-        .getBoundingClientRect();
-      var rect_chanpin = document
-        .querySelector('.section-title[data-title="相关产品"]')
-        .getBoundingClientRect();
-      var rect_wenxian = document
-        .querySelector('.section-title[data-title="文献"]')
-        .getBoundingClientRect();
-      var rect_pingjia = document
-        .querySelector('.section-title[data-title="评论"]')
-        .getBoundingClientRect();
+      // var rect_xiangqing = document
+      //   .querySelector('.section-title[data-title="详情"]')
+      //   .getBoundingClientRect();
+      // var rect_chanpin = document
+      //   .querySelector('.section-title[data-title="相关产品"]')
+      //   .getBoundingClientRect();
+      // var rect_wenxian = document
+      //   .querySelector('.section-title[data-title="文献"]')
+      //   .getBoundingClientRect();
+      // var rect_pingjia = document
+      //   .querySelector('.section-title[data-title="评论"]')
+      //   .getBoundingClientRect();
 
-      if (rect_xiangqing.top < screenCenterHeight) {
-        this.active_panel = "详情";
-      }
-      if (rect_chanpin.top < screenCenterHeight) {
-        this.active_panel = "相关产品";
-      }
-      if (rect_wenxian.top < screenCenterHeight) {
-        this.active_panel = "文献";
-      }
-      if (rect_pingjia.top < screenCenterHeight) {
-        this.active_panel = "评价";
-      }
+      // if (rect_xiangqing.top < screenCenterHeight) {
+      //   this.active_panel = "详情";
+      // }
+      // if (rect_chanpin.top < screenCenterHeight) {
+      //   this.active_panel = "相关产品";
+      // }
+      // if (rect_wenxian.top < screenCenterHeight) {
+      //   this.active_panel = "文献";
+      // }
+      // if (rect_pingjia.top < screenCenterHeight) {
+      //   this.active_panel = "评价";
+      // }
 
       // //console.log("滚动监听", new Date(), scrollTop);
     },
@@ -1572,13 +1545,13 @@ export default {
       // return;
       this.active_panel = name;
       if (name == "详情") {
-        this.scrollToTarget(".detail-content-box");
+        // this.scrollToTarget(".detail-content-box");
       } else if (name == "相关产品") {
-        this.scrollToTarget(".xiangguan-box");
+        // this.scrollToTarget(".xiangguan-box");
       } else if (name == "文献") {
-        this.scrollToTarget(".wenxian-box");
+        // this.scrollToTarget(".wenxian-box");
       } else if (name == "评价") {
-        this.scrollToTarget(".comment-box");
+        // this.scrollToTarget(".comment-box");
       }
     },
 
@@ -1642,6 +1615,7 @@ export default {
 <style scoped lang="less">
 .page-top {
   position: relative;
+  padding-top: 150px;
   .page-top-banner {
     img {
       width: 100%;
@@ -1710,6 +1684,16 @@ export default {
 
   .page-box {
     padding-top: 32px;
+    display: flex;
+    width: 1400px;
+    margin: auto;
+    justify-content: space-between;
+    &-left{
+      width: 1070px;
+    }
+    &-right{
+      width: 280px;
+    }
   }
   .page-inner {
     // overflow: hidden;
@@ -1981,8 +1965,8 @@ export default {
                 }
                 .price {
                   text-align: left;
-                  min-width: 120px;
-                  min-width: 110px;
+                  // min-width: 120px;
+                  min-width: 50px;
                   // min-width: 90px;
                   font-size: 14px;
                   font-family: Microsoft YaHei-Bold, Microsoft YaHei;
@@ -2658,12 +2642,13 @@ export default {
 
 // 相关产品
 .xiangguan-box {
+  margin-top: 75px;
   .product-list {
     display: flex;
-
+    flex-direction: column;
     .product-item {
-      width: 252px;
-      margin-right: 33px;
+      // width: 252px;
+      // margin-right: 33px;
       cursor: pointer;
       border: 1px solid #d5d8de;
       overflow: hidden;
@@ -2678,7 +2663,7 @@ export default {
       }
 
       .img-box {
-        width: 252px;
+        // width: 252px;
         height: 250px;
         img {
           vertical-align: bottom;
@@ -2716,13 +2701,14 @@ export default {
 // 文献引用
 
 .wenxian-list-inner {
-  width: @width;
+  // width: @width;
+  width: 1100px;
   margin: 0 auto;
   position: relative;
 
   .arrow {
     position: absolute;
-    z-index: 1;
+    z-index: 9;
     top: 50%;
     transform: translate(0, -50%);
     width: 72px;
@@ -2731,11 +2717,11 @@ export default {
   }
 
   .wenxian-arrow-left {
-    left: -100px;
+    left: -50px;
   }
 
   .wenxian-arrow-right {
-    right: -100px;
+    right: 20px;
   }
 }
 
@@ -2749,7 +2735,7 @@ export default {
 }
 
 .wenxian-item {
-  width: 680px;
+  width: 500px;
   min-height: 204px;
   margin-right: 30px;
   margin-bottom: 25px;

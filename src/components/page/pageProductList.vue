@@ -92,7 +92,7 @@
             <div class="text-box">
               <div class="label">货号：</div>
               <div class="val">
-                <router-link :to="'/goodsDetail/' + item.inventoryId">
+                <router-link :to="'/goodsDetail/' + item.inventoryId" >
                   {{ item.skuId }}
                 </router-link>
               </div>
@@ -196,7 +196,7 @@
             </div>
 
             <div class="item">
-              <router-link :to="item.route">
+              <router-link :to="item.route" target="_blank">
                 <!-- 仪器耗材特殊处理标题展示 -->
                 <!-- {{ !item.is_yiqi ? item.title : product_id_map[item.channelId] }} -->
 

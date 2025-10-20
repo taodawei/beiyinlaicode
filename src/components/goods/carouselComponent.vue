@@ -120,7 +120,9 @@ export default {
        }
    },
   mounted () {
-      this.$init()
+    // this.$init()
+    // this.imgObj = this.$el.getElementsByClassName('small-box')[0].getBoundingClientRect();
+    this.bigImgSrc=this.swiperImgs[0];
   },
   methods: {
     //幻灯片切换
@@ -137,9 +139,9 @@ export default {
 
     $init(){
         setTimeout(() => {
-              this.imgObj = this.$el.getElementsByClassName('small-box')[0].getBoundingClientRect();
+              this.imgObj = this.$el.getElementsByClassName('is-active small-box')[0].getBoundingClientRect();
               this.bigImgSrc=this.swiperImgs[0];
-        }, 5000);
+        }, 2000);
     },
     changeshop(e){
         this.showMagnifier = false;
@@ -150,23 +152,25 @@ export default {
     },
     handMove(e) {
         // 动态获取小图的位置（或者监听 scroll ）
-        let imgRectNow = this.imgObj;
+        let BoxList= this.$el.getElementsByClassName('is-active');
+        let imgRectNow = BoxList[0].getBoundingClientRect();
         let objX = e.clientX - imgRectNow.left;
         let objY = e.clientY - imgRectNow.top;
         // 计算初始的遮罩左上角的坐标
         let maskX = objX - this.configs.maskWidth / 2;
         let maskY = objY - this.configs.maskHeight / 2;
-        
+        console.log("eX:"+e.clientX+"|eY"+e.clientY);
+        console.log("imgRectNowX:"+imgRectNow.left+"|imgRectNowY"+imgRectNow.top);
         // 判断是否超出界限,并纠正
         maskY = maskY < 0 ? 0 : maskY; 
         maskX = maskX < 0 ? 0 : maskX; 
         if(maskY + this.configs.maskHeight >= imgRectNow.height) {
-        maskY = imgRectNow.height - this.configs.maskHeight;
+          maskY = imgRectNow.height - this.configs.maskHeight;
         }
         if(maskX + this.configs.maskWidth >= imgRectNow.width) {
-        maskX = imgRectNow.width - this.configs.maskWidth;
+          maskX = imgRectNow.width - this.configs.maskWidth;
         }
-        
+        console.log("maskX:"+maskX+"|maskY"+maskY);
         // 遮罩移动
         this.transformMask = `translate(${maskX}px, ${maskY}px)`;
         
@@ -227,7 +231,7 @@ export default {
       max-width: 100%;
       max-height: 100%;
       max-width: 450px;
-      max-height: 450px;
+      max-height: 360px;
 
       /deep/ img {
         max-width: 450px;

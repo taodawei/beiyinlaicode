@@ -1228,7 +1228,7 @@ export default {
         border: none !important;
         background: #f2f2f2;
         padding: 0 10px;
-        width: 150px;
+        width: 100%;
         font-size: 18px;
         height: 6rem;
         font-weight: 800;
@@ -1646,7 +1646,13 @@ export default {
       justify-content: space-between;
       margin: auto;
       .nav-item{
-        a{
+        >a{
+          font-size: 22px;
+          font-weight: 600;
+          height: 7rem;
+          line-height: 7rem;
+        }
+        >span>span>a{
           font-size: 22px;
           font-weight: 600;
           height: 7rem;

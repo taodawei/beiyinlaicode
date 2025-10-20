@@ -90,7 +90,6 @@
                     <router-link
                       :to="'/productCates?id=' + item.id"
                       :class="{ active: item.id == activeCate.id }"
-                      target="_blank"
                     >
                       {{ item.title }}
                     </router-link>
@@ -122,7 +121,6 @@
                         <router-link
                           :to="'/productCates?id=' + sub.id"
                           :class="{ active: sub.id == activeCate.id }"
-                          target="_blank"
                           >{{ sub.title }}</router-link
                         >
                       </div>
@@ -147,7 +145,6 @@
                             <router-link
                               :to="'/productCates?id=' + level3.id"
                               :class="{ active: level3.id == activeCate.id }"
-                              target="_blank"
                               >{{ level3.title }}</router-link
                             >
                           </div>

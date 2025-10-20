@@ -628,7 +628,6 @@ export default {
 
   mounted() {
     this.showLoading();
-
     if (this.$route.query.item == 3) {
       setTimeout(() => {
         this.scrollToTarget(".wenxian-box");
@@ -823,8 +822,10 @@ export default {
 
     setView() {
       this.showLoading();
-      //查询商品信息
 
+      //清空文献数据
+      this.group_list_wenxian=[];
+      //查询商品信息
       this.$api("product_detail", { inventoryId: this.id }).then((res) => {
         //console.log("商品详情", res);
         let { code, data, message } = res;
@@ -925,7 +926,7 @@ export default {
         var is_h5 =
           document &&
           document.documentElement &&
-          document.documentElement.clientWidth <= 1365;
+          document.documentElement.clientWidth <= 1100;
 
         let items_length = is_h5 ? 1 : 4;
 
@@ -1774,7 +1775,7 @@ export default {
               margin-bottom: 15px;
               min-width: 32px;
               padding: 0 5px;
-              height: 24px;
+              // height: 24px;
               line-height: 24px;
               background: #ffffff;
               border-radius: 3px 3px 3px 3px;
@@ -2652,6 +2653,7 @@ export default {
       cursor: pointer;
       border: 1px solid #d5d8de;
       overflow: hidden;
+      margin-bottom: 20px;
       &:nth-child(5n) {
         margin-right: 0;
       }
@@ -2700,28 +2702,30 @@ export default {
 
 // 文献引用
 
+// 文献引用
+
 .wenxian-list-inner {
-  // width: @width;
-  width: 1100px;
+  width: 1070px;
   margin: 0 auto;
   position: relative;
 
+  height: 100%;
   .arrow {
     position: absolute;
     z-index: 9;
-    top: 50%;
+    top: 45%;
     transform: translate(0, -50%);
-    width: 72px;
-    height: 72px;
+    width: 52px;
+    height: 52px;
     cursor: pointer;
   }
 
   .wenxian-arrow-left {
-    left: -50px;
+    left: -60px;
   }
 
   .wenxian-arrow-right {
-    right: 20px;
+    right: -40px;
   }
 }
 
@@ -2735,7 +2739,7 @@ export default {
 }
 
 .wenxian-item {
-  width: 500px;
+  width: 510px;
   min-height: 204px;
   margin-right: 30px;
   margin-bottom: 25px;

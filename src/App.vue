@@ -30,7 +30,7 @@
     <pageAside
       v-if="$route.name != 'productSpecification' && $route.name != 'technologyPdf'"
     />
-
+    <deepSeek></deepSeek>
     <pageKefu
       v-if="$route.name != 'productSpecification' && $route.name != 'technologyPdf'"
     />
@@ -45,6 +45,7 @@ import pageHeaderMobile from "@/components/common/pageHeaderMobile.vue"; //é¡¶éƒ
 import pageFooter from "@/components/common/pageFooter.vue";
 import pageAside from "@/components/common/pageAside.vue";
 import pageKefu from "@/components/common/pageKefu.vue";
+import deepSeek from "@/components/common/deepSeek.vue";
 
 import { mapState } from "vuex";
 export default {
@@ -54,6 +55,7 @@ export default {
     pageFooter,
     pageAside,
     pageKefu,
+    deepSeek,
   },
 
   data() {

@@ -1179,7 +1179,7 @@ export default {
 }
 .header-box {
   position: absolute;
-  z-index: 1000;
+  z-index: 98;
   top: 0;
   left: 0;
   right: 0;

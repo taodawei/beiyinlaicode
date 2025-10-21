@@ -74,6 +74,8 @@
                 :style="{ 
                 minWith: bigWidth - 2 + 'px', 
                 minHeight: bigHeight -2 + 'px' ,
+                maxWidth:'1820px',
+                maxHeight:'1200px',
                 }"/>
             </div>
         </div>
@@ -92,10 +94,9 @@ export default {
       showMaskModal: false, //是否展示模态框
       activeSwipeIndex: 0, //轮播图指示器
 
-
       configs:{
         width:728,//放大区域
-        height:350,//放大区域
+        height:450,//放大区域
         maskWidth:120,//遮罩
         maskHeight:120,//遮罩
         maskColor:'rgba(25,122,255,0.5)',//遮罩样式
@@ -118,11 +119,9 @@ export default {
        bigHeight(){
            return this.configs.scale * this.configs.height;
        }
-   },
+  },
   mounted () {
-    // this.$init()
-    // this.imgObj = this.$el.getElementsByClassName('small-box')[0].getBoundingClientRect();
-    this.bigImgSrc=this.swiperImgs[0];
+    this.$init();
   },
   methods: {
     //幻灯片切换
@@ -139,9 +138,9 @@ export default {
 
     $init(){
         setTimeout(() => {
-              this.imgObj = this.$el.getElementsByClassName('is-active small-box')[0].getBoundingClientRect();
+              this.imgObj = this.$el.getElementsByClassName('small-box')[0].getBoundingClientRect();
               this.bigImgSrc=this.swiperImgs[0];
-        }, 2000);
+        }, 4000);
     },
     changeshop(e){
         this.showMagnifier = false;
@@ -152,6 +151,7 @@ export default {
     },
     handMove(e) {
         // 动态获取小图的位置（或者监听 scroll ）
+        this.bigImgSrc=this.swiperImgs[this.activeSwipeIndex];
         let BoxList= this.$el.getElementsByClassName('is-active');
         let imgRectNow = BoxList[0].getBoundingClientRect();
         let objX = e.clientX - imgRectNow.left;
@@ -159,8 +159,6 @@ export default {
         // 计算初始的遮罩左上角的坐标
         let maskX = objX - this.configs.maskWidth / 2;
         let maskY = objY - this.configs.maskHeight / 2;
-        console.log("eX:"+e.clientX+"|eY"+e.clientY);
-        console.log("imgRectNowX:"+imgRectNow.left+"|imgRectNowY"+imgRectNow.top);
         // 判断是否超出界限,并纠正
         maskY = maskY < 0 ? 0 : maskY; 
         maskX = maskX < 0 ? 0 : maskX; 
@@ -170,7 +168,6 @@ export default {
         if(maskX + this.configs.maskWidth >= imgRectNow.width) {
           maskX = imgRectNow.width - this.configs.maskWidth;
         }
-        console.log("maskX:"+maskX+"|maskY"+maskY);
         // 遮罩移动
         this.transformMask = `translate(${maskX}px, ${maskY}px)`;
         
@@ -235,7 +232,7 @@ export default {
 
       /deep/ img {
         max-width: 450px;
-        max-height: 450px;
+        max-height: 350px;
       }
     }
   }
@@ -299,7 +296,7 @@ export default {
     cursor: move;
     // margin: 0 auto;
     // width: 100%;
-    // height: 100%;
+    height: 400px;
     // background: #f8f8f8;
     // padding: 2rem;
 

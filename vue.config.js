@@ -154,7 +154,7 @@ module.exports = {
     const imagesRule = config.module.rule("images");
     imagesRule.uses.clear(); //清除原本的images loader配置
     imagesRule
-      .test(/\.(jpg|gif|png|svg)$/)
+      .test(/\.(jpg|gif|png|svg|ttf)$/)
       .exclude.add(path.join(__dirname, "../node_modules")) //去除node_modules里的图片转base64配置
       .end()
       .use("url-loader")

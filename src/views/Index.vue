@@ -82,18 +82,6 @@
           </div>
         </div>
 
-         <!--测试模块-->
-        <!-- <div class="footbanner-text">
-          <div style="color: blue;font-size: 50px;margin-top: 100px;">
-            数字：
-            <VueCountUp ref="refcountofore" :start-value="0" :end-value="5000" :duration="1" :options="options"  />
-          </div>
-          <div style="color: #b72830;font-size: 50px;margin-top: 100px;">
-            数字：
-            <VueCountUp :start-value="0" :end-value="5000" :duration="1"  />
-          </div>
-        </div> -->
-
         <!-- 主营业务 -->
         <div class="section-yewu">
           <div class="section-title">
@@ -270,6 +258,118 @@
           </div>
         </div>
 
+        <!--数字模块-->
+        <div class="index_sorft">
+          <div class="wrapper">
+            <div class="number-mode">
+              <div class="title fnt_20">
+                <h2 class="fnt_42" style="font-weight: 800;text-align:center">
+                  贝茵莱生物
+                </h2>
+              </div>
+              <div class="cont">
+                <ul>
+                    <li class="wow animated" style="visibility: visible;">
+                        <div class="number">
+                            <!-- <span class="counter">60</span> -->
+                            <VueCountUp ref="refcountfz" class="counter" :start-value="0" :end-value="60" :duration="1"  />
+                            <span class="dw">分钟</span>
+                        </div>
+                        <p>
+                            实验最快60分钟<br>
+                        </p>
+                    </li>
+                    <li class="wow animated" style="visibility: visible;">
+                        <div class="number">
+                            <!-- <span class="counter">14</span> -->
+                            <VueCountUp ref="refcountn" class="counter" :start-value="0" :end-value="14" :duration="1"  />
+                            <span class="dw">年</span>
+                        </div>
+                        <p>
+                            品牌成立<br>
+                        </p>
+                    </li>
+                    <li class="wow animated" style="visibility: visible;">
+                        <div class="number">
+                            <!-- <span class="counter">3000</span> -->
+                            <VueCountUp ref="refcountwx" class="counter" :start-value="0" :end-value="3000" :duration="1"  />
+                            <span class="dw">+</span>
+                        </div>
+                        <p>
+                            文献引用量<br>
+                        </p>
+                    </li>
+                    <li class="wow animated" style="visibility: visible;">
+                        <div class="number">
+                            <!-- <span class="counter">41444</span> -->
+                            <VueCountUp ref="refcountyz" class="counter" :start-value="0" :end-value="41444" :duration="1"  />
+                            <span class="dw">个</span>
+                        </div>
+                        <p>
+                            最高影响因子<br>
+                        </p>
+                    </li>
+                </ul>
+              </div>
+            </div>
+              <!-- 奖项列表 -->
+            <div class="swiper-prize">
+              <div class="swiper-wrapper">
+                  <div class="swiper-slide wow fadeInUp animated">
+                  <div class="img">
+                      <img src="@img/index_prize.png" alt="专心深耕ELISA领域">
+                  </div>
+                  <div class="title">
+                      <h2 class="fnt_14">专注十四年</h2>
+                      <p class="fnt_14">
+                        专心深耕ELISA领域14年<br>
+                        
+                        为您提供高品质的产品 <br>
+                      </p>
+                  </div>
+              </div>
+              <div class="swiper-slide wow fadeInUp animated">
+                  <div class="img">
+                      <img src="@img/index_prize.png" alt="企业应用SaaS">
+                  </div>
+                  <div class="title">
+                      <h2 class="fnt_14">实验流程块</h2>
+                      <p class="fnt_14">
+                        实验时间最快只需60分钟<br>
+                        
+                        减少实验留守时间<br>
+                        </p>
+                  </div>
+              </div>
+              <div class="swiper-slide wow fadeInUp  animated">
+                  <div class="img">
+                      <img src="@img/index_prize.png" alt="财务云">
+                  </div>
+                  <div class="title">
+                      <h2 class="fnt_14">实验结果好</h2>
+                      <p class="fnt_14">
+                          批内差、批间差均小于10%<br>
+                          
+                          消除干扰和交叉反应<br>
+                          </p>
+                  </div>
+              </div>
+              <div class="swiper-slide wow fadeInUp animated">
+                  <div class="img">
+                      <img src="@img/index_prize.png" alt="ERP、财务满意度">
+                  </div>
+                  <div class="title">
+                    <h2 class="fnt_14">实验样本省</h2>
+                    <p class="fnt_14">
+                      样本量只需40μL<br>
+                      解决样本不足烦恼<br>
+                    </p>
+                  </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
        
       </div>
     </div>
@@ -507,12 +607,18 @@ export default {
         that.$store.commit("set_header_theme", "transparent");
         // $header.classList.remove('theme-white');
       }
-      // if(countup>300&&countup<=400){
-      //   const refname = 'refcountofore';
-      //   this.$refs[refname].reset();
-      //   this.$refs[refname].start();
-      //   // $target.start();
-      // }
+      if(countup>2500&&countup<=2600){
+        const refname = 'refcountfz';
+        this.$refs['refcountfz'].reset();
+        this.$refs['refcountfz'].start();
+        this.$refs['refcountn'].reset();
+        this.$refs['refcountn'].start();
+        this.$refs['refcountwx'].reset();
+        this.$refs['refcountwx'].start();
+        this.$refs['refcountyz'].reset();
+        this.$refs['refcountyz'].start();
+        // $target.start();
+      }
       // //console.log("滚动监听", new Date(), scrollTop);
     },
 
@@ -1327,6 +1433,103 @@ export default {
     position: relative;
   }
 }
+
+.index_sorft {
+  width: 100%;
+  padding: 100px 0 60px;
+  background-color: rgb(245, 245, 245);
+  .wrapper {
+    width: 1400px;
+  }
+  // @media screen and (max-width: 1400px) {
+  // .wrapper {
+  //     width: 100%;
+  // }
+  .fnt_42 {
+      font-size: 34px;
+  }
+  .number-mode {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(133, 154, 184, 0.3);
+  }
+  .cont ul {
+    display: flex;
+    display: -webkit-flex;
+    /* flex-direction: column; */
+    li {
+        list-style-type: none;
+    }
+  }
+  .cont li {
+    width: 33.33%;
+    position: relative;
+    text-align: center;
+    padding: 50px 0 70px;
+    .number {
+      font-size: 42px;
+      color: #ea3200;
+      border-right: 1px solid rgba(133, 154, 184, 0.3);
+      .counter {
+          font-size: 52px;
+      }
+    }
+    
+    p {
+      line-height: 22px;
+      font-size: 18px;
+    }
+  }
+  li:last-child .number {
+    border: none;
+  }
+  .wrapper {
+    width: 1400px;
+    margin: 0 auto;
+  }
+}
+.swiper-prize{
+  margin-top: 40px;
+  overflow: hidden;
+  text-align: center;
+  .swiper-wrapper {
+    margin-bottom: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .swiper-slide{
+    width: 300px; 
+    margin-right: 20px; 
+    visibility: visible; 
+    animation-name: fadeInUp;
+    .title {
+      width: 80%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: 600;
+      text-align: center;
+      h2 {
+        font-weight: normal;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(133, 154, 184, 0.3);
+        margin-bottom: 10px;
+      }
+      .fnt_14 {
+        font-size: 15px;
+      }
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      
+    }
+  } 
+} 
 </style>
 
 <style scoped lang="less" src="@/assets/h5css/page/index.less"></style>

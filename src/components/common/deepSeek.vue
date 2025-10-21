@@ -1,60 +1,76 @@
-
 <template>
-  <div id="deepsekbox">
-    <div class="chat-container">
-      <div class="chat-content">
-        <div class="chatBox">
-          <div v-if="errorMessage" class="error-message">
-            {{ errorMessage }}
-          </div>
-          <div class="chat-messages">
-            <div v-for="(message, index) in currentMessages" :key="index" class="message">
-              <div v-if="message.sender === 'user'" class="user-message-container">
-                <article class="message-content user-message">{{ message.text }}</article>
-                <img src="@img/chongzhi-wx.png" class="avatar user-avatar" alt="用户头像">
-              </div>
-              <div v-else class="bot-message-container">
-                <img src="@img/chongzhi-wx.png" class="avatar bot-avatar" alt="机器人头像">
-                <path fill="var(--dsw-alias-brand-primary)" d="M33.615 2.598c-.36-.176-.515.16-.726.33-.072.055-.132.127-.193.193-.526.562-1.14.93-1.943.887-1.174-.067-2.176.302-3.062 1.2-.188-1.107-.814-1.767-1.766-2.191-.498-.22-1.002-.441-1.35-.92-.244-.341-.31-.721-.433-1.096-.077-.226-.154-.457-.415-.496-.282-.044-.393.193-.504.391-.443.81-.614 1.702-.598 2.605.04 2.033.898 3.652 2.603 4.803.193.132.243.264.182.457-.116.397-.254.782-.376 1.179-.078.253-.194.308-.465.198-.936-.391-1.744-.97-2.458-1.669-1.213-1.173-2.31-2.467-3.676-3.48a16.254 16.254 0 0 0-.975-.668c-1.395-1.354.183-2.467.548-2.599.382-.138.133-.612-1.102-.606-1.234.005-2.364.42-3.803.97a4.34 4.34 0 0 1-.66.193 13.577 13.577 0 0 0-4.08-.143c-2.667.297-4.799 1.558-6.365 3.712C.116 8.436-.327 11.378.215 14.444c.57 3.233 2.22 5.91 4.755 8.002 2.63 2.17 5.658 3.233 9.113 3.03 2.098-.122 4.434-.403 7.07-2.633.664.33 1.362.463 2.518.562.892.083 1.75-.044 2.414-.182 1.04-.22.97-1.184.593-1.36-3.05-1.421-2.38-.843-2.99-1.311 1.55-1.834 3.918-5.093 4.648-9.531.072-.49.164-1.18.153-1.577-.006-.242.05-.336.326-.364a5.903 5.903 0 0 0 2.187-.672c1.977-1.08 2.774-2.853 2.962-4.978.028-.325-.006-.661-.35-.832ZM16.39 21.73c-2.956-2.324-4.39-3.089-4.982-3.056-.554.033-.454.667-.332 1.08.127.407.293.688.526 1.046.16.237.271.59-.161.854-.952.589-2.607-.198-2.685-.237-1.927-1.134-3.537-2.632-4.673-4.68-1.096-1.972-1.733-4.087-1.838-6.345-.028-.545.133-.738.676-.837A6.643 6.643 0 0 1 5.086 9.5c3.017.441 5.586 1.79 7.74 3.927 1.229 1.217 2.159 2.671 3.116 4.092 1.02 1.509 2.115 2.946 3.51 4.125.494.413.887.727 1.263.958-1.135.127-3.028.154-4.324-.87v-.002Zm1.417-9.114a.434.434 0 0 1 .587-.408c.06.022.117.055.16.105a.426.426 0 0 1 .122.303.434.434 0 0 1-.437.435.43.43 0 0 1-.432-.435Zm4.402 2.257c-.283.116-.565.215-.836.226-.421.022-.88-.149-1.13-.358-.387-.325-.664-.506-.78-1.073-.05-.242-.022-.617.022-.832.1-.463-.011-.76-.338-1.03-.265-.22-.603-.28-.974-.28a.8.8 0 0 1-.36-.11c-.155-.078-.283-.27-.161-.508.039-.077.227-.264.271-.297.504-.286 1.085-.193 1.623.022.498.204.875.578 1.417 1.107.553.639.653.815.968 1.295.25.374.476.76.632 1.2.094.275-.028.5-.354.638Z"></path>
-                <article
-                  class="message-content bot-message"
-                  v-html="renderMarkdown(message.text)"
-                  :data-completed="message.completed || !isStreaming"
-                ></article>
-              </div>
+  <div class="dS-box">
+    <div class="dS-logo" @click="drawer = !drawer"><span>AI</span></div>
+    <el-drawer 
+        :visible.sync="drawer" 
+        @close="handleClose" 
+        direction="rtl"
+        :append-to-body="true"
+        :modal-append-to-body="false"
+        title="有什么不懂的可以问我"
+    >
+        <div>
+            <!-- 内容 -->
+             <div id="deepsekbox">
+                <div class="chat-container">
+                <div class="chat-content">
+                    <div class="chatBox">
+                    <div v-if="errorMessage" class="error-message">
+                        {{ errorMessage }}
+                    </div>
+                    <div class="chat-messages">
+                        <div v-for="(message, index) in currentMessages" :key="index" class="message">
+                        <div v-if="message.sender === 'user'" class="user-message-container">
+                            <article class="message-content user-message">{{ message.text }}</article>
+                            <img src="@img/avatar.png" class="avatar user-avatar" alt="用户头像">
+                        </div>
+                        <div v-else class="bot-message-container">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAMFBMVEVHcExNa/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5glKuKAAAAD3RSTlMA05QmPhvxp+O+dGJWhBD9rd47AAAA0UlEQVQokcWR2RbDIAhEARXXhP//26IYY9o+9pzOQ9C5LkwE+K9CiaTllIfrCJkRReTUWRMyu/VPlKU+rVodOJ+TTvBmwg7Aa83djAAkD3kAXsMg8k6dDehj46LZ9xvZO3+knVIRqaNfSaN4wxGKLWgGr8jjfMRJw/BYM5m6yzKjmYVywL6XzmgRp7N+493WPE3bXltX5nw5ONeFee1941zeqaDivB96vYLGOkby3moO8KSJejfxtPdLG/W82hRslPMBu8rEXOCbQqu1ha/o13oBhAwQQ4gEzPgAAAAASUVORK5CYII="
+                        class="dplogo"
+                        ></img>
+                            <path fill="var(--dsw-alias-brand-primary)" d="M33.615 2.598c-.36-.176-.515.16-.726.33-.072.055-.132.127-.193.193-.526.562-1.14.93-1.943.887-1.174-.067-2.176.302-3.062 1.2-.188-1.107-.814-1.767-1.766-2.191-.498-.22-1.002-.441-1.35-.92-.244-.341-.31-.721-.433-1.096-.077-.226-.154-.457-.415-.496-.282-.044-.393.193-.504.391-.443.81-.614 1.702-.598 2.605.04 2.033.898 3.652 2.603 4.803.193.132.243.264.182.457-.116.397-.254.782-.376 1.179-.078.253-.194.308-.465.198-.936-.391-1.744-.97-2.458-1.669-1.213-1.173-2.31-2.467-3.676-3.48a16.254 16.254 0 0 0-.975-.668c-1.395-1.354.183-2.467.548-2.599.382-.138.133-.612-1.102-.606-1.234.005-2.364.42-3.803.97a4.34 4.34 0 0 1-.66.193 13.577 13.577 0 0 0-4.08-.143c-2.667.297-4.799 1.558-6.365 3.712C.116 8.436-.327 11.378.215 14.444c.57 3.233 2.22 5.91 4.755 8.002 2.63 2.17 5.658 3.233 9.113 3.03 2.098-.122 4.434-.403 7.07-2.633.664.33 1.362.463 2.518.562.892.083 1.75-.044 2.414-.182 1.04-.22.97-1.184.593-1.36-3.05-1.421-2.38-.843-2.99-1.311 1.55-1.834 3.918-5.093 4.648-9.531.072-.49.164-1.18.153-1.577-.006-.242.05-.336.326-.364a5.903 5.903 0 0 0 2.187-.672c1.977-1.08 2.774-2.853 2.962-4.978.028-.325-.006-.661-.35-.832ZM16.39 21.73c-2.956-2.324-4.39-3.089-4.982-3.056-.554.033-.454.667-.332 1.08.127.407.293.688.526 1.046.16.237.271.59-.161.854-.952.589-2.607-.198-2.685-.237-1.927-1.134-3.537-2.632-4.673-4.68-1.096-1.972-1.733-4.087-1.838-6.345-.028-.545.133-.738.676-.837A6.643 6.643 0 0 1 5.086 9.5c3.017.441 5.586 1.79 7.74 3.927 1.229 1.217 2.159 2.671 3.116 4.092 1.02 1.509 2.115 2.946 3.51 4.125.494.413.887.727 1.263.958-1.135.127-3.028.154-4.324-.87v-.002Zm1.417-9.114a.434.434 0 0 1 .587-.408c.06.022.117.055.16.105a.426.426 0 0 1 .122.303.434.434 0 0 1-.437.435.43.43 0 0 1-.432-.435Zm4.402 2.257c-.283.116-.565.215-.836.226-.421.022-.88-.149-1.13-.358-.387-.325-.664-.506-.78-1.073-.05-.242-.022-.617.022-.832.1-.463-.011-.76-.338-1.03-.265-.22-.603-.28-.974-.28a.8.8 0 0 1-.36-.11c-.155-.078-.283-.27-.161-.508.039-.077.227-.264.271-.297.504-.286 1.085-.193 1.623.022.498.204.875.578 1.417 1.107.553.639.653.815.968 1.295.25.374.476.76.632 1.2.094.275-.028.5-.354.638Z"></path>
+                            <article
+                            class="message-content bot-message"
+                            v-html="renderMarkdown(message.text)"
+                            :data-completed="message.completed || !isStreaming"
+                            ></article>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <textarea
+                        v-model="inputMessage"
+                        placeholder="请输入您的问题"
+                        @keyup.enter.exact="handleSend"
+                        rows="4"
+                        :disabled="isStreaming"
+                        />
+                        <button @click="handleButtonClick" :disabled="!inputMessage.trim() && !isStreaming">
+                        {{ isStreaming ? '停止生成' : '发送' }}
+                        </button>
+                        <br></br>
+                    </div>
+                    </div>
+                </div>
+                </div>
             </div>
-          </div>
-          <div class="chat-input">
-            <textarea
-              v-model="inputMessage"
-              placeholder="请输入您的问题"
-              @keyup.enter.exact="handleSend"
-              rows="6"
-              :disabled="isStreaming"
-            />
-            <button @click="handleButtonClick" :disabled="!inputMessage.trim() && !isStreaming">
-              {{ isStreaming ? '停止生成' : '发送' }}
-            </button>
-            <br></br>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAMAAABF0y+mAAAAMFBMVEVHcExNa/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5Na/5glKuKAAAAD3RSTlMA05QmPhvxp+O+dGJWhBD9rd47AAAA0UlEQVQokcWR2RbDIAhEARXXhP//26IYY9o+9pzOQ9C5LkwE+K9CiaTllIfrCJkRReTUWRMyu/VPlKU+rVodOJ+TTvBmwg7Aa83djAAkD3kAXsMg8k6dDehj46LZ9xvZO3+knVIRqaNfSaN4wxGKLWgGr8jjfMRJw/BYM5m6yzKjmYVywL6XzmgRp7N+493WPE3bXltX5nw5ONeFee1941zeqaDivB96vYLGOkby3moO8KSJejfxtPdLG/W82hRslPMBu8rEXOCbQqu1ha/o13oBhAwQQ4gEzPgAAAAASUVORK5CYII="
-              class="dplogo"
-            ></img>
-          </div>
         </div>
-      </div>
-    </div>
+    </el-drawer>
   </div>
 </template>
- 
 <script>
+import { DrawerProps } from 'element-ui'
 import marked from 'marked';
 import DOMPurify from 'dompurify';
 import { postStream } from '@/util/deepSeek';
- 
 export default {
-  name: 'App',
+  name: "deepSeek",
+  components: {DrawerProps},
+  props: [],
   data() {
     return {
+      drawer:false,
+
       currentMessages: [],
       inputMessage: "",
       errorMessage: "",
@@ -67,10 +83,20 @@ export default {
       botAvatar: ''
     };
   },
+  computed: {
+  },
+  watch: {},
+
+  mounted() {
+    
+  },
   created() {
     this.generateConversationId();
   },
   methods: {
+    handleClose() {
+        this.drawer=false
+    },
     generateConversationId() {
       this.conversationId = 'conv-' + Date.now();
     },
@@ -211,10 +237,35 @@ export default {
     startNewConversation() {
       this.generateConversationId();
     }
-  }
-}
+  },
+};
 </script>
-<style scoped>
+
+<style scoped lang="less">
+/deep/ .el-drawer__wrapper{
+    z-index: 99!important;
+    display: block;
+}
+.dS-box{
+    .dS-logo{
+        width: 60px;
+        height: 60px;
+        background-color: rgb(234, 50, 0);
+        position: fixed;
+        right: 1.9%;
+        top: 46%;
+        z-index: 99;
+        cursor: pointer;
+        box-shadow:4px 4px 15px #1e1e1e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span{
+            font-size: xx-large;
+            color: white;
+        }
+    }
+}
 #deepsekbox {
   margin-top: 50px;
   display: flex;
@@ -384,108 +435,3 @@ export default {
   opacity: 0.6;
 }
 </style>
-
-<!-- <template>
-<div class="test" style="padding-top: 200px;">
-    <el-input
-        type="textarea"
-        :rows="20"
-        placeholder="请输入内容"
-        v-model="deepSeekData">
-        </el-input>
-    <button type="button" @click="btnDeepSeek" class="el-button el-button--primary"><span>deepseek按钮</span></button>
-</div>
-</template>
-
-<script>
-import axios from "axios";
-export default {
-  name: "carouselComponent",
-  components: {},
-  computed: {
-     
-   },
-   mounted () {
-   },
-    data(){
-      return {
-        deepSeekData:"",
-      }
-    },  
-     methods: {
-       
-        // btnDeepSeek(){
-        //     let objdp=JSON.parse("{\"id\":\"c5db52f4-3491-4150-8487-6f4fa7080c6e\",\"object\":\"chat.completion.chunk\",\"created\":1760940668,\"model\":\"deepseek-chat\",\"system_fingerprint\":\"fp_ffc7281d48_prod0820_fp8_kvcache\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"你好\"}}]}")
-        //     this.deepSeekData += objdp.choices[0].delta.content
-        // }
-        btnDeepSeek(){
-            const response = axios('https://api.deepseek.com/chat/completions', {
-            method: 'POST',
-            responseType: 'text', 
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer sk-c30433f8819045efa0e9ca003e276f27'
-            },
-            data: {
-                model: 'deepseek-chat',
-                messages: [{ role: 'user', content: '发送到deepseek的内容'}], // role有其他的角色，具体可以查看文档
-                temperature: 0.7,
-                stream: true, // 是否发送流式数据
-            },
-            onDownloadProgress: (progressEvent) => { // 获取流式数据
-                    const text = progressEvent.currentTarget.responseText.replace(/\\n/g, '<br/>') // 换乘br，防止换行符解析在浏览器失效
-                    const infoList = text.match(/data:\s*(\{[^}]*\})/g).splice(length) // 通过正则获取想要的内容
-                    length = text.match(/data:\s*(\{[^}]*\})/g).length
-                    infoList.forEach(item => {
-                        console.log(item, 'item')
-                        const jsonStr = item.replace(/^data:\s*/, '')
-                        // jsonStr +="}]}"
-                        try {
-                            jsonStr +="}]}"
-                            this.deepSeekData += JSON.parse(jsonStr).content
-                        } catch (e) {
-                            console.error('解析JSON失败:', e, '原始数据:', jsonStr)
-                            return null
-                        }
-                    })
-                }
-            });
-
-        }
-    },
-};
-</script>
-
-<style scoped lang="less">
-.small-box{
-    position: relative;
-
-}
-.magnifier-zoom{
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.magnifier-layer{
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-    overflow: hidden;
-    background-color: #fff;
-}
-.big-box{
-    position: absolute;
-}
- .magnifier{
-    position: relative;
-    width: 580px;
-    height: 360px;
-    border-radius: 8px;
-}
-.smallPic{
-    width: 580px;
-    height: 360px;
-    border-radius: 8px;
-}
-</style> -->

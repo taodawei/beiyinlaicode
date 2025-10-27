@@ -826,7 +826,7 @@ export default {
       //清空文献数据
       this.group_list_wenxian=[];
       //查询商品信息
-      this.$api("product_detail", { inventoryId: this.id }).then((res) => {
+      this.$api("product_detail", { skuId: this.id }).then((res) => {
         //console.log("商品详情", res);
         let { code, data, message } = res;
 

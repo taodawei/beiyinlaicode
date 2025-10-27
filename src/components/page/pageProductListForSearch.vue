@@ -3,7 +3,7 @@
     <div class="product-inner" v-if="apiCompleted">
       <!-- 卡片形式的展示形式 v-if="!isViewProductTable" -->
       <div class="card-wrap" v-if="!isViewProductTable">
-        <div v-if="product_list.length>1" class="product-list">
+        <div v-if="product_list.length>0" class="product-list">
           <div class="product-item" v-for="(item, index) in product_list" :key="index">
             <div class="product-left">
               <router-link :to="'/goodsDetail/' + item.inventoryId" class="title" target="_blank">
@@ -104,21 +104,13 @@
 
       <!-- 表格形式数据 -->
       <!-- v-if="isViewProductTable" -->
-      <div  class="info-list" v-else>
+      <!-- <div  class="info-list" v-else>
         <div v-if="product_list.length>1" class="info-list-inner">
-          <!-- 货号，名称，同义词，基因ID，应用 -->
           <div class="info-item title-item">
             <div class="item">货号</div>
             <div class="item">名称</div>
             <div class="item">规格</div>
             <div class="item">价格</div>
-            <!-- <div class="item">同义词</div>
-          <div class="item">基因ID</div>
-          <div class="item">应用</div> -->
-            <!-- 其他属性参数 -->
-            <!-- <div class="item" v-for="(field, field_index) in field_list" :key="field_index">
-            {{ field.title }}
-          </div> -->
           </div>
           <div class="info-item" v-for="(item, index) in product_list" :key="index">
             <div class="item">
@@ -142,9 +134,89 @@
         <div v-else>
           <el-empty description="没有查询到相关内容..."></el-empty>
         </div>
+      </div> -->
+      <div  class="info-list" v-else>
+      <!-- 新的卡片样式 -->
+        <div class="product-list" v-if="product_list.length>0">
+          <div class="product-box" v-for="(item, index) in product_list" :key="index">
+            <div class="product-box-left">
+              <div class="product-box-top-img">
+                <router-link :to="item.route" target="_blank">
+                  <el-image :src="item.img" :alt="item.title" class="el-image__img">
+                    <div slot="error" class="image-slot">
+                      <img :src="item.default_img" :alt="item.title" />
+                    </div>
+                  </el-image>
+                  <!-- <img v-if="item.img" :alt="item.title" :src="item.img" :title="item.titile"></img>
+                  <img v-else :alt="item.title" :src="item.default_img" :title="item.titile"></img> -->
+                </router-link>
+              </div>
+            </div>
+            <div class="product-box-right">
+              <div class="product-box-table">
+                <div class="product-box-table-head">
+                  <span>货号</span>
+                  <span>名称</span>
+                  <span>规格</span>
+                  <span>价格</span>
+                  <span></span>
+                </div>
+                <div class="product-box-table-body">
+                  <div class="body-row" >
+                    <div class="row-huohao">
+                        <span v-html="item.html_skuId"></span>
+                      </div>
+                      <div class="row-chanpin">
+                        <router-link :to="item.route" target="_blank">
+                          <span v-html="item.html_title"></span>
+                        </router-link>
+                      </div>
+                      <div class="row-descript">
+                        <template v-for="(inventory, iindex) in item.inventorys">
+                          <span  v-html="inventory.key_vals"></span><br></br>
+                        </template>
+                        
+                      </div>
+                      <div class="row-price">
+                        <template v-for="(inventory, iindex) in item.inventorys" >
+                          <span >￥{{ +inventory.price_sale }}</span><br></br>
+                        </template>
+                        <!-- <span>￥{{ +item.price_sale }}</span> -->
+                      </div>
+                      <div 
+                      @click="showRowDetail(index)"
+                      :class="showDetailIndex===index?'row-operate-active row-operate':'row-operate-shouqi row-operate'" 
+                      >
+                        <el-button circle icon="el-icon-d-arrow-right"></el-button>
+                      </div>
+                  </div>
+                  <div 
+                    :class="showDetailIndex===index?'body-row-detail rowOn':'body-row-detail'" 
+                    class="body-row-detail" >
+                      <div class="params-box" >
+                        <div
+                          v-for="(param, pindex) in setInfoParams(item)"
+                          :key="pindex"
+                          :data-key="param.field_title"
+                        >
+                        <div v-if="param.val.length!=0" class="params-item">
+                            <div  class="params-label">{{ param.title }}</div>
+                            <div  class="params-val" v-html="param.val"></div>
+                        </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div v-else>
+          <el-empty description="没有查询到相关内容..."></el-empty>
+        </div>
       </div>
 
-      <div v-show="product_list.length>1" class="pagination-box" style="margin-top: 40px">
+      <div v-show="product_list.length>0" class="pagination-box" style="margin-top: 40px">
         <el-pagination
           background
           layout="total,prev, pager, next"
@@ -190,6 +262,10 @@ export default {
       product_images: [],
 
       params: {},
+
+      showDetailIndex:10,
+
+      all_field: [],
     };
   },
   computed: {
@@ -211,16 +287,6 @@ export default {
       return this.product_list_checked.length;
     },
 
-    //是否展示产品
-    // showProduct() {
-    //   return +this.pdt_max_num;
-    // },
-
-    //是否展示产品数据表格
-    // isViewProductTable() {
-    //   let ret = +this.pdt_max_num && +this.pdt_max_num < this.count;
-    //   return ret;
-    // },
     //是否展示产品数据表格
     isViewProductTable() {
       let ret = true;
@@ -253,6 +319,7 @@ export default {
   },
 
   created() {
+    this.queryAllCateParams();
     this.queryCateParams();
     this.setView();
   },
@@ -388,7 +455,8 @@ export default {
 
         res.data.forEach((v) => {
           v.checked = false;
-          v.route = "/goodsDetail/" + v.inventoryId;
+          // v.route = "/goodsDetail/" + v.inventoryId;
+          v.route = "/goodsDetail/" + v.skuId;
           if (v.is_sj) {
             if (!v.title) {
               var title = v.title;
@@ -525,6 +593,92 @@ export default {
       });
       this.compareState();
     },
+
+    //所有产品参数
+    queryAllCateParams() {
+      // this.query_field_done = false;
+      //根据分类设置筛选条件
+      this.$api("product_allRow", {}).then((res) => {
+        //console.log("获取所有分类的字段", res);
+        this.all_field = res.data;
+      });
+    },
+     //设置当前产品展示参数
+    setInfoParams(item) {
+      if (item.param_info && this.all_field.length) {
+        // //console.log("产品属性参数");
+        // //console.table(this.all_field);
+
+        let param_list = [];
+        this.all_field.forEach((field) => {
+          var val = item.param_info[field.field_title];
+          if (val) {
+            if (field.title == "基因id") {
+              field.title = "基因ID";
+              if (+val) {
+              } else {
+                val = "/";
+              }
+            }
+            if (val != "/") {
+              if (field.title == "中文名称") {
+                if (this.is_real_zh_name(val)) {
+                  param_list.unshift({
+                    ...field,
+                    val: val,
+                  });
+                }
+              } else {
+                param_list.push({
+                  ...field,
+                  val: val,
+                });
+              }
+            }
+          }
+        });
+
+        // //console.log('所有的参数 param_list', param_list)
+
+        let tongyici_attr_1 = param_list.find((v) => v.field_title == "another_name");
+        let tongyici_attr_2 = param_list.find((v) => v.field_title == "synonym");
+        //抗体产品同义词相同时 隐藏一个
+        if (
+          tongyici_attr_1 &&
+          tongyici_attr_1.val &&
+          tongyici_attr_2 &&
+          tongyici_attr_2.val
+        ) {
+          if (tongyici_attr_1.val == tongyici_attr_2.val) {
+            let arr_tongyici = param_list.filter((v) => v.title == "同义词");
+
+            if (arr_tongyici.length == 2) {
+              let index_2 = param_list.findIndex(
+                (v) => v.field_title == arr_tongyici[1].field_title
+              );
+
+              param_list.splice(index_2, 1);
+            }
+          }
+        }
+
+        param_list = param_list;
+        return param_list;
+        // this.query_field_done = true;
+      } else {
+        setTimeout(() => {
+          this.setInfoParams();
+        }, 200);
+      }
+    },
+
+    showRowDetail(index){
+      if(this.showDetailIndex==index){
+        this.showDetailIndex=10;
+      }else{
+        this.showDetailIndex=index;
+      }
+    },
   },
 };
 </script>
@@ -533,7 +687,239 @@ export default {
 /deep/ .highlight {
   color: @theme;
 }
+/deep/ .fade-enter-active, .fade-leave-active {
+	transition: opacity 1s
+ }
+//  /deep/ .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+// 	opacity: 0
+// } 
+//新卡片样式 大威 25.10.21
+@keyframes rowDetailShow {
+  from{
+    height: 0px;
+  }
+  to{
+    height: 400px;
+  }
+}
+@keyframes rowDetailHid {
+  0%{
+    height: 400px;
+  }
+  100%{
+    height: 0px;
+  }
+}
+@keyframes operate-active {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(90deg);
+  }
+}
+@keyframes operate-on {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+@keyframes operate-shouqi {
+  from{
+    transform: rotate(90deg);
+  }
+  to{
+    transform: rotate(0deg);
+  }
+}
+.product-list{
+  // margin-top: 50px;
+  .product-box:hover{
+    background-color: #ea3200;
+    opacity: 0.8;
+    transform: scale(1.02, 1.02);
+    .product-box-top{
+      .product-box-top-titile{
+        a{
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  .product-box{
+    transition: all 0.4s ease;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    box-shadow:0.4rem 0.4rem 1.5rem #bbb8b8;
+    border: 1px solid #ebeef5;
+    background-color: #f6faff;
+    margin-bottom: 20px;
 
+
+    display: flex;
+    padding: 20px;
+    align-items: flex-start;
+    &-left{
+      margin-right: 20px;
+      .product-box-top-img{
+        width: 132px;
+        height: 132px;
+        overflow: hidden;
+        border-radius: 8px;
+        .el-image__img,img{
+          border: 1px solid #ebeef5;
+          border-radius: 8px;
+          width: 100%;
+          height: 132px;
+          transition: all 0.4s ease;
+        }
+        .el-image__img:hover{
+          transform: scale(1.2, 1.2);
+        }
+        img:hover{
+          transform: scale(1.1, 1.1);
+        }
+      }
+    }
+    &-right{
+      padding: 10px;
+      border-top: 1px solid #ebeef5;
+      background-color: #ffffff;
+      border-radius: 8px;
+      .product-box-table{
+        &-head{
+          padding: 10px 5px;
+          border-bottom: 1px solid #ebeef5;
+          display: flex;
+          color: #000;
+          font-weight: 500;
+          width: 100%;
+          span:first-child{
+            width: 10%;
+          }
+          span:nth-child(2){
+            width: 35%;
+          }
+          span:nth-child(3){
+            width: 30%;
+          }
+          span:nth-child(4){
+            width: 15%;
+          }
+          span:last-child{
+            text-align: right;
+          }
+        }
+        &-body{
+          // padding-top: 15px;
+          overflow: hidden;
+          .body-row{
+            display: flex;
+            // transition: all 1s;
+            align-items: baseline;
+            padding: 15px 5px 15px 5px;
+            .row-descript{
+              width: 30%;
+            }
+            .row-huohao{
+              width: 10%;
+            }
+            .row-chanpin{
+              padding-right: 15px;
+              width: 35%;
+              a{
+                font-size: 14px;
+                font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+                font-weight: 400;
+                color: #409eff;
+              }
+              
+            }
+            .row-price{
+              width: 15%;
+            }
+            .row-operate{
+              // width: 5%;
+              transform: rotate(0deg);
+            }
+            .row-operate-active{
+              // width: 5%;
+              animation: operate-active 0.5s ease forwards;
+            }
+            .row-operate-shouqi{
+              animation: operate-shouqi 0.5s ease forwards;
+            }
+            .row-operate:hover{
+              // animation: operate-on 0.5s linear backwards;
+            }
+          }
+          // .body-row:hover{
+          //   cursor: pointer;
+          //   background-color: #fff;
+          //   opacity: 0.9;
+          //   border: 1px solid #ddd;
+          //   .row-operate{
+          //     // animation: operate-on 0.5s linear backwards;
+          //   }
+          // }
+          .body-row-detail{
+            height: 100%;
+            overflow: scroll;
+            animation: rowDetailHid 0.3s linear forwards;
+          }
+          .rowOn{
+            animation: rowDetailShow 1s ease forwards;
+          }
+          .body-row-hid{
+            animation: rowDetailHid 0.3s linear forwards;
+          }
+          .row-active-detail{
+            animation: rowDetailShow 1s ease forwards;
+            display:flex;
+          }
+          .params-item:last-child {
+            border-bottom: 1px solid #ccc;
+          }
+          .params-item{
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            .params-label{
+              display: flex;
+              align-items: center;
+              align-self: stretch;
+              background: #f7f7f7;
+              min-height: 5rem;
+              line-height: 5rem;
+              width: 30rem;
+              padding: 0 2.4rem;
+              font-size: 1.4rem;
+              font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+              // font-weight: bold;
+              color: #666666;
+              font-size: 1.6rem;
+            }
+            .params-val{
+              min-height: 5rem;
+              line-height: 5rem;
+              padding: 0 2.4rem;
+              font-size: 1.4rem;
+              font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+              // font-weight: bold;
+              color: #666666;
+              font-size: 1.6rem;
+              max-width: 550px;
+            }
+            
+          }
+        }
+      }
+    }
+  }
+}
 // 信息列表
 .info-list {
   .title-item {

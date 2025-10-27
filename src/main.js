@@ -157,6 +157,7 @@ store.dispatch("appInit"); //重新初始化
 
 Vue.prototype.$message = Message;
 Vue.config.productionTip = false;
+// Vue.config.devtools=true;
 
 new Vue({
   router,

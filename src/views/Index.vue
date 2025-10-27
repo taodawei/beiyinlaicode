@@ -302,8 +302,8 @@
                     <li class="wow animated" style="visibility: visible;">
                         <div class="number">
                             <!-- <span class="counter">41444</span> -->
-                            <VueCountUp ref="refcountyz" class="counter" :start-value="0" :end-value="41444" :duration="1"  />
-                            <span class="dw">个</span>
+                            <span class="dw">IF</span>
+                            <VueCountUp ref="refcountyz" decimals="3" class="counter" :start-value="0" :end-value="52.700" :duration="1"  />
                         </div>
                         <p>
                             最高影响因子<br>
@@ -315,57 +315,57 @@
               <!-- 奖项列表 -->
             <div class="swiper-prize">
               <div class="swiper-wrapper">
-                  <div class="swiper-slide wow fadeInUp animated">
-                  <div class="img">
-                      <img src="@img/index_prize.png" alt="专心深耕ELISA领域">
-                  </div>
-                  <div class="title">
-                      <h2 class="fnt_14">专注十四年</h2>
-                      <p class="fnt_14">
-                        专心深耕ELISA领域14年<br>
-                        
-                        为您提供高品质的产品 <br>
-                      </p>
-                  </div>
-              </div>
-              <div class="swiper-slide wow fadeInUp animated">
-                  <div class="img">
-                      <img src="@img/index_prize.png" alt="企业应用SaaS">
-                  </div>
-                  <div class="title">
-                      <h2 class="fnt_14">实验流程块</h2>
-                      <p class="fnt_14">
-                        实验时间最快只需60分钟<br>
-                        
-                        减少实验留守时间<br>
-                        </p>
-                  </div>
-              </div>
-              <div class="swiper-slide wow fadeInUp  animated">
-                  <div class="img">
-                      <img src="@img/index_prize.png" alt="财务云">
-                  </div>
-                  <div class="title">
-                      <h2 class="fnt_14">实验结果好</h2>
-                      <p class="fnt_14">
-                          批内差、批间差均小于10%<br>
+                <div class="swiper-slide wow fadeInUp animated">
+                    <div class="img">
+                        <img src="@img/index_prize.png" alt="企业应用SaaS">
+                    </div>
+                    <div class="title">
+                        <h2 class="fnt_14">实验流程块</h2>
+                        <p class="fnt_14">
+                          实验时间最快只需60分钟<br>
                           
-                          消除干扰和交叉反应<br>
+                          减少实验留守时间<br>
                           </p>
-                  </div>
-              </div>
-              <div class="swiper-slide wow fadeInUp animated">
-                  <div class="img">
-                      <img src="@img/index_prize.png" alt="ERP、财务满意度">
-                  </div>
-                  <div class="title">
-                    <h2 class="fnt_14">实验样本省</h2>
+                    </div>
+                </div>
+                 <div class="swiper-slide wow fadeInUp animated">
+                <div class="img">
+                    <img src="@img/index_prize.png" alt="专心深耕ELISA领域">
+                </div>
+                <div class="title">
+                    <h2 class="fnt_14">专注十四年</h2>
                     <p class="fnt_14">
-                      样本量只需40μL<br>
-                      解决样本不足烦恼<br>
+                      专心深耕ELISA领域14年<br>
+                      
+                      为您提供高品质的产品 <br>
                     </p>
-                  </div>
-              </div>
+                </div>
+                </div>
+                <div class="swiper-slide wow fadeInUp  animated">
+                    <div class="img">
+                        <img src="@img/index_prize.png" alt="财务云">
+                    </div>
+                    <div class="title">
+                        <h2 class="fnt_14">实验结果好</h2>
+                        <p class="fnt_14">
+                            批内差、批间差均小于10%<br>
+                            
+                            消除干扰和交叉反应<br>
+                            </p>
+                    </div>
+                </div>
+                <div class="swiper-slide wow fadeInUp animated">
+                    <div class="img">
+                        <img src="@img/index_prize.png" alt="ERP、财务满意度">
+                    </div>
+                    <div class="title">
+                      <h2 class="fnt_14">实验样本省</h2>
+                      <p class="fnt_14">
+                        样本量只需40μL<br>
+                        解决样本不足烦恼<br>
+                      </p>
+                    </div>
+                </div>
             </div>
           </div>
           </div>

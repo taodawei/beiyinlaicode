@@ -187,14 +187,14 @@
             <div>3. The after-sale service channel will be shut down after 3 months.</div>
           </div>
 
-          <div class="code-box">
+          <!-- <div class="code-box">
             <div class="img-box">
               <img :src="webConfig.qrcode_gongzhonghao" alt="" />
             </div>
             <div class="text-box">
               Scan the QR code to get Technical Suppoprt Request Form.
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

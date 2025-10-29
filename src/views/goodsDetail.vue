@@ -1089,6 +1089,11 @@ export default {
                     val: val,
                   });
                 }
+              }else if (field.title == "蛋白编码") {
+                param_list.push({
+                  ...field,
+                  val: "<a href='https://www.uniprot.org/uniprotkb/"+val+"/entry' style='color: #409eff;' target='_blank'>"+val+"</a>",
+                });
               } else {
                 param_list.push({
                   ...field,

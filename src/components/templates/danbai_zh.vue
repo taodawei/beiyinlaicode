@@ -185,12 +185,21 @@
             <div>3. The after-sale service channel will be shut down after 3 months.</div>
           </div>
 
-          <div class="code-box">
+          <!-- <div class="code-box">
             <div class="img-box">
               <img :src="webConfig.qrcode_gongzhonghao" alt="" />
             </div>
             <div class="text-box">
               Scan the QR code to get Technical Suppoprt Request Form.
+            </div>
+          </div> -->
+          <div  class="code-box">
+            <div  class="img-box">
+              <img src="https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/ewm.png" alt="">
+            </div>
+            <div class="text-wrap">
+              <!-- <div class="text-box">本产品储存标准：T/QGCML 2328—2023</div> -->
+              <div class="text-box"> Scan the QR code to get Technical Suppoprt Request Form. </div>
             </div>
           </div>
         </div>
@@ -653,9 +662,13 @@ export default {
   .img-box {
     img {
       width: 200px;
+      width: 100%;
     }
   }
-
+  .text-wrap {
+    // display: flex;
+    // justify-content: space-between;
+  }
   .text-box {
     margin-top: 15px;
     font-size: 18px;

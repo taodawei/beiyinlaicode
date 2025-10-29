@@ -508,7 +508,9 @@ export default {
   table-layout: fixed;
   border-spacing: 0;
   border: none;
-
+  tr:first-child{
+    background: #ddd;
+  }
   tr {
     td,
     th {

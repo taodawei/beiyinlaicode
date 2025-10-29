@@ -25,19 +25,19 @@
             <ul>
               <li>
                 <!-- 本试剂盒用于体外定量检测人血清、血浆、组织、细胞上清及相关液体样本中信号调节蛋白α(SIRPa)的含量。 -->
-                For the quantitative in vitro determination of
+                To quantitatively detect
 
                 <!-- SIRPa -->
                 {{ detail[2] }}
-                concentrations in
+                in
                 <!-- Human -->
                 {{ detail[3] }}
-                culture supernates, serum, plasma and tissue.
+                culture supernates, serum, plasma and tissue in vitro.
                 <br />
               </li>
               <li>
                 <!-- 有效期：6个月 -->
-                Expiration date：six months .
+                Expiration date：6 months .
                 <br />
               </li>
               <li>
@@ -53,12 +53,12 @@
           </div>
           <div class="section-desc">
             <!-- 本试剂盒用于体外定量检测人血清、血浆、组织、细胞上清及相关液体样本中信号调节蛋白α(SIRPa)的含量。 -->
-            An enzyme immunoassay quantitative measurement in cell culture in vitro
+            This kit is designed to quantitatively detect {{ detail[4] }} in culture supernates, serum, plasma and tissue in vitro
 
             <!-- Human SIRPa -->
-            {{ detail[4] }}
+            <!-- {{ detail[4] }}
 
-            supernates, serum, plasma and tissue.
+            supernates, serum, plasma and tissue. -->
           </div>
           <div class="section-title">
             <!-- 实验原理 -->
@@ -66,34 +66,24 @@
           </div>
           <div class="section-desc">
             <!-- 本试剂盒应用双抗体夹心法测定标本中人信号调节蛋白α(SIRPa)水平。用纯化的人信号调节蛋白α(SIRPa)抗体包被微孔板，制成固相抗体，往包被单抗的微孔中依次加入信号调节蛋白α(SIRPa)，再与HRP标记的信号调节蛋白α(SIRPa)抗体结合，形成抗体-抗原-酶标抗体复合物，经过彻底洗涤后加底物TMB显色。TMB在HRP酶的催化下转化成蓝色，并在酸的作用下转化成最终的黄色。颜色的深浅和样品中的信号调节蛋白α(SIRPa)呈正相关。用酶标仪在450nm波长下测定吸光度（OD值），通过标准曲线计算样品中人信号调节蛋白α(SIRPa)浓度。 -->
-            The kit assay
+            The kit evaluates
             <!-- Human SIRPa -->
             {{ detail[5] }}
-            level in the sample，use Purified
+            levels in the samples by sandwich-assay, solid-phase captured antibody have been prepared by coating purified
 
             <!-- Human SIRPa -->
-            {{ detail[6] }}
-
-            antibody to coat microtiter plate wells, make solid-phase antibody, then add
-
-            <!-- SIRPa -->
-            {{ detail[7] }}
-
-            to wells, Combined
-
-            <!-- SIRPa -->
-            {{ detail[8] }}
-
-            antibody which With HRP labeled , become antibody - antigen - enzyme- antibody
-            complex, after washing Completely, Add TMB substrate solution, TMB substrate
-            becomes blue color At HRP enzyme-catalyzed, reaction is terminated by the
-            addition of a sulphuric acid solution and the color change is measured
-            spectrophotometrically at a wavelength of 450 nm. The concentration of
+           {{ detail[6] }}
+           antibody onto the miroplate. Then the 
+           {{ detail[7] }} 
+           standards and samples were added into the wells, subsequetly, 
+           biotinylated detection antibody and streptavidin-HPR also were added into the wells, and the 
+           antibody--antigen-antibody-enzyme complex was formed. After washing, the TMB sbustrate solution was added, 
+           and the solution color changed to blue. Finally，the sulphuric acid was added to stop the enzymatic reaction 
+           with a color change to yellow. Measured OD value at 450 nm wavelength, the concentration of
 
             <!-- SIRPa -->
             {{ detail[9] }}
-            in the samples is then determined by comparing the O.D. of the samples to the
-            standard curve.
+            can be calculated by standard curve.
           </div>
 
           <div class="section-title">
@@ -105,99 +95,41 @@
             <!-- 本试剂盒仅用于科研，不得用于医学诊断。 使用试剂盒前，请仔细阅读说明书，以试剂盒内的说明书为准，请务必理解说明书内容。 酶标包被板属于可拆型，开封后如未用完，板条应装入铝箔袋密封并2-8°C保存。 加样样本和试剂应尽快完成。 避免实验过程中酶标板干燥；清洗后尽快加试剂。 实验开始，所有试剂应平衡到室温 (21-26°C) 后方可进行。温度会影响吸光度值，但不影响样本值。 不要在处理样本或试剂的区域抽烟、吃东西、喝酒或化妆。 操作时带一次性手套，微生物的污染会影响实验结果的正确性。 操作应按照国家规定的安全条列进行。 过期的试剂盒切勿再使用。 TMB 底物对皮肤有刺激性，不慎入眼，立即用大量水冲洗，皮肤上不慎接触到也应立即用肥皂，并用大量的水冲洗。试验中被污染的物品在下次使用前应尽快清洗。 -->
             <ul>
               <li>
-                This kit is only for scientific research, and shall not be used as a
-                clinical diagnosis of use.
+                This kit is for research use only , and can not be used as a clinical diagnosis.
               </li>
               <li>
-                Before starting the assay, read the instructions completely and carefully.
-                Use the valid version of the package insert provided with the kit. Be sure
-                that everything is understood.
+                Before the assay, read the instructions completely and carefully. Be sure that everything is understood.
               </li>
               <li>
-                The microplate contains snap-off strips. Unused wells must be stored at 2
-                °C to 8 °C in the sealed foil pouch and used in the frame provided.
+                The microplate contains detachable strips. Unused wells must be stored at 2 °C to 8 °C in the sealed foil pouch.
               </li>
               <li>
-                Pipetting of samples and reagents must be done as quickly as possible and
-                in the same sequence for each step.
+                Add samples and reagents as quickly as possible.
               </li>
               <li>
-                Use reservoirs only for single reagents. This especially applies to the
-                substrate reservoirs. Using a reservoir for dispensing a substrate
-                solution that had previously been used for the conjugate solution may turn
-                solution colored. Do not pour reagents back into vials as reagent
-                contamination may occur.
+                Rebalance all reagents in the kit to room temperature (21-26°C) before the assay. Temperature affects the OD values of the assay,but does not affecte evaluating target protein levels in the samples.
               </li>
               <li>
-                Mix the contents of the microplate wells thoroughly to ensure good test
-                results. Do not reuse microwells.
+                Add samples and reagents as quickly as possible.
               </li>
               <li>
-                Do not let wells dry during assay; add reagents immediately after
-                completing the rinsing steps.
+                Watch out bubbles formation during the assay, bubbles can affect accuracy of the assay.
               </li>
               <li>
-                Allow the reagents to reach room temperature (21-26°C) before starting the
-                test. Temperature will affect the absorbance readings of the assay.
-                However, values for the patient samples will not be affected.
+                Do not smoke, eat, drink, or make-up during the assay.
               </li>
               <li>
-                Never pipet by mouth and avoid contact of reagents and specimens with skin
-                and mucous membranes.
+                Please wear gloves, in case of microbial contamination.
               </li>
               <li>
-                Do not smoke, eat, drink or apply cosmetics in areas where specimens or
-                kit reagents are handled.
-              </li>
-              <li>
-                Wear disposable latex gloves when handling specimens and reagents.
-                Microbial contamination of reagents or specimens may give false results.
-              </li>
-              <li>
-                Handling should be done in accordance with the procedures defined by an
-                appropriate national biohazard safety guideline or regulation.
-              </li>
-              <li>Do not use reagents beyond expiry date as shown on the kit labels.</li>
-              <li>
-                All indicated volumes have to be performed according to the protocol.
-                Optimal test results are only obtained when using calibrated pipettes and
-                microtiterplate readers.
-              </li>
-              <li>
-                Do not mix or use components from kits with different lot numbers. It is
-                advised not to exchange wells of different plates even of the same lot.
-                The kits may have been shipped or stored under different conditions and
-                the binding characteristics of the plates may result slightly different.
-              </li>
-
-              <li>
-                Avoid contact with Stop Solution containing 0.5 M H2SO4. It may cause skin
-                irritation and burns.
-              </li>
-              <li>
-                Some reagents contain Proclin, BND and/or MIT as preservatives. In case of
-                contact with eyes or skin, flush immediately with water.
-              </li>
-              <li>
-                TMB substrate has an irritant effect on skin and mucosa. In case of
-                possible contact, wash eyes with an abundant volume of water and skin with
-                soap and abundant water. Wash contaminated objects before reusing them. If
-                inhaled, take the person to open air.
-              </li>
-              <li>
-                Chemicals and prepared or used reagents have to be treated as hazardous
-                waste according to the national biohazard safety guideline or regulation.
-              </li>
-              <li>
-                For information on hazardous substances included in the kit please refer
-                to Material Safety Data Sheets
+                TMB is irritating to skin and mucosa. If eyes contact, rinse immediately with plenty of water, also under the eyelids. If skin contact, wash off with soap and water.
               </li>
             </ul>
           </div>
           <div class="section-title">
             <!-- 试剂盒组成 -->
 
-            MATERIALS PROVIDED WITH THE KIT
+            COMPONENT
           </div>
           <div class="section-desc">
             <table class="w-table w-921">
@@ -224,63 +156,63 @@
                   <td>1</td>
                 </tr>
                 <tr>
-                  <td>Closure Plate Membrane</td>
+                  <td>Sealing Film</td>
                   <td>2</td>
                   <td>2</td>
                 </tr>
                 <tr>
-                  <td>Microelisa Stripplate</td>
-                  <td>12well×8strips</td>
-                  <td>12well×4strips</td>
+                  <td>Microplate</td>
+                  <td>12wells×8strips</td>
+                  <td>12wells×4strips</td>
                 </tr>
                 <tr>
                   <td>
-                    Standard
+                    Standard 
                     <!-- 20ng/ml -->
                     {{ detail[10] }}
                   </td>
-                  <td>0.6ml×1 bottle</td>
-                  <td>0.6ml×1 bottle</td>
+                  <td>0.6 mL×1 bottle</td>
+                  <td>0.6 mL×1 bottle</td>
                 </tr>
                 <tr>
-                  <td>Standard diluent</td>
-                  <td>2ml×1 bottle</td>
-                  <td>2ml×1 bottle</td>
+                  <td>Standard Diluent</td>
+                  <td>2 mL×1 bottle</td>
+                  <td>2 mL×1 bottle</td>
                 </tr>
                 <tr>
                   <td>
-                    Biotinylated anti –
+                    Biotinlated
                     <!-- SIRPa -->
                     {{ detail[11] }}
-                    –antibody
+                    Antibody
                   </td>
-                  <td>1.5ml×1 bottle</td>
-                  <td>0.7ml×1 bottle</td>
+                  <td>1.5 mL×1 bottle</td>
+                  <td>0.7 mL×1 bottle</td>
                 </tr>
                 <tr>
                   <td>Chromogen Solution A</td>
-                  <td>6ml×1 bottle</td>
-                  <td>3ml×1 bottle</td>
+                  <td>6 mL×1 bottle</td>
+                  <td>3 mL×1 bottle</td>
                 </tr>
                 <tr>
                   <td>Chromogen Solution B</td>
-                  <td>6ml×1 bottle</td>
-                  <td>3ml×1 bottle</td>
+                  <td>6 mL×1 bottle</td>
+                  <td>3 mL×1 bottle</td>
                 </tr>
                 <tr>
                   <td>Stop Solution</td>
-                  <td>6ml×1 bottle</td>
-                  <td>3ml×1 bottle</td>
+                  <td>6 mL×1 bottle</td>
+                  <td>3 mL×1 bottle</td>
                 </tr>
                 <tr>
-                  <td>HRP-Conjugate Reagent</td>
-                  <td>6ml×1 bottle</td>
-                  <td>3ml×1 bottle</td>
+                  <td>HRP-Conjugated Reagent</td>
+                  <td>6 mL×1 bottle</td>
+                  <td>3 mL×1 bottle</td>
                 </tr>
                 <tr>
                   <td>Wash Buffer Concentrate</td>
-                  <td>(20ml×30 fold)×1bottle</td>
-                  <td>(20ml×20 fold)×1bottle</td>
+                  <td>(20 mL×30 fold)×1bottle</td>
+                  <td>(20 mL×20 fold)×1bottle</td>
                 </tr>
               </tbody>
             </table>
@@ -294,43 +226,32 @@
             <!-- 吸光度值在450nm波长下检测的酶标仪。 1-2ml的加样器。 100 ml和1L的量筒。 吸水纸。 37°C 恒温箱。 蒸馏水或去离子水。 数据分析和绘图软件，图纸。 标准和样品稀释的试管。 -->
 
             <ul>
-              <li>Microplate reader capable of measuring absorbance at 450 nm.</li>
-              <li>Precision pipettes to deliver 2 ml to 1 ml volumes.</li>
-              <li>100 ml and 1 liter graduated cylinders.</li>
-              <li>
-                Calibrated adjustable precision pipettes, preferably with disposable
-                plastic tips. (A manifold multi-channel pipette is desirable for large
-                assays.)
-              </li>
+              <li>Microplate reader that can measure absorbance at 450 nm.</li>
+              <li>Precision pipettes that deliver 2 mL to 1 mL.</li>
+              <li>100 mL and 1 L graduated cylinders.</li>
               <li>Absorbent paper.</li>
-              <li>37°C incubator.</li>
+              <li>Incubator.</li>
               <li>Distilled or deionized water.</li>
-              <li>
-                Data analysis and graphing software. Graph paper: linear
-                (Cartesian),log-log or semi-log, or log-logit as desired.
-              </li>
-              <li>Tubes to prepare standard or sample dilutions.</li>
+              <li>Tubes for standards and samples dilution.</li>
+              <li>Date analysis and plotting software.</li>
             </ul>
           </div>
 
           <div class="section-title">
             <!-- 储存条件 -->
-            STORAGE CONDITIONS
+            STORAGE
           </div>
           <div class="section-desc">
             <!-- 有效期内的试剂如开封后未用完，请2-8°C 保存。 过期的试剂请不要用，打开后的试剂2-8°C 保存。 酶标包被板必须2-8°C 保存，如有未用完的酶标包被板，打开的铝箔袋须密封并2-8°C 保存。 -->
             <ul>
               <li>
-                When stored at 2 °C to 8 °C unopened reagents will retain reactivity until
-                expiration date.
+                The reagents that have not been used up should be stored at 2-8°C.
               </li>
               <li>
-                Do not use reagents beyond this date. Opened reagents must be stored at 2
-                °C to 8 °C.
+                The miropaltes that have not been used up should be sealed in the foil pouch, and stored at 2-8°C.
               </li>
               <li>
-                Microtiter wells must be stored at 2 °C to 8 °C. Once the foil bag has
-                been opened, care should be taken to close it tightly again.
+                Please do not use expired kit.
               </li>
             </ul>
           </div>
@@ -342,32 +263,65 @@
           </div>
           <div class="section-desc">
             <!-- 试剂盒从冷藏环境中取出应在室温平衡后方可使用。 -->
-            Bring all reagents to room temperature before use
+            Rebalance all reagents to room temperature before use
           </div>
 
           <div class="section-title">
             <!-- 样本处理及要求 -->
-            SPECIMEN COLLECTION AND PREPARATION
+            SAMPLE COLLECTION AND PREPARATION
           </div>
           <div class="section-desc">
             <!-- -用采血管收集血液，室温血液自然凝固30分钟，1000 xg离心15分钟左右，收集上清，尽早进行实验，或者分装后-20°C 或 -80°C 保存。 2. -->
 
             <div>
-              1. Serum-Use a serum separator tube(SST) and allow samples to clot for
-              30minutes before centrifugation for 15minutes at approximately 1000
-              xg.Remove serum and assay immediately or aliquot and store samples at -20°C
-              or -80°C.
+              <div><b>1. Serum</b></div>
+              Collect blood sample with a serum separator tube, let blood sample clot for 2 hours at room 
+              temperature or over-night at 4°C, then centrifuge for 20 minutes at 2500-3500 ×g at 4°C. Collect
+               the serum, and assay it immediately, otherwise, store at -20°C or -80°C and avoid repeated 
+               freeze-thaw cycles.
             </div>
             <div>
-              2. Plasma-Collect plasma using EDTA or Citric acid sodium as an
-              anticoagulant.Centrifuge samples for 15 minutes at 1000 x g at 2-8°C within
-              30minutes of collection. Store samples at -20°C or -80°C.Avoid repeated
-              freeze-thaw cycles.
+              <div><b>2. Plasma</b></div>
+              Collect blood sample with a anticoagulant(EDTA or Citric acid sodium) tube. Centrifuge for 15 
+              minutes at 3000 x g within 30 minutes of collection, and assay it immediately, otherwise, store 
+              at -20°C or -80°C and avoid repeated freeze-thaw cycles.
             </div>
             <div>
-              3. Cell culture fluid and other biological fluids-Remove particulates by
-              centrifugation and assay immediately or aliquot and store samples at -20°C
-              or -80°C.Avoid repeated freeze-thaw cycles.
+              <div><b>3. Cell Culture Supernates</b></div>
+              Collect cell culture supernates, and remove particulates by 3000 ×g centrifugation for 20 
+              minutes at 4°C. Then collect supernate, and assay it immediately, otherwise, store at -20°C 
+              or -80°C and avoid repeated freeze-thaw cycles.
+            </div>
+             <div>
+              <div><b>4. Cell Lysis Solution</b></div>
+              Collect cells sample, centrifuge at 1000×g for 10 minutes, discard the supernate, and wash 3 
+              times with pre-cooling PBS, then resuspend cells with pre-cooling PBS or cell lysis 
+              buffer(adding protease inhibitor).
+              <div>
+                <b>Freeze-thaw cycles lysis :</b>
+                freeze sample at -20°C or -80°C 
+                for 30 minutes, then thaw at 37°C, repeat the cycle 3 times, untill cells are lysed completely.
+              </div> 
+              <div>
+                <b>Ultrasonic lysis :</b>
+                the process of ultrasonic lysis is in an ice-bath, put cells in ultrasonic 
+                for 2 seconds, then wait for 3 senconds, repeat the cycle 3 times, untill cells are lysed completely.
+              </div>
+              Colllect cells lysis solution, centrifuge at 1000×g for 10 minutes at 4°C.Then collect supernate, 
+                and assay it immediately, otherwise, store at -20°C or -80°C and avoid repeated freeze-thaw cycles.
+            </div>
+             <div>
+              <div><b>5. Tissue homogenate</b></div>
+              Prepare tissue sample, perform the tissue homogenate in an ice-bath with pre-cooling 0.01M PH7.4 
+              PBS(adding protease inhibitor), suggest the ratio of tissue weight to PBS volume is 1:9, that is, 
+              1 g tissue should add 9 mL PBS. Collect homogenate, centrifuge at 10000×g for 10 minutes at 4°C. 
+              Then collect supernate, and assay it immediately, otherwise, store at -20°C or -80°C and avoid 
+              repeated freeze-thaw cycles.
+            </div>
+             <div>
+              <div><b>6. Urine, Saliva and other liquid biological samples</b></div>
+              Centrifuge at 3000×g for 10 minutes at 4°C. Then collect supernate, and assay it immediately, 
+              otherwise, store at -20°C or -80°C and avoid repeated freeze-thaw cycles.
             </div>
           </div>
 
@@ -376,13 +330,10 @@
             ASSAY PROCEDURE
           </div>
           <div class="section-desc">
-            <div class="sub-title">
-              <!-- 注意事项 -->
+            <!-- <div class="sub-title">
               General Remarks
             </div>
             <div class="sub-desc">
-              <!-- 所有试剂和样本使用前必须在室温下平衡，混匀试剂时不应起泡沫。 一旦实验开始，各操作步骤都应尽快完成。 避免重复使用手中的吸头和试管，以免交叉污染。 一般情况，酶的反应与时间和温度成正比。 -->
-
               <ul>
                 <li>
                   All reagents and specimens must be allowed to come to room temperature
@@ -414,90 +365,73 @@
                   against 630 nm as reference.
                 </li>
               </ul>
-            </div>
+            </div> -->
 
-            <div class="sub-title">
-              <!-- 操作步骤 -->
+            <!-- <div class="sub-title">
               Assay Procedure
-            </div>
+            </div> -->
             <div class="sub-desc">
               <!-- 1. 标准品的稀释：准备小试管6只，依次编好号码，先在各小试管中加入标准品稀释液100ul，然后取原浓度标准品100ul加入一只已编好号的试管中，充分混匀;再在该试管中取100ul加入第二支试管中，充分混匀；再在该试 管中取100ul加入第三只试管中，充分混匀；再在该试管中取100ul加入第四只试管中，充分混匀；再在该试管中取100ul加入第五只试管中，充分混匀；然后在该试管中取100ul，弃掉。第六只试管作为0号标准品。稀释 后各管浓度分别是：10ng/ml,5ng/ml,2.5ng/ml ,1.25ng/ml,0.625ng/ml,0ng/ml。 在酶标包被板上设标准品孔，依次加入不同浓度的标准品50ul（建议每个浓度做2个平行孔）。 2. 加样：分别设空白孔（空白对照孔不加样品、酶标试剂及生物素标记的抗SIRPa抗体，其余各步操作相同）、待测样品孔。在酶标包被板上待测样品孔中先加样品40μl，然后再加生物素标记的抗SIRPa抗体10μl。加样将样 品加于酶标板孔底部，尽量不触及孔壁，轻轻晃动混匀。 3. 加酶：每孔加入酶标试剂50μl，空白孔除外。 4. 温育：用封板膜封板后置37℃温育30分钟。 5. 配液：将30倍浓缩洗涤液用蒸馏水30倍稀释后备用（将20倍浓缩洗涤液用蒸馏水20倍稀释后备用）。 6.
               洗涤：小心揭掉封板膜，弃去液体，甩干，每孔加满洗涤液，静置30秒后弃去，如此重复5次，拍干。 7. 显色：每孔先加入显色剂A50μl，再加入显色剂B50μl，轻轻震荡混匀，37℃避光显色10分钟。 8. 终止：每孔加终止液50μl，终止反应（此时蓝色立转黄色）。 9. 测定：以空白孔调零，450nm波长依序测量各孔的吸光度（OD值）。 测定应在加终止液后15分钟以内进行。 10. 检测范围：0.125ng/ml-10ng/ml. 11. 灵敏度：≤0.025ng/ml . -->
 
               <div class="step-list">
                 <div>
-                  1. Dilute standard: Prepare sixs test tube ,make number successively,add
-                  Standard diluent 100ul to ervery test tube,add Original density Standard
-                  100ul to the first test tube, Gently mix;then take out 100ul from the
-                  first test tube and add to the second test tube, Gently mix; then take
-                  out 100ul from the second test tube and add to the third test tube,
-                  Gently mix; then take out 100ul from the third test tube and add to the
-                  forth test tube, Gently mix; then take out 100ul from the forth test
-                  tube and add to the fifth test tube, Gently mix; take out 100ul from the
-                  fifth test tube and Discard,make the sixth test tube as standard 0. the
-                  density Standard of every test tube is :
+                  1. Standard dilution: prepare 6 tubes, mark them with Number 0-5 successively. Add 150 μL 
+                  standard diluent to each tube, then add 150 μL Standard to No.1 tube and mix. Take 150 μL 
+                  solution from No.1 tube, add it to No.2 tube, and mix gently.Repeat this procedure from 
+                  No.2 to No.5 tube.(as shown in the figure). And the No.0 tube serves as a blank standard 
+                  tube Therefore, each concentration of the tube is 
                   <!-- 10ng/ml,5ng/ml,2.5ng/ml ,1.25ng/ml,0.625ng/ml,0ng/ml -->
 
                   {{ detail[12] }}
 
-                  . set Standard wells on the Microelisa Stripplate , add different
-                  concentrations of standard 50 ul successively .
+                  , respectively.
                 </div>
                 <div class="shijihe-qianru-box">
-                  <img src="@img/shijihe-qianru.jpg" alt="" />
+                  <img src="@img/tl.jpg" alt="" />
                 </div>
 
                 <div>
-                  2. Add samples: Set blank wells separately (blank comparison wells don’t
-                  add samples ,Biotinylated anti –
-                  <!-- SIRPa -->
-                  {{ detail[13] }}
-
-                  -antibody and HRP-Conjugate reagent), testing sample wells. add Sample
-                  40μl to testing sample well, then add Biotinylated anti –
-                  <!-- SIRPa -->
-                  {{ detail[14] }}
-                  -antibody 10μl , don’t touch the well wall as far as possible, and
-                  Gently mix.
+                  2.  Samples adding:wells are classified as standard wells, blank wells, and sample wells. 
+                  Add 50 μL of each concentration standard to the standard wells, respectively(recommend 
+                  to do 2 parallel wells for each concentration). Do not add sample to blank wells, but 
+                  add 10 μL biotinylated antibody. Add 40 μL sample and 10 μL biotinylated antibody to sample 
+                  wells.Shake and mix gently, do not touch the walls.(Note:biotinylated antibody has been 
+                  added into the standard, no more adding to standard wells)
                 </div>
                 <div>
-                  3. add enzyme：Add HRP-Conjugate Reagent 50μl to each well, except the
-                  blank well.
+                  3. Enzyme adding: add 50 μL HRP-conjugated reagent to every wells, except blank wells.
                 </div>
                 <div>
-                  4. Incubate: After closing plate with Closure plate membrane ,incubate
-                  for 30 min at 37℃.
+                  4.  Incubation: seal the microplate, and incubate it at 37℃ for 30 minutes.
                 </div>
                 <div>
-                  5. Configurate liquid: 30-fold Wash Buffer Concentrate diluted 30-fold
-                  with distilled water and reserve(20-fold Wash Buffer Concentrate diluted
-                  20-fold with distilled water and reserve).
+                  5.  Wash buffer preparation: dilute 30-fold wash buffer concentrate with 30 fold distilled water(96T); 
+                  dilute 20-fold wash buffer concentrate with 20 fold distilled water(48T).
                 </div>
                 <div>
-                  6. washing：Uncover Closure plate membrane, discard Liquid, dry by
-                  swing, add washing buffer to every well, still for 30s then drain,
-                  repeat 5 times, dry by pat.
+                  6.  Wash: unseal the microplate,discard liquids,and pat the micropalte dry with absorbent paper,
+                   then add 300 μL wash buffer to every wells, wait for 30 seconds,discard liuquids.Repeat the procedure 5 times, pat dry.
                 </div>
                 <div>
-                  7. color：add Chromogen Solution A 50μl and Chromogen Solution B 50μl to
-                  each well. Gently mix, incubate for 10 min at 37℃.
+                  7.  Chromogenic reaction: add chromogen solution A 50 μL and chromogen solution B 50 μL to every wells. 
+                  Shake and mix gently, incubate away from light for 10 minutes.
                 </div>
                 <div>
-                  8. Stop the reaction：Add Stop Solution50μl to each well, Stop the
-                  reaction(the blue color change to yellow color Immediately).
+                  8. Reaction stop: add 50 μL stop solution to every wells, the color changes from blue to yellow, 
+                  that suggests the reactions have stopped.
                 </div>
                 <div>
-                  9. assay：take blank well as zero , measure the optical densit (OD) at
-                  450 nm after Adding Stop Solution and within 15min.
+                  9. Analysis: use the blank wells as a basis for zero setting, measure OD values within 15 minutes after reaction stop.
                 </div>
                 <div>
-                  10. Detection Range：
+                  10.  Linearity range: 
                   <!-- 0.125ng/ml-10ng/ml -->
                   {{ detail[15] }}
                   .
                 </div>
                 <div>
-                  11. Sensitivity：
+                  11.  Sensitivity：
                   <!-- 0.025ng/ml -->
                   {{ detail[16] }}
                   .
@@ -518,40 +452,16 @@
               <div class="elisa-left">
                 <ul>
                   <li>
-                    Calculate the average absorbance values for each set of standards,
-                    controls and patient samples.
+                   1. Take standard concentration as X-axis, and OD value as Y-axis, and plot a standard curve(recommend to use 4 parameter logistics for curve fitting).
                   </li>
                   <li>
-                    Construct a standard curve by plotting the mean absorbance obtained
-                    from each standard against its.
+                    2. Calculate the fitting equation for the standard curve.
                   </li>
                   <li>
-                    Concentration with absorbance value on the vertical(Y) axis and
-                    concentration on the horizontal (X) axis.
+                    3. Plug the OD value of a sample into the fitting equation to calculate the concentrations of the sample.
                   </li>
                   <li>
-                    Using the mean absorbance value for each sample determine the
-                    corresponding concentration from the standard curve.
-                  </li>
-                  <li>
-                    Automated method: The results in the IFU have been calculated
-                    automatically using a 4 PL.
-                  </li>
-                  <li>
-                    (4 Parameter Logistics) curve fit. 4 Parameter Logistics is the
-                    preferred calculation method. Other data.
-                  </li>
-                  <li>Reduction functions may give slightly different results.</li>
-                  <li>
-                    The concentration of the samples can be read directly from this
-                    standard curve. Samples with.
-                  </li>
-                  <li>
-                    Concentrations higher than that of the highest standard have to be
-                    further diluted. For the calculation of.
-                  </li>
-                  <li>
-                    The concentrations this dilution factor has to be taken into account.
+                    4. If the calculated concentration is higher than linearity range, the sample must be diluted , then plug the dilution multiple into the calculation.
                   </li>
                 </ul>
               </div>
@@ -561,8 +471,7 @@
             </div>
           </div>
 
-          <div class="section-title">
-            <!-- 实验结果计算 -->
+          <!-- <div class="section-title">
             REFERENCES
           </div>
           <div class="section-desc bottom-list">
@@ -600,7 +509,7 @@
             <div class="text-box">
               Scan the QR code to get Technical Suppoprt Request Form.
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -957,6 +866,9 @@ li {
   & > div {
     margin-bottom: 15px;
   }
+}
+thead {
+    background: #ddd;
 }
 </style>
 

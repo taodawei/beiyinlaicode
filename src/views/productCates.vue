@@ -188,10 +188,10 @@
 
 <script>
 import { mapState } from "vuex";
-
+import pageProductList from "@/components/page/pageProductList.vue";
 export default {
   name: "product-cates",
-  components: {},
+  components: {pageProductList},
   data() {
     return {
       activeCate: {},

@@ -6,14 +6,14 @@
         <div v-if="product_list.length>0" class="product-list">
           <div class="product-item" v-for="(item, index) in product_list" :key="index">
             <div class="product-left">
-              <router-link :to="'/goodsDetail/' + item.inventoryId" class="title" target="_blank">
+              <router-link :to="'/goodsDetail/' + item.skuId" class="title" target="_blank">
                 {{ item.title }}
               </router-link>
 
               <div class="shuoming">
                 <router-link
                   v-if="+item.paper_num"
-                  :to="'/goodsDetail/' + item.inventoryId + '?item=3'"
+                  :to="'/goodsDetail/' + item.skuId + '?item=3'"
                   class="shuoming-item" target="_blank"
                 >
                   <img src="@img/wenxian.png" alt="" />
@@ -52,7 +52,7 @@
               <div class="text-box">
                 <div class="label">货号：</div>
                 <div class="val">
-                  <router-link :to="'/goodsDetail/' + item.inventoryId" target="_blank">
+                  <router-link :to="'/goodsDetail/' + item.skuId" target="_blank">
                     {{ item.skuId }}
                   </router-link>
                 </div>
@@ -66,7 +66,38 @@
                   :data-col="field.field_title"
                 >
                   <div class="label">{{ field.title }}：</div>
-                  <div class="val">
+                  <div v-if="field.title=='别名'" class="val">
+                     <el-tag
+                        v-for="nameTag in item.tag_otherNames"
+                        :type="nameTag.tagType"
+                        effect="light"
+                        round
+                      >
+                       <div v-html="nameTag.titile"></div>
+                      </el-tag>
+                    <!-- {{ getParamsValue(item, field) }} -->
+                  </div>
+                   <div v-else-if="field.title=='反应物种'" class="val">
+                    <el-tag
+                        v-for="nameTag in item.tag_reactionSpecies"
+                        :type="nameTag.tagType"
+                        effect="dark"
+                        round
+                      >
+                       <div v-html="nameTag.titile"></div>
+                      </el-tag>
+                  </div>
+                  <div v-else-if="field.title=='应用'" class="val">
+                    <el-tag
+                        v-for="nameTag in getOtherNames(item.html_application)"
+                        :type="nameTag.tagType"
+                        effect="dark"
+                        round
+                      >
+                       <div v-html="nameTag.titile"></div>
+                      </el-tag>
+                  </div>
+                  <div v-else class="val">
                     {{ getParamsValue(item, field) }}
                   </div>
                 </div>
@@ -172,14 +203,21 @@
                         </router-link>
                       </div>
                       <div class="row-descript">
-                        <template v-for="(inventory, iindex) in item.inventorys">
+                        
+                        <template v-if="item.inventorys.length>0" v-for="(inventory, iindex) in item.inventorys">
                           <span  v-html="inventory.key_vals"></span><br></br>
                         </template>
-                        
+                        <template v-if="item.inventorys.length==0" >
+                          <!-- <span>{{ item.key_vals}}</span> -->
+                          <div v-html="item.key_vals"></div>
+                        </template>
                       </div>
                       <div class="row-price">
-                        <template v-for="(inventory, iindex) in item.inventorys" >
+                        <template v-if="item.inventorys.length>0" v-for="(inventory, iindex) in item.inventorys" >
                           <span >￥{{ +inventory.price_sale }}</span><br></br>
+                        </template>
+                         <template v-if="item.inventorys.length==0" >
+                           <span>￥{{ item.price_sale }}</span>
                         </template>
                         <!-- <span>￥{{ +item.price_sale }}</span> -->
                       </div>
@@ -206,6 +244,20 @@
                         </div>
                       </div>
                   </div>
+                </div>
+                <div class="product-box-table-footer">
+                  <template v-if="isHasOtherName(item)">
+                      <span>其他名称：</span>
+                      <el-tag
+                        v-for="nameTag in item.tag_otherNames"
+                        :type="nameTag.tagType"
+                        effect="dark"
+                        round
+                      >
+                      <!-- {{ nameTag }} -->
+                      <div v-html="nameTag.titile"></div>
+                      </el-tag>
+                    </template>
                 </div>
               </div>
             </div>
@@ -492,6 +544,14 @@ export default {
               // 5 应用
               let application = param_info.application || "";
               v.html_application = application.replaceAll(keyword, html_keyword);
+
+              //6 反应物种
+              let reactionSpecies="";
+              reactionSpecies=param_info.reaction_species.join(";")
+              v.html_reactionSpecies = reactionSpecies.replaceAll(keyword, html_keyword);
+              v.tag_reactionSpecies=this.getOtherNames(v.html_reactionSpecies);
+              //6 tag
+              v.tag_otherNames=this.getOtherNames(v.html_tongyiqi);
             }
           }
         });
@@ -628,7 +688,13 @@ export default {
                     val: val,
                   });
                 }
-              } else {
+              }else if (field.title == "蛋白编码") {
+                param_list.push({
+                  ...field,
+                  val: "<a href='https://www.uniprot.org/uniprotkb/"+val+"/entry' style='color: #409eff;' target='_blank'>"+val+"</a>",
+                });
+              }
+              else {
                 param_list.push({
                   ...field,
                   val: val,
@@ -679,6 +745,41 @@ export default {
         this.showDetailIndex=index;
       }
     },
+    isHasOtherName(chanpin){
+      var isHas=false;
+      var paramInfo=chanpin.param_info
+      if(paramInfo.another_name!=undefined&&paramInfo.another_name.length>0){
+        isHas=true;
+      }
+      return isHas;
+    },
+    randomTag(){
+      var tags=["primary","success","info","warning","danger"];
+      var radomIndex=Math.floor(Math.random()*6);
+      return tags[radomIndex];
+    },
+    getOtherNames(strNames){
+       var otherName=[];
+       var nameList=[];
+       if(strNames.length>0){
+        if(strNames.split(';').length > 1){
+          nameList=strNames.split(';');
+        }else if(strNames.split(',').length > 1){
+          nameList=strNames.split(',');
+        }else{
+          nameList[0]=strNames
+          // HashChangeEvent
+        }
+        for(var i=0;i<nameList.length;i++){
+          if(nameList[i].length>0){
+            otherName.push({titile:nameList[i],tagType:this.randomTag()});
+          }
+        }
+        // otherName=nameList
+       }
+
+       return otherName;
+    }
   },
 };
 </script>
@@ -916,6 +1017,18 @@ export default {
             
           }
         }
+        &-footer{
+          padding: 15px 5px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          align-content: baseline;
+          align-items: baseline;
+          .el-tag{
+            margin-right: 8px;
+            margin-bottom: 5px;
+          }
+        }
       }
     }
   }
@@ -1095,6 +1208,10 @@ export default {
             &:hover {
               color: @theme;
             }
+          }
+          .el-tag{
+            margin-right: 8px;
+            margin-bottom: 5px;
           }
         }
       }

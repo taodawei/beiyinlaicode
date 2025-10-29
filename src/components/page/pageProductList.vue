@@ -43,7 +43,7 @@
       <div class="product-list" v-if="!isViewProductTable">
         <div class="product-item" v-for="(item, index) in product_list" :key="index">
           <div class="product-left">
-            <router-link :to="'/goodsDetail/' + item.inventoryId" class="title">
+            <router-link :to="'/goodsDetail/' + item.skuId" target="_blank" class="title">
               {{ item.title }}
             </router-link>
 
@@ -53,8 +53,9 @@
             <div class="shuoming">
               <router-link
                 v-if="+item.paper_num"
-                :to="'/goodsDetail/' + item.inventoryId + '?item=3'"
+                :to="'/goodsDetail/' + item.skuId + '?item=3'"
                 class="shuoming-item"
+                target="_blank"
               >
                 <img src="@img/wenxian.png" alt="" />
                 <span> 文献引用（{{ item.paper_num }}） </span>
@@ -83,6 +84,7 @@
                       : '/productSpecification/' + item.id + '?ggid=' + item.inventoryId
                   "
                   class="shuoming-item"
+                  target="_blank"
                 >
                   <img src="@img/pdf.png" alt="" />
                   <span> 说明书 </span>
@@ -92,7 +94,7 @@
             <div class="text-box">
               <div class="label">货号：</div>
               <div class="val">
-                <router-link :to="'/goodsDetail/' + item.inventoryId" >
+                <router-link :to="'/goodsDetail/' + item.skuId"  target="_blank" >
                   {{ item.skuId }}
                 </router-link>
               </div>
@@ -119,7 +121,41 @@
               >
                 <div class="label">{{ field.title }}：</div>
                 <div class="val">
-                  {{ getParamsValue(item, field) }}
+                  <!-- {{ getParamsValue(item, field) }} -->
+                    <div v-if="field.title=='别名'" class="val">
+                    <el-tag
+                      v-for="nameTag in getOtherNames(item.param_info.another_name)"
+                      :type="nameTag.tagType"
+                      effect="light"
+                      round
+                    >
+                          <div v-html="nameTag.titile"></div>
+                        </el-tag>
+                      <!-- {{ getParamsValue(item, field) }} -->
+                    </div>
+                      <div v-else-if="field.title=='反应物种'" class="val">
+                      <el-tag
+                          v-for="nameTag in item.tag_reactionSpecies"
+                          :type="nameTag.tagType"
+                          effect="dark"
+                          round
+                        >
+                          <div v-html="nameTag.titile"></div>
+                        </el-tag>
+                    </div>
+                    <div v-else-if="field.title=='应用'" class="val">
+                      <el-tag
+                          v-for="nameTag in getOtherNames(item.param_info.application)"
+                          :type="nameTag.tagType"
+                          effect="dark"
+                          round
+                        >
+                          <div v-html="nameTag.titile"></div>
+                        </el-tag>
+                    </div>
+                    <div v-else class="val">
+                      {{ getParamsValue(item, field) }}
+                    </div>
                 </div>
               </div>
             </div>
@@ -159,20 +195,113 @@
         :class="{ not_scroll: field_list.length <= 1 }"
         v-else
       >
-        <div class="info-list-inner" :class="{ not_scroll: field_list.length <= 1 }">
+        <div class="product-list" v-if="product_list.length>0">
+          <div class="product-box" v-for="(item, index) in product_list" :key="index">
+            <div class="product-box-left">
+              <div class="product-box-top-img">
+                <router-link :to="item.route" target="_blank">
+                  <el-image :src="item.img" :alt="item.title" class="el-image__img">
+                    <div slot="error" class="image-slot">
+                      <img :src="item.default_img" :alt="item.title" />
+                    </div>
+                  </el-image>
+                </router-link>
+              </div>
+            </div>
+            <div class="product-box-right">
+              <div class="product-box-table">
+                <div class="product-box-table-head">
+                  <span>货号</span>
+                  <span>名称</span>
+                  <span>规格</span>
+                  <span>价格</span>
+                  <span></span>
+                </div>
+                <div class="product-box-table-body">
+                  <div class="body-row" >
+                    <div class="row-huohao">
+                        <span v-html="item.skuId"></span>
+                      </div>
+                      <div class="row-chanpin">
+                        <router-link :to="item.route" target="_blank">
+                          <span v-html="item.title"></span>
+                        </router-link>
+                      </div>
+                      <div class="row-descript">
+                        
+                        <template v-if="item.inventorys.length>0" v-for="(inventory, iindex) in item.inventorys">
+                          <span  v-html="inventory.key_vals"></span><br></br>
+                        </template>
+                        <template v-if="item.inventorys.length==0" >
+                          <!-- <span>{{ item.key_vals}}</span> -->
+                          <div v-html="item.key_vals"></div>
+                        </template>
+                      </div>
+                      <div class="row-price">
+                        <template v-if="item.inventorys.length>0" v-for="(inventory, iindex) in item.inventorys" >
+                          <span >￥{{ +inventory.price_sale }}</span><br></br>
+                        </template>
+                         <template v-if="item.inventorys.length==0" >
+                           <span>￥{{ item.price_sale }}</span>
+                        </template>
+                        <!-- <span>￥{{ +item.price_sale }}</span> -->
+                      </div>
+                      <div 
+                      @click="showRowDetail(index)"
+                      :class="showDetailIndex===index?'row-operate-active row-operate':'row-operate-shouqi row-operate'" 
+                      >
+                        <el-button circle icon="el-icon-d-arrow-right"></el-button>
+                      </div>
+                  </div>
+                  <div 
+                    :class="showDetailIndex===index?'body-row-detail rowOn':'body-row-detail'" 
+                    class="body-row-detail" >
+                      <div class="params-box" >
+                        <div
+                          v-for="(param, pindex) in setInfoParams(item)"
+                          :key="pindex"
+                          :data-key="param.field_title"
+                        >
+                        <div v-if="param.val.length!=0" class="params-item">
+                            <div  class="params-label">{{ param.title }}</div>
+                            <div  class="params-val" v-html="param.val"></div>
+                        </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="product-box-table-footer">
+                  <template v-if="isHasOtherName(item)">
+                      <span>其他名称：</span>
+                      <el-tag
+                        v-for="nameTag in item.tag_otherNames"
+                        :type="nameTag.tagType"
+                        effect="dark"
+                        round
+                      >
+                      <!-- {{ nameTag }} -->
+                      <div v-html="nameTag.titile"></div>
+                      </el-tag>
+                    </template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="info-list-inner" :class="{ not_scroll: field_list.length <= 1 }">
           <div
             class="info-item title-item"
             :class="{ not_scroll: field_list.length <= 1 }"
           >
             <div class="item">货号</div>
             <div class="item">名称</div>
-            <!-- 研究领域筛选 -->
+            
             <template v-if="$route.name == 'productField'">
               <div class="item">应用</div>
               <div class="item">反应物种</div>
             </template>
 
-            <!-- 其他属性参数 -->
+            
             <div
               class="item"
               v-for="(field, field_index) in field_list"
@@ -182,7 +311,7 @@
             </div>
           </div>
 
-          <!-- 循环体 -->
+          
           <div
             class="info-item"
             v-for="(item, index) in product_list"
@@ -197,14 +326,13 @@
 
             <div class="item">
               <router-link :to="item.route" target="_blank">
-                <!-- 仪器耗材特殊处理标题展示 -->
-                <!-- {{ !item.is_yiqi ? item.title : product_id_map[item.channelId] }} -->
+                
 
                 {{ item.title }}
               </router-link>
             </div>
 
-            <!-- 其他属性参数 -->
+           
             <div
               class="item"
               v-for="(field, field_index) in field_list"
@@ -213,7 +341,7 @@
               {{ getParamsValue(item, field) }}
             </div>
 
-            <!-- 研究领域筛选 -->
+            
             <template v-if="$route.name == 'productField'">
               <div class="item" data-key="application">
                 {{ (item.param_info && item.param_info.application) || "-" }}
@@ -227,18 +355,13 @@
                   "
                 >
                   {{ item.param_info.reaction_species.join(",") }}
-                  <!-- <span
-                    v-for="(sub, sub_index) in item.param_info.reaction_species"
-                    :key="sub_index"
-                  >
-                    {{ sub }}
-                  </span> -->
+                 
                 </div>
                 <div v-else>-</div>
               </div>
             </template>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div class="pagination-box" style="margin-top: 40px">
@@ -287,6 +410,10 @@ export default {
       product_images: [],
 
       other_params: {},
+
+      showDetailIndex:10,
+
+      all_field: [],
     };
   },
   computed: {
@@ -353,6 +480,7 @@ export default {
   },
 
   created() {
+    this.queryAllCateParams();
     this.queryCateParams();
     this.setView();
   },
@@ -396,7 +524,7 @@ export default {
         res.data.forEach((v) => {
           image_list.push(v.img);
           v.checked = false;
-          v.route = "/goodsDetail/" + v.inventoryId;
+          v.route = "/goodsDetail/" + v.skuId;
           if (v.is_sj) {
             if (!v.title) {
               var title = v.title;
@@ -404,6 +532,10 @@ export default {
               v.title = title_en;
               v.param_info.chinese_name = title;
             }
+          }
+          if (v.param_info) {
+            //1 tag
+            v.tag_otherNames=this.getOtherNames(v.param_info.another_name);
           }
         });
         // this.handleProductImage(image_list);
@@ -452,7 +584,7 @@ export default {
         res.data.forEach((v) => {
           image_list.push(v.img);
           v.checked = false;
-          v.route = "/goodsDetail/" + v.inventoryId;
+          v.route = "/goodsDetail/" + v.skuId;
 
           //试剂
           if (v.is_sj) {
@@ -463,6 +595,11 @@ export default {
               v.param_info.chinese_name = title;
             }
           }
+          //6 反应物种
+          let reactionSpecies="";
+          reactionSpecies=param_info.reaction_species.join(";")
+          v.html_reactionSpecies = reactionSpecies.replaceAll(keyword, html_keyword);
+          v.tag_reactionSpecies=this.getOtherNames(v.html_reactionSpecies);
           //仪器产品需要展示仪器的类目名称
           // if (v.is_yiqi) {
           //   var title = v.title;
@@ -684,11 +821,143 @@ export default {
       });
       this.compareState();
     },
+
+     //所有产品参数
+    queryAllCateParams() {
+      // this.query_field_done = false;
+      //根据分类设置筛选条件
+      this.$api("product_allRow", {}).then((res) => {
+        //console.log("获取所有分类的字段", res);
+        this.all_field = res.data;
+      });
+    },
+
+     //设置当前产品展示参数
+    setInfoParams(item) {
+      if (item.param_info && this.all_field.length) {
+        // //console.log("产品属性参数");
+        // //console.table(this.all_field);
+
+        let param_list = [];
+        this.all_field.forEach((field) => {
+          var val = item.param_info[field.field_title];
+          if (val) {
+            if (field.title == "基因id") {
+              field.title = "基因ID";
+              if (+val) {
+              } else {
+                val = "/";
+              }
+            }
+            if (val != "/") {
+              if (field.title == "中文名称") {
+                if (this.is_real_zh_name(val)) {
+                  param_list.unshift({
+                    ...field,
+                    val: val,
+                  });
+                }
+              }else if (field.title == "蛋白编码") {
+                param_list.push({
+                  ...field,
+                  val: "<a href='https://www.uniprot.org/uniprotkb/"+val+"/entry' style='color: #409eff;' target='_blank'>"+val+"</a>",
+                });
+              }
+              else {
+                param_list.push({
+                  ...field,
+                  val: val,
+                });
+              }
+            }
+          }
+        });
+
+        // //console.log('所有的参数 param_list', param_list)
+
+        let tongyici_attr_1 = param_list.find((v) => v.field_title == "another_name");
+        let tongyici_attr_2 = param_list.find((v) => v.field_title == "synonym");
+        //抗体产品同义词相同时 隐藏一个
+        if (
+          tongyici_attr_1 &&
+          tongyici_attr_1.val &&
+          tongyici_attr_2 &&
+          tongyici_attr_2.val
+        ) {
+          if (tongyici_attr_1.val == tongyici_attr_2.val) {
+            let arr_tongyici = param_list.filter((v) => v.title == "同义词");
+
+            if (arr_tongyici.length == 2) {
+              let index_2 = param_list.findIndex(
+                (v) => v.field_title == arr_tongyici[1].field_title
+              );
+
+              param_list.splice(index_2, 1);
+            }
+          }
+        }
+
+        param_list = param_list;
+        return param_list;
+        // this.query_field_done = true;
+      } else {
+        setTimeout(() => {
+          this.setInfoParams();
+        }, 200);
+      }
+    },
+
+    showRowDetail(index){
+      if(this.showDetailIndex==index){
+        this.showDetailIndex=10;
+      }else{
+        this.showDetailIndex=index;
+      }
+    },
+    isHasOtherName(chanpin){
+      var isHas=false;
+      var paramInfo=chanpin.param_info
+      if(paramInfo.another_name!=undefined&&paramInfo.another_name.length>0){
+        isHas=true;
+      }
+      return isHas;
+    },
+    randomTag(){
+      var tags=["primary","success","info","warning","danger"];
+      var radomIndex=Math.floor(Math.random()*6);
+      return tags[radomIndex];
+    },
+    getOtherNames(strNames){
+       var otherName=[];
+       var nameList=[];
+       if(strNames.length>0){
+        if(strNames.split(';').length > 1){
+          nameList=strNames.split(';');
+        }else if(strNames.split(',').length > 1){
+          nameList=strNames.split(',');
+        }else{
+          nameList[0]=strNames
+          // HashChangeEvent
+        }
+        for(var i=0;i<nameList.length;i++){
+          if(nameList[i].length>0){
+            otherName.push({titile:nameList[i],tagType:this.randomTag()});
+          }
+        }
+        // otherName=nameList
+       }
+
+       return otherName;
+    }
   },
 };
 </script>
 
 <style lang="less" scoped>
+.el-tag{
+  margin-right: 8px;
+  margin-bottom: 5px;
+}
 .product-list {
   // padding-top: 50px;
   padding-top: 0;
@@ -1033,6 +1302,249 @@ export default {
         font-family: Microsoft YaHei-Regular, Microsoft YaHei;
         font-weight: 400;
         color: #ea3200;
+      }
+    }
+  }
+}
+
+
+
+//新卡片样式 大威 25.10.21
+@keyframes rowDetailShow {
+  from{
+    height: 0px;
+  }
+  to{
+    height: 400px;
+  }
+}
+@keyframes rowDetailHid {
+  0%{
+    height: 400px;
+  }
+  100%{
+    height: 0px;
+  }
+}
+@keyframes operate-active {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(90deg);
+  }
+}
+@keyframes operate-on {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+@keyframes operate-shouqi {
+  from{
+    transform: rotate(90deg);
+  }
+  to{
+    transform: rotate(0deg);
+  }
+}
+.product-list{
+  // margin-top: 50px;
+  .product-box:hover{
+    background-color: #ea3200;
+    opacity: 0.8;
+    transform: scale(1.02, 1.02);
+    .product-box-top{
+      .product-box-top-titile{
+        a{
+          color: #ffffff;
+        }
+      }
+    }
+  }
+  .product-box{
+    transition: all 0.4s ease;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    box-shadow:0.4rem 0.4rem 1.5rem #bbb8b8;
+    border: 1px solid #ebeef5;
+    background-color: #f6faff;
+    margin-bottom: 20px;
+
+
+    display: flex;
+    padding: 20px;
+    align-items: flex-start;
+    &-left{
+      margin-right: 20px;
+      .product-box-top-img{
+        width: 132px;
+        height: 132px;
+        overflow: hidden;
+        border-radius: 8px;
+        .el-image__img,img{
+          border: 1px solid #ebeef5;
+          border-radius: 8px;
+          width: 100%;
+          height: 132px;
+          transition: all 0.4s ease;
+        }
+        .el-image__img:hover{
+          transform: scale(1.2, 1.2);
+        }
+        img:hover{
+          transform: scale(1.1, 1.1);
+        }
+      }
+    }
+    &-right{
+      padding: 10px;
+      border-top: 1px solid #ebeef5;
+      background-color: #ffffff;
+      border-radius: 8px;
+      width: 100%;
+      .product-box-table{
+        &-head{
+          padding: 10px 5px;
+          border-bottom: 1px solid #ebeef5;
+          display: flex;
+          color: #000;
+          font-weight: 500;
+          width: 100%;
+          span:first-child{
+            width: 10%;
+          }
+          span:nth-child(2){
+            width: 35%;
+          }
+          span:nth-child(3){
+            width: 30%;
+          }
+          span:nth-child(4){
+            width: 15%;
+          }
+          span:last-child{
+            text-align: right;
+          }
+        }
+        &-body{
+          // padding-top: 15px;
+          overflow: hidden;
+          .body-row{
+            display: flex;
+            // transition: all 1s;
+            align-items: baseline;
+            padding: 15px 5px 15px 5px;
+            .row-descript{
+              width: 30%;
+            }
+            .row-huohao{
+              width: 10%;
+            }
+            .row-chanpin{
+              padding-right: 15px;
+              width: 35%;
+              a{
+                font-size: 14px;
+                font-family: Microsoft YaHei-Regular, Microsoft YaHei;
+                font-weight: 400;
+                color: #409eff;
+              }
+              
+            }
+            .row-price{
+              width: 15%;
+            }
+            .row-operate{
+              // width: 5%;
+              transform: rotate(0deg);
+            }
+            .row-operate-active{
+              // width: 5%;
+              animation: operate-active 0.5s ease forwards;
+            }
+            .row-operate-shouqi{
+              animation: operate-shouqi 0.5s ease forwards;
+            }
+            .row-operate:hover{
+              // animation: operate-on 0.5s linear backwards;
+            }
+          }
+          // .body-row:hover{
+          //   cursor: pointer;
+          //   background-color: #fff;
+          //   opacity: 0.9;
+          //   border: 1px solid #ddd;
+          //   .row-operate{
+          //     // animation: operate-on 0.5s linear backwards;
+          //   }
+          // }
+          .body-row-detail{
+            height: 100%;
+            overflow: scroll;
+            animation: rowDetailHid 0.3s linear forwards;
+          }
+          .rowOn{
+            animation: rowDetailShow 1s ease forwards;
+          }
+          .body-row-hid{
+            animation: rowDetailHid 0.3s linear forwards;
+          }
+          .row-active-detail{
+            animation: rowDetailShow 1s ease forwards;
+            display:flex;
+          }
+          .params-item:last-child {
+            border-bottom: 1px solid #ccc;
+          }
+          .params-item{
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            .params-label{
+              display: flex;
+              align-items: center;
+              align-self: stretch;
+              background: #f7f7f7;
+              min-height: 5rem;
+              line-height: 5rem;
+              width: 30rem;
+              padding: 0 2.4rem;
+              font-size: 1.4rem;
+              font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+              // font-weight: bold;
+              color: #666666;
+              font-size: 1.6rem;
+            }
+            .params-val{
+              min-height: 5rem;
+              line-height: 5rem;
+              padding: 0 2.4rem;
+              font-size: 1.4rem;
+              font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+              // font-weight: bold;
+              color: #666666;
+              font-size: 1.6rem;
+              max-width: 550px;
+            }
+            
+          }
+        }
+        &-footer{
+          padding: 15px 5px;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-start;
+          align-content: baseline;
+          align-items: baseline;
+          .el-tag{
+            margin-right: 8px;
+            margin-bottom: 5px;
+          }
+        }
       }
     }
   }

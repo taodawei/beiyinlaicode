@@ -154,7 +154,7 @@
             <table class="w-table-2" v-if="bili_list && bili_list.length">
               <tbody>
                 <tr v-for="(item, index) in bili_list" :key="index">
-                  <td>{{ item.key }}</td>
+                  <td>{{ item.key.substring(0,item.key.length-2) }}</td>
                   <td>
                     <!-- 1:500 - 1:2000 -->
                     {{ item.val }}
@@ -229,14 +229,14 @@
             <div>3. The after-sale service channel will be shut down after 3 months.</div>
           </div>
 
-          <div class="code-box">
+          <!-- <div class="code-box">
             <div class="img-box">
               <img :src="webConfig.qrcode_gongzhonghao" alt="" />
             </div>
             <div class="text-box">
               Scan the QR code to get Technical Suppoprt Request Form.
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

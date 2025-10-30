@@ -862,12 +862,24 @@ export default {
                   ...field,
                   val: "<a href='https://www.uniprot.org/uniprotkb/"+val+"/entry' style='color: #409eff;' target='_blank'>"+val+"</a>",
                 });
-              }
-              else {
+              }else if (field.title == "Gene ID") {
                 param_list.push({
                   ...field,
-                  val: val,
+                  val: "<a href='https://www.ncbi.nlm.nih.gov/gene/?term="+val+"' style='color: #409eff;' target='_blank'>"+val+"</a>",
                 });
+              }
+              else {
+                if(Array.isArray(val)){
+                  param_list.push({
+                    ...field,
+                    val: val.join(";"),
+                  });
+                }else{
+                  param_list.push({
+                    ...field,
+                    val: val,
+                  });
+                }
               }
             }
           }
@@ -930,7 +942,7 @@ export default {
     getOtherNames(strNames){
        var otherName=[];
        var nameList=[];
-       if(strNames.length>0){
+       if(strNames!=null&&strNames.length>0){
         if(strNames.split(';').length > 1){
           nameList=strNames.split(';');
         }else if(strNames.split(',').length > 1){
@@ -1401,6 +1413,7 @@ export default {
     }
     &-right{
       padding: 10px;
+      flex: 1;
       border-top: 1px solid #ebeef5;
       background-color: #ffffff;
       border-radius: 8px;

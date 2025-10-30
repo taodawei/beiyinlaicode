@@ -1,5 +1,5 @@
 <template>
-  <div class="dS-box">
+  <div v-show="!isProductSpecification" class="dS-box">
     <div class="dS-logo" @click="drawer = !drawer"><span>AI</span></div>
     <el-drawer 
         :visible.sync="drawer" 
@@ -80,18 +80,29 @@ export default {
       conversationId: null,
       // 头像URL可以存储在data中以便动态更改
       userAvatar: '',
-      botAvatar: ''
+      botAvatar: '',
+      isProductSpecification:false,
     };
   },
   computed: {
   },
-  watch: {},
+  watch: {
+    $route(to, from) {
+       if (to.name == "productSpecification") {
+        this.isProductSpecification=true;
+       }
+    }
+  },
 
   mounted() {
-    
+    // var cureentPage=this.$route.path;
+    // if(cureentPage.comtains('productSpecification')){
+    //   isProductSpecification=true;
+    // }
   },
   created() {
     this.generateConversationId();
+    
   },
   methods: {
     handleClose() {
@@ -264,6 +275,10 @@ export default {
             font-size: xx-large;
             color: white;
         }
+        transition: all 0.5s ease;
+    }
+    .dS-logo:hover{
+      transform: scale(1.2, 1.2);
     }
 }
 #deepsekbox {

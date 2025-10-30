@@ -27,7 +27,7 @@
               :key="index"
             >
               <router-link
-                :to="'/goodsDetail/' + item.inventoryId"
+                :to="'/goodsDetail/' + item.skuId"
                 :alt="item.title"
                 :title="item.title"
               >

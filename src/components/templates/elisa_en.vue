@@ -819,7 +819,7 @@ li {
   font-size: 1.6rem;
 }
 .section-desc {
-  padding-bottom: 48px;
+  padding-bottom: 28px;
   margin-bottom: 48px;
   margin-bottom: 68px;
   border-bottom: 1px dashed #afafaf;

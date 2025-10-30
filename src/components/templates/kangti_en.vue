@@ -143,7 +143,7 @@
             </table>
           </div>
 
-          <div class="section-title">Application Notes：</div>
+          <div class="section-title" style="margin-top: 100px;">Application Notes：</div>
 
           <div class="section-desc">
             The application notes include recommended starting dilutions; optimal
@@ -542,7 +542,7 @@ export default {
 }
 
 .section-desc {
-  margin-bottom: 48px;
+  margin-bottom: 28px;
   font-size: 14px;
   font-family: Microsoft YaHei-Regular, Microsoft YaHei;
   font-weight: 400;

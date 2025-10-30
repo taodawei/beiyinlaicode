@@ -58,37 +58,37 @@
             <div class="top-qrcode-box">
               <img class="qrcode-img" src="@img/top/xiaohongshu.png" alt="" />
               <div class="qrcode-imgshow">
-                <img class="qrcode-img-qr" src="@img/gongzhonghao_code.png" alt="" />
+                <img class="qrcode-img-qr" src="@img/QRcode/xiaohongshu.png" alt="" />
               </div>
             </div>
             <div class="top-qrcode-box">
               <img class="qrcode-img" src="@img/top/gongzhonghao.png" alt="" />
               <div class="qrcode-imgshow">
-                <img class="qrcode-img-qr" src="@img/gongzhonghao_code.png" alt="" />
+                <img class="qrcode-img-qr" src="@img/QRcode/wechatapp.jpg" alt="" />
               </div>
             </div>
             <div class="top-qrcode-box">
               <img class="qrcode-img" src="@img/top/douyin.png" alt="" />
               <div class="qrcode-imgshow">
-                <img class="qrcode-img-qr" src="@img/gongzhonghao_code.png" alt="" />
+                <img class="qrcode-img-qr" src="@img/QRcode/douyin.jpg" alt="" />
               </div>
             </div>
             <div class="top-qrcode-box">
               <img class="qrcode-img" src="@img/top/bilibili.png" alt="" />
               <div class="qrcode-imgshow">
-                <img class="qrcode-img-qr" src="@img/gongzhonghao_code.png" alt="" />
+                <img class="qrcode-img-qr" src="@img/QRcode/bilibili.png" alt="" />
               </div>
             </div>
-            <div class="top-qrcode-box">
+            <!-- <div class="top-qrcode-box">
               <img class="qrcode-img" style="border-radius: 12px;" src="@img/top/xiaochenxu.png" alt="" />
               <div class="qrcode-imgshow">
-                <img class="qrcode-img-qr" src="@img/gongzhonghao_code.png" alt="" />
+                <img class="qrcode-img-qr" src="@img/QRcode/wechatapp.jpg" alt="" />
               </div>
-            </div>
+            </div> -->
             <div class="top-qrcode-box">
               <img class="qrcode-img"  src="@img/top/fuwuhao.png" alt="" />
               <div class="qrcode-imgshow">
-                <img class="qrcode-img-qr" src="@img/gongzhonghao_code.png" alt="" />
+                <img class="qrcode-img-qr" src="@img/QRcode/tenxunship.jpg" alt="" />
               </div>
             </div>
           </div>
@@ -163,7 +163,7 @@
               :key="index"
             >
               <router-link
-                :to="'/goodsDetail/' + item.inventoryId"
+                :to="'/goodsDetail/' + item.skuId"
                 :alt="item.title"
                 :title="item.title"
               >
@@ -219,12 +219,12 @@
                     <div class="pop-product">
                       <div class="pop-product-inner">
                         <div class="box-cate" 
-                          v-for="(level1, index) in product_cates"
+                          v-for="(level1, index) in newProductNavList"
                           :key="index"
                         >
                           <div class="pop-product-group pop-product-group-leixing">
                             <div class="group-title">
-                              <router-link to="/productCates">{{ level1.title }}</router-link>
+                              <router-link :to="'/productCates?id=' + level1.id">{{ level1.title }}</router-link>
                             </div>
                             <div class="group-list group-leixing">
                               <div
@@ -252,28 +252,34 @@
                           <div class="pop-product-group">
                             
                             <div class="group-title">
-                              <router-link :to="'/productCates?id=855'"
+                              <router-link :to="'/productCates?id=916'"
                                 >其他产品</router-link
                               >
                             </div>
-                            <div class="group-list group-haocai">
-                              <div class="list">
+                            <div class="group-list group-leixing">
+                              <div class="list-level2">
                                 <div
                                   class="item"
-                                  v-for="(level1, index) in haocai_cates"
+                                  v-for="(level1, index) in newProductOtherNavList"
                                   :key="index"
                                   :class="{ active: active_haocai_cate.id == level1.id }"
                                 >
                                   <router-link
                                     :to="level1.route"
-                                    class="item-title"
                                     @click="toggleHaocai(level1)"
                                   >
                                     {{ level1.title }}
                                   </router-link>
+                                  <!-- <router-link
+                                    :to="level1.route"
+                                    class="item-title"
+                                    @click="toggleHaocai(level1)"
+                                  >
+                                    {{ level1.title }}
+                                  </router-link> -->
 
                                   
-                                  <div class="sub-list">
+                                  <!-- <div class="sub-list">
                                     <router-link
                                       :to="level2.route"
                                       class="sub"
@@ -282,7 +288,7 @@
                                     >
                                       {{ level2.title }}
                                     </router-link>
-                                  </div>
+                                  </div> -->
                                 </div>
                               </div>
                             </div>
@@ -390,12 +396,12 @@
                     <div class="pop-product">
                       <div class="pop-product-inner">
                         <div class="box-cate" 
-                          v-for="(level1, index) in product_cates"
+                          v-for="(level1, index) in newProductNavList"
                           :key="index"
                         >
                           <div class="pop-product-group pop-product-group-leixing">
                             <div class="group-title">
-                              <router-link to="/productCates">{{ level1.title }}</router-link>
+                              <router-link :to="'/productCates?id=' + level1.id">{{ level1.title }}</router-link>
                             </div>
                             <div class="group-list group-leixing">
                               <div
@@ -423,28 +429,27 @@
                           <div class="pop-product-group">
                             
                             <div class="group-title">
-                              <router-link :to="'/productCates?id=855'"
+                              <router-link :to="'/productCates?id=916'"
                                 >其他产品</router-link
                               >
                             </div>
-                            <div class="group-list group-haocai">
-                              <div class="list">
+                            <div class="group-list  group-leixing">
+                              <div class="list-level2">
                                 <div
                                   class="item"
-                                  v-for="(level1, index) in haocai_cates"
+                                  v-for="(level1, index) in newProductOtherNavList"
                                   :key="index"
                                   :class="{ active: active_haocai_cate.id == level1.id }"
                                 >
                                   <router-link
                                     :to="level1.route"
-                                    class="item-title"
                                     @click="toggleHaocai(level1)"
                                   >
                                     {{ level1.title }}
                                   </router-link>
 
                                   
-                                  <div class="sub-list">
+                                  <!-- <div class="sub-list">
                                     <router-link
                                       :to="level2.route"
                                       class="sub"
@@ -453,7 +458,7 @@
                                     >
                                       {{ level2.title }}
                                     </router-link>
-                                  </div>
+                                  </div> -->
                                 </div>
                               </div>
                             </div>
@@ -580,9 +585,10 @@ export default {
       },
       list_wenxian: [],
       topInnerStyle:{},
+      navOtherProductList:[],
+      chanpinCenterNavList:[],
     };
   },
-
   computed: {
     ...mapState(["header_theme"]),
 
@@ -660,13 +666,19 @@ export default {
       }
 
       let arr = [
-        { title: "首页", route: "/" },
-        { title: "产品中心", route: "/products", child: [] },
-        { title: "技术服务", route: tech_service_route, child: child_tech_service },
-        { title: "客户服务", route: "/technology", child: child_tech_support },
-        { title: "新闻中心", route: first_news_route, child: child_news },
-        { title: "下载中心", route: "/technologyCenter?type=technologyDownload&id=864"},
-        { title: "关于我们", route: "/companyProfile", child: child_about },
+        // { title: "首页", route: "/" },
+        // { title: "产品中心", route: "/products", child: [] },
+        // { title: "技术服务", route: tech_service_route, child: child_tech_service },
+        // { title: "客户服务", route: "/technology", child: child_tech_support },
+        // { title: "新闻中心", route: first_news_route, child: child_news },
+        // { title: "下载中心", route: "/technologyCenter?type=technologyDownload&id=864"},
+        // { title: "关于我们", route: "/companyProfile", child: child_about },
+        { title: "产品中心", route: "/", child: [] },
+        { title: "技术服务", route: "/", child: child_tech_service },
+        { title: "客户服务", route: "/", child: child_tech_support },
+        { title: "新闻中心", route: "/", child: child_news },
+        { title: "下载中心", route: "/", child: [{ title: "产品手册", route: "/technologyCenter?type=technologyDownload&id=864" }],},
+        { title: "关于我们", route: "/", child: child_about },
       ];
       return arr;
     },
@@ -688,7 +700,9 @@ export default {
       return this.product_cates[this.active_product_cate_index];
     },
   },
-
+  mounted(){
+    // this.initialChanpinNav();
+  },
   watch: {
     $route(to, from) {
       //console.log("页面顶部 watch $route", to);
@@ -732,6 +746,7 @@ export default {
   created() {
     this.keyword = this.$route.query.keyword || "";
     this.setView();
+    // this.initialChanpinNav();
   },
 
   methods: {
@@ -742,6 +757,7 @@ export default {
         pagenum: 6,
       }).then((res) => {
         this.list_wenxian = res.data.slice(0, 8);
+
       });
     },
 
@@ -803,7 +819,7 @@ export default {
       let pagePath = this.$route.fullPath;
 
       let obj = {
-        active: item.route == pagePath || item.title == this.$route.meta.root,
+        // active: item.route == pagePath || item.title == this.$route.meta.root,
         "nav-item-static": "/productCates" == item.path,
       };
       return obj;
@@ -912,6 +928,28 @@ export default {
     openModalSearch() {
       this.showSearch = true;
     },
+    initialChanpinNav(){
+      console.log("haocai_cates:"+this.haocai_cates.length)
+        if(this.haocai_cates.length>0){
+          for(var i=0;i<this.haocai_cates.length;i++){
+            if(this.haocai_cates[i].title=="常用辅助试剂"||this.haocai_cates[i].title=="仪器耗材"){
+              for(var j=0;j<this.haocai_cates[i].channels.length;j++){
+                  this.navOtherProductList.push(this.haocai_cates[i].channels[j]);
+              }
+            }
+          }
+          this.navOtherProductList=this.navOtherProductList.slice(1,this.navOtherProductList.length);
+          for(var i=0;i<this.product_cates.length;i++){
+            if(this.product_cates[i].title!='其他产品'){
+              this.chanpinCenterNavList.push(this.product_cates[i]);
+            }
+          }
+          var newOtherNav=this.haocai_cates[0];
+          
+          newOtherNav.channels.push(this.haocai_cates[1].channels[0]);
+          this.chanpinCenterNavList.push(newOtherNav);
+        }
+    }
   },
 };
 </script>
@@ -1141,10 +1179,12 @@ export default {
           display: none;
           position: absolute;
           top: 40px;
-          left: -100px;
+          left: -80px;
           z-index: 99;
           .qrcode-img-qr{
             width: 180px;
+            border-radius: 8px;
+            box-shadow: 0.4rem 0.4rem 1.5rem #8e8e8e;
           }
         }
       }
@@ -1284,8 +1324,8 @@ export default {
     .flex-center();
     height: 100%;
     .nav-item {
-      margin-left: 64px;
-
+      margin-left: 24px;
+      margin-right: 24px;
       &.nav-item-static {
         position: static;
       }
@@ -1315,6 +1355,10 @@ export default {
       &:hover {
         .nav-link::after {
           width: 36px;
+        }
+        .nav-link {
+          font-weight: bold;
+          color: @theme;
         }
       }
 
@@ -1367,7 +1411,8 @@ export default {
   right: 0;
   z-index: 100;
   background: transparent;
-  padding-top: 20px;
+  margin-top: 20px;
+  // padding-top: 20px;
   transform: translate(0, -20px);
 }
 
@@ -1456,6 +1501,7 @@ export default {
       }
 
       .group-title {
+        width: 150px;
         margin-bottom: 18px;
         margin-bottom: 8px;
         font-size: 16px;

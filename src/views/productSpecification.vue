@@ -150,7 +150,7 @@ export default {
   },
   computed: {
     ...mapState([""]),
-
+    // document.getElementsByClassName("dS-box").style.display = "none";
     options_version() {
       let options_version = [
         {

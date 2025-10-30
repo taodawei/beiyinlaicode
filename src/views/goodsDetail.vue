@@ -415,7 +415,7 @@
           <div class="section-title" data-title="相关产品">相关产品</div>
           <div class="product-list">
             <router-link
-              :to="'/goodsDetail/' + item.inventoryId"
+              :to="'/goodsDetail/' + item.skuId"
               class="product-item"
               v-for="(item, index) in product_list"
               :key="index"
@@ -1094,11 +1094,23 @@ export default {
                   ...field,
                   val: "<a href='https://www.uniprot.org/uniprotkb/"+val+"/entry' style='color: #409eff;' target='_blank'>"+val+"</a>",
                 });
-              } else {
+              } else if (field.title == "Gene ID") {
                 param_list.push({
                   ...field,
-                  val: val,
+                  val: "<a href='https://www.ncbi.nlm.nih.gov/gene/?term="+val+"' style='color: #409eff;' target='_blank'>"+val+"</a>",
                 });
+              }else {
+                if(Array.isArray(val)){
+                  param_list.push({
+                    ...field,
+                    val: val.join(";"),
+                  });
+                }else{
+                  param_list.push({
+                    ...field,
+                    val: val,
+                  });
+                }
               }
             }
           }

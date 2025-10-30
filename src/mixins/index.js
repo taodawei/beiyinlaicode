@@ -51,6 +51,10 @@ export default {
       "company_title_en",
       "company_detail_id",
       "shopcart_count",
+      //新的产品中心分类导航数据
+      "newProductNavList",
+      //新的产品中心中的其他分类导航数据
+      "newProductOtherNavList",
     ]),
     myAvatar() {
       return this.baseInfo.user_image || this.defaultAvatar;

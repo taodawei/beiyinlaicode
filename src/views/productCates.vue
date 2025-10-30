@@ -269,18 +269,20 @@ export default {
           //console.log("当前分类筛选条件", res);
           let groups = res.data;
           let tiaojian_child_all = [];
-          groups.forEach((group) => {
-            group.keyword = "";
-            group.expand = false;
-            group.child.forEach((v) => {
-              v.checked = false;
-              v.group_field_title = group.field_title;
-              tiaojian_child_all.push(v);
+          if(groups!=null){
+              groups.forEach((group) => {
+              group.keyword = "";
+              group.expand = false;
+              group.child.forEach((v) => {
+                v.checked = false;
+                v.group_field_title = group.field_title;
+                tiaojian_child_all.push(v);
+              });
             });
-          });
 
-          this.tiaojian_groups = groups;
-          this.tiaojian_child_all = tiaojian_child_all;
+            this.tiaojian_groups = groups;
+            this.tiaojian_child_all = tiaojian_child_all;
+          }
         });
       }
     },

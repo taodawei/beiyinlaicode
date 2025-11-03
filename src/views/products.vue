@@ -127,6 +127,28 @@
           </div>
         </div>
 
+        <!-- <div class="page-block block-lingyu">
+          <div class="detail-title">研究领域</div>
+          <div class="detail-title-line"></div>
+
+          <div class="lingyu-list">
+            <router-link
+              :to="'/productField?id=' + item.id"
+              class="lingyu-item"
+              v-for="(item, index) in lingyu_cates"
+              :key="index"
+            >
+              <div class="img-box">
+                <img :src="item.originalPic" alt="" class="icon-default" />
+                <img :src="item.ext_originalPic" alt="" class="icon-active" />
+              </div>
+              <div class="info-box">
+                <div class="title">{{ item.title }}</div>
+              </div>
+            </router-link>
+          </div>
+        </div> -->
+
         <div class="page-block block-lingyu">
           <div class="detail-title">研究领域</div>
           <div class="detail-title-line"></div>

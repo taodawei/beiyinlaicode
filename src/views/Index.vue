@@ -81,7 +81,156 @@
             </a>
           </div>
         </div>
+        <!--1  顶部banner 分类  -->
+        
+        <!-- <div class="bannerNav-box">
+          <div class="bannerNav-box-body">
+            <div class="bannerNav-box-body-left">
+              <div class="BNav-list">
+                <div class="BNav-list-item">
+                  <div class="BNav-list-item-icon">
+                  </div>
+                  <p>实验方案</p>
+                </div>
+                <div class="BNav-list-item">
+                  <div class="BNav-list-item-icon">
+                  </div>
+                  <p>实验方案</p>
+                </div>
+                <div class="BNav-list-item">
+                  <div class="BNav-list-item-icon">
+                  </div>
+                  <p>实验方案</p>
+                </div>
+                <div class="BNav-list-item">
+                  <div class="BNav-list-item-icon">
+                  </div>
+                  <p>实验方案</p>
+                </div>
+                <div class="BNav-list-item">
+                  <div class="BNav-list-item-icon">
+                  </div>
+                  <p>实验方案</p>
+                </div>
+                <div class="BNav-list-item">
+                  <div class="BNav-list-item-icon">
+                  </div>
+                  <p>实验方案</p>
+                </div>
+              </div>
+             </div>
+            <div class="bannerNav-box-body-right">
+              <div class="BNav-from-list">
+                <div class="other-form">
+                  <a href="https://ding.cjfx.cn/f/xrhjcc" target="_blank">
+                    <span class="text">奖学金申请</span> 
+                    <span class="goto">去申请
+                      <span class="jt">
+                        <i class="el-icon-arrow-right"></i>
+                      </span>
+                    </span> 
+                    <span class="yuan">
+                    </span> 
+                    <img src="https://www.solarbio.com/static/img/other_form1.e88495c.png" alt="">
+                  </a>
+                </div>
+                <div class="other-form">
+                  <a href="https://ding.cjfx.cn/f/xrhjcc" target="_blank">
+                    <span class="text">奖学金申请</span> 
+                    <span class="goto">去申请
+                      <span class="jt">
+                        <i class="el-icon-arrow-right"></i>
+                      </span>
+                    </span> 
+                    <span class="yuan">
+                    </span> 
+                    <img src="https://www.solarbio.com/static/img/other_form1.e88495c.png" alt="">
+                  </a>
+                </div>
+                <div class="other-form">
+                  <a href="https://ding.cjfx.cn/f/xrhjcc" target="_blank">
+                    <span class="text">奖学金申请</span> 
+                    <span class="goto">去申请
+                      <span class="jt">
+                        <i class="el-icon-arrow-right"></i>
+                      </span>
+                    </span> 
+                    <span class="yuan">
+                    </span> 
+                    <img src="https://www.solarbio.com/static/img/other_form1.e88495c.png" alt="">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
 
+        <!--产品中心-->
+        <div class="product-center">
+          <div class="product-center-header">
+            <h2>产品中心</h2>
+            <h3>质量高于一切，用专业的态度做专业的品牌</h3>
+          </div>
+          <div class="product-center-body">
+              <div class="product-center-box" 
+                v-for="(level1, index) in product_cates"
+                :key="index"
+              >
+                <div class="box-header">
+                  <div class="box-header-icon">
+                    
+                  </div>
+                  <div class="box-header-titile">
+                    <span>{{ level1.title }}</span>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="box-body-product"
+                    v-for="(level2, yindex) in level1.channels.filter((v) => v.is_show)"
+                    :key="yindex"
+                  >
+                    <router-link :to="'/productCates?id=' + level2.id" target="_blank">
+                      <el-tag effect="plain" type="info">{{level2.title}}</el-tag>
+                    </router-link>
+                  </div>
+                </div>
+                <div class="box-footer">
+                  <div class="box-footer-more">
+                    <router-link :to="'/productCates?id=' + level1.id">
+                      <span>查看更多</span>
+                    </router-link>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="product-center-box" >
+                <div class="box-header">
+                  <div class="box-header-icon">
+                  
+                  </div>
+                  <div class="box-header-titile">
+                    <span>其他产品</span>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="box-body-product"
+                    v-for="(level, index) in haocai_cates"
+                    :key="index"
+                  >
+                    <router-link :to="'/productCates?id=' + level.id">
+                      <el-tag effect="plain" type="info">{{level.title}}</el-tag>
+                    </router-link>
+                  </div>
+                </div>
+                <div class="box-footer">
+                  <div class="box-footer-more">
+                    <router-link to="/productCates?id=916">
+                      <span>查看更多</span>
+                    </router-link>
+                  </div>
+                </div>
+              </div> -->
+          </div>
+        </div>
         <!-- 主营业务 -->
         <div class="section-yewu">
           <div class="section-title">
@@ -148,11 +297,10 @@
           <img src="@img/home-adv.jpg" alt="" />
         </div> -->
 
-        <!--1  顶部banner 分类  -->
-        <div class="banner-box">
+       <div class="banner-box">
           <div class="lunbo-wrap">
             <div class="lunbo-box">
-              <el-carousel trigger="click" :autoplay="true">
+              <el-carousel  height="450px" trigger="click" :autoplay="true">
                 <el-carousel-item
                   v-for="(item, index) in index_banners"
                   :key="index"

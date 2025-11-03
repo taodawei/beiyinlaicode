@@ -92,10 +92,10 @@ export default new Vuex.Store({
 
     active_news_right_id: "",
 
-    //新的产品中心分类导航数据
-    newProductNavList:[],
-    //新的产品中心中的其他分类导航数据
-    newProductOtherNavList:[],
+    // //新的产品中心分类导航数据
+    // newProductNavList:[],
+    // //新的产品中心中的其他分类导航数据
+    // newProductOtherNavList:[],
   },
 
   getters: {},
@@ -446,38 +446,38 @@ export default new Vuex.Store({
             });
           }
           //新产品中心下拉菜单数据
-          if(haocai_cates.length>0){
-            let navOtherProductList=[];
-            for(var i=0;i<haocai_cates.length;i++){
-              if(haocai_cates[i].title=="常用辅助试剂"||haocai_cates[i].title=="仪器耗材"){
-                for(var j=0;j<haocai_cates[i].channels.length;j++){
-                    navOtherProductList.push(haocai_cates[i].channels[j]);
-                }
-              }
-            }
-             //仪器耗材
+          // if(haocai_cates.length>0){
+          //   let navOtherProductList=[];
+          //   for(var i=0;i<haocai_cates.length;i++){
+          //     if(haocai_cates[i].title=="常用辅助试剂"||haocai_cates[i].title=="仪器耗材"){
+          //       for(var j=0;j<haocai_cates[i].channels.length;j++){
+          //           navOtherProductList.push(haocai_cates[i].channels[j]);
+          //       }
+          //     }
+          //   }
+          //    //仪器耗材
           
-            navOtherProductList=navOtherProductList.slice(1,navOtherProductList.length);
-            commit("set_vuex_data", {
-              key: "newProductOtherNavList",
-              val: navOtherProductList,
-            });
+          //   navOtherProductList=navOtherProductList.slice(1,navOtherProductList.length);
+          //   commit("set_vuex_data", {
+          //     key: "newProductOtherNavList",
+          //     val: navOtherProductList,
+          //   });
             
-            let chanpinCenterNavList=[];
-            for(var i=0;i<list_cates_level1.length;i++){
-              if(list_cates_level1[i].title!='其他产品'){
-                chanpinCenterNavList.push(list_cates_level1[i]);
-              }
-            }
-            var newOtherNav=haocai_cates[0];
+          //   let chanpinCenterNavList=[];
+          //   for(var i=0;i<list_cates_level1.length;i++){
+          //     if(list_cates_level1[i].title!='其他产品'){
+          //       chanpinCenterNavList.push(list_cates_level1[i]);
+          //     }
+          //   }
+          //   var newOtherNav=haocai_cates[0];
             
-            newOtherNav.channels.push(haocai_cates[1].channels[0]);
-            chanpinCenterNavList.push(newOtherNav);
-            commit("set_vuex_data", {
-              key: "newProductNavList",
-              val: chanpinCenterNavList,
-            });
-          }
+          //   newOtherNav.channels.push(haocai_cates[1].channels[0]);
+          //   chanpinCenterNavList.push(newOtherNav);
+          //   commit("set_vuex_data", {
+          //     key: "newProductNavList",
+          //     val: chanpinCenterNavList,
+          //   });
+          // }
 
           //console.log('产品分类', list_cates_level1)
 

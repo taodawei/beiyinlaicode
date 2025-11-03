@@ -1598,7 +1598,12 @@ export default {
 
     //文献
     toWenxian() {
-      this.scrollToTarget(".wenxian-box");
+      // this.togglePanel('文献');
+      this.active_panel = '文献';
+      setTimeout(() => {
+        this.scrollToTarget(".wenxian-box");
+      }, 200);
+      
     },
 
     //滚动到指定位置

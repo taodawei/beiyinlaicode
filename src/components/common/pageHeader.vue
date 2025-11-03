@@ -219,7 +219,7 @@
                     <div class="pop-product">
                       <div class="pop-product-inner">
                         <div class="box-cate" 
-                          v-for="(level1, index) in newProductNavList"
+                          v-for="(level1, index) in product_cates"
                           :key="index"
                         >
                           <div class="pop-product-group pop-product-group-leixing">
@@ -248,7 +248,7 @@
                           </div>
                         </div>
 
-                        <div class="box-haocai">
+                        <!-- <div class="box-haocai">
                           <div class="pop-product-group">
                             
                             <div class="group-title">
@@ -260,7 +260,7 @@
                               <div class="list-level2">
                                 <div
                                   class="item"
-                                  v-for="(level1, index) in newProductOtherNavList"
+                                  v-for="(level1, index) in haocai_cates"
                                   :key="index"
                                   :class="{ active: active_haocai_cate.id == level1.id }"
                                 >
@@ -270,30 +270,11 @@
                                   >
                                     {{ level1.title }}
                                   </router-link>
-                                  <!-- <router-link
-                                    :to="level1.route"
-                                    class="item-title"
-                                    @click="toggleHaocai(level1)"
-                                  >
-                                    {{ level1.title }}
-                                  </router-link> -->
-
-                                  
-                                  <!-- <div class="sub-list">
-                                    <router-link
-                                      :to="level2.route"
-                                      class="sub"
-                                      v-for="(level2, level2_index) in level1.channels"
-                                      :key="level2_index"
-                                    >
-                                      {{ level2.title }}
-                                    </router-link>
-                                  </div> -->
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
                         
                       </div>
                     </div>
@@ -315,28 +296,36 @@
                       {{ item.title }}
                     </router-link>
                     <div class="pop-child" v-if="item.child">
-                      <router-link
-                        :to="sub.route"
-                        class="child-item service-child-item"
-                        v-for="(sub, index) in item.child"
-                        :key="index"
-                      >
-                        <span>
-                          {{ sub.title }}
-                        </span>
-                        <div class="service-child-box">
-                          <div class="service-child-inner">
+                      <div class="po-child-body">
+                        <div class="po-child-body-item"
+                         v-for="(sub, index) in item.child"
+                          :key="index"
+                        >
+                          <div class="po-child-body-item-title">
                             <router-link
-                              :to="son.route"
-                              class="child-item"
-                              v-for="(son, son_index) in sub.child"
-                              :key="son_index"
+                              :to="sub.route"
+                              class="child-item service-child-item"
                             >
-                              {{ son.title }}
+                              <span>
+                                {{ sub.title }}
+                              </span>
                             </router-link>
                           </div>
+                          <div class="po-child-body-item-list">
+                            <div class="po-child-body-item-list-item"
+                             v-for="(son, son_index) in sub.child"
+                              :key="son_index"
+                            >
+                              <router-link
+                                :to="son.route"
+                                class="child-item"
+                              >
+                                {{ son.title }}
+                              </router-link>
+                            </div>
+                          </div>
                         </div>
-                      </router-link>
+                      </div>
                     </div>
                   </el-popover>
                 </template>
@@ -396,7 +385,7 @@
                     <div class="pop-product">
                       <div class="pop-product-inner">
                         <div class="box-cate" 
-                          v-for="(level1, index) in newProductNavList"
+                          v-for="(level1, index) in product_cates"
                           :key="index"
                         >
                           <div class="pop-product-group pop-product-group-leixing">
@@ -425,7 +414,7 @@
                           </div>
                         </div>
 
-                        <div class="box-haocai">
+                        <!-- <div class="box-haocai">
                           <div class="pop-product-group">
                             
                             <div class="group-title">
@@ -437,7 +426,7 @@
                               <div class="list-level2">
                                 <div
                                   class="item"
-                                  v-for="(level1, index) in newProductOtherNavList"
+                                  v-for="(level1, index) in haocai_cates"
                                   :key="index"
                                   :class="{ active: active_haocai_cate.id == level1.id }"
                                 >
@@ -447,23 +436,11 @@
                                   >
                                     {{ level1.title }}
                                   </router-link>
-
-                                  
-                                  <!-- <div class="sub-list">
-                                    <router-link
-                                      :to="level2.route"
-                                      class="sub"
-                                      v-for="(level2, level2_index) in level1.channels"
-                                      :key="level2_index"
-                                    >
-                                      {{ level2.title }}
-                                    </router-link>
-                                  </div> -->
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
                         
                       </div>
                     </div>
@@ -485,7 +462,37 @@
                       {{ item.title }}
                     </router-link>
                     <div class="pop-child" v-if="item.child">
-                      <router-link
+                      <div class="po-child-body">
+                        <div class="po-child-body-item"
+                         v-for="(sub, index) in item.child"
+                          :key="index"
+                        >
+                          <div class="po-child-body-item-title">
+                            <router-link
+                              :to="sub.route"
+                              class="child-item service-child-item"
+                            >
+                              <span>
+                                {{ sub.title }}
+                              </span>
+                            </router-link>
+                          </div>
+                          <div class="po-child-body-item-list">
+                            <div class="po-child-body-item-list-item"
+                             v-for="(son, son_index) in sub.child"
+                              :key="son_index"
+                            >
+                              <router-link
+                                :to="son.route"
+                                class="child-item"
+                              >
+                                {{ son.title }}
+                              </router-link>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <router-link
                         :to="sub.route"
                         class="child-item service-child-item"
                         v-for="(sub, index) in item.child"
@@ -506,7 +513,7 @@
                             </router-link>
                           </div>
                         </div>
-                      </router-link>
+                      </router-link> -->
                     </div>
                   </el-popover>
                 </template>
@@ -515,7 +522,7 @@
                     popper-class="w-nav-popover"
                     placement="bottom"
                     title=""
-                    width="150"
+                    width=""
                     trigger="hover"
                     content=""
                   >
@@ -524,6 +531,36 @@
                     </router-link>
 
                     <div class="pop-child" v-if="item.child">
+                       <!-- <div class="po-child-body">
+                        <div class="po-child-body-item"
+                         v-for="(sub, index) in item.child"
+                          :key="index"
+                        >
+                          <div class="po-child-body-item-title">
+                            <router-link
+                              :to="sub.route"
+                              class="child-item service-child-item"
+                            >
+                              <span>
+                                {{ sub.title }}
+                              </span>
+                            </router-link>
+                          </div>
+                          <div class="po-child-body-item-list">
+                            <div class="po-child-body-item-list-item"
+                             v-for="(son, son_index) in sub.child"
+                              :key="son_index"
+                            >
+                              <router-link
+                                :to="son.route"
+                                class="child-item"
+                              >
+                                {{ son.title }}
+                              </router-link>
+                            </div>
+                          </div>
+                        </div>
+                      </div> -->
                       <router-link
                         :to="sub.route"
                         class="child-item"
@@ -539,14 +576,6 @@
             </div>
           </div>
     </div>
-    <!-- <div class="section-3">
-      <div class="main-title">
-        
-      </div>
-      <div class="search-box">
-
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -634,7 +663,7 @@ export default {
       let tech_service_route =
         child_tech_service && child_tech_service[0] ? child_tech_service[0].route : "";
 
-      //技术支持
+       //技术支持
       let child_tech_support = [
         { title: "学习中心", route: "/technology" },
         { title: "技术问题", route: "/questions" },
@@ -644,7 +673,7 @@ export default {
       let first_news_route = `/news/${this.default_news_cate_id}`;
       let child_news = this.news_cates;
 
-      //关于我们
+     //关于我们
       let child_about = [
         { title: "公司简介", route: "/companyProfile" },
         // { title: "服务网络", route: "/companyServiceNet" },
@@ -665,6 +694,16 @@ export default {
         child_about.splice(5, 0, info);
       }
 
+      //资料下载
+      let child_materialdown = [
+        { title: "品牌折页", route: "/technologyCenter?type=technologyDownload&id=880" },
+        { title: "技术手册", route: "/technologyCenter?type=technologyDownload&id=917" },
+        { title: "产品手册", route: "/technology" },
+        { title: "文献海报", route: "/productDocument" },
+        { title: "客户反馈", route: "/questions" },
+        // { title: "技术问题", route: "/questions" },
+      ];
+
       let arr = [
         // { title: "首页", route: "/" },
         // { title: "产品中心", route: "/products", child: [] },
@@ -673,7 +712,7 @@ export default {
         // { title: "新闻中心", route: first_news_route, child: child_news },
         // { title: "下载中心", route: "/technologyCenter?type=technologyDownload&id=864"},
         // { title: "关于我们", route: "/companyProfile", child: child_about },
-        { title: "产品中心", route: "/", child: [] },
+       { title: "产品中心", route: "/", child: [] },
         { title: "技术服务", route: "/", child: child_tech_service },
         { title: "客户服务", route: "/", child: child_tech_support },
         { title: "新闻中心", route: "/", child: child_news },
@@ -1801,6 +1840,50 @@ export default {
       color: #303133;
       line-height: 32px;
     }
+  }
+}
+.po-child-body{
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+
+  &-item{
+    padding: 0px 40px;
+    border-right: solid #ccc 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: center;
+    &-title{
+      width: 220px;
+      margin-bottom: 18px;
+      margin-bottom: 8px;
+      a{
+        text-align: center;
+        padding-left: 0px;
+        span{
+          font-weight: bold;
+          // color:#000000;
+          font-size: 16px;
+          text-align: center;
+          width: 100%;
+        }
+      }
+    }
+    &-list{
+      width: 100%;
+      &-item{
+        // display: flex;
+        // justify-content: center;
+        a{
+          text-align: center;
+          padding-left: 0px;
+        }
+      }
+    }
+  }
+  &-item:last-child{
+    border-right: solid 0px #ccc;
   }
 }
 @media screen and (max-width: 1600px) {

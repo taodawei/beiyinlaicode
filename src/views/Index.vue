@@ -2,169 +2,137 @@
   <div class="page-index">
     <div class="inner-content">
       <div class="inner">
-        <div class="index-top-video">
-          <div class="video-mask"></div>
-
-          <!-- <video
-            muted
-            loop
-            autoplay
-            :src="webConfig.index_video"
-            poster="@img/home-top.jpg"
-            controlsList="nodownload"
-          ></video> -->
-
-          <div id="dplayer">
-            <img v-if="is_h5 || is_pad" :src="video_poster" alt="" class="video-poster" />
-          </div>
-        </div>
-
-        <div class="section-search">
-          <div class="main-title">“茵”科研而生，为健康而“莱”</div>
-          <div class="search-wrap center-search">
-            <div class="left-select">
-              <el-select v-model="selectCate" placeholder="">
-                <el-option
-                  v-for="item in options_product_cates"
-                  :key="item.id"
-                  :label="item.title"
-                  :value="item.id"
+        <div class="banner-box">
+          <div class="lunbo-wrap">
+            <div class="lunbo-box">
+              <el-carousel   trigger="click" :autoplay="true">
+                <el-carousel-item
+                  v-for="(item, index) in index_banners"
+                  :key="index"
+                  @click.native="bannerClick(item)"
                 >
-                </el-option>
-              </el-select>
+                  <!-- <img :src="item.image" /> -->
+                  <img :src="item.image" alt="" />
+                </el-carousel-item>
+              </el-carousel>
             </div>
-            <div class="search-box">
-              <input
-                v-model="keyword"
-                type="text"
-                placeholder="请输入要搜索的关键词"
-                @keyup.enter="toSearch"
-                @input="handleSearchInput"
-              />
-              <button @click="toSearch">
-                <img class="img-search" src="@img/home-search.png" alt="" />
-              </button>
-            </div>
-          </div>
-
-          <!-- 搜索建议 -->
-          <!-- v-if="search_suggest_list.length" -->
-          <div class="search-suggest-list" v-if="search_suggest_list.length">
-            <div
-              class="search-suggest-item"
-              v-for="(item, index) in search_suggest_list"
-              :key="index"
-            >
-              <router-link
-                :to="'/goodsDetail/' + item.skuId"
-                :alt="item.title"
-                :title="item.title"
-              >
-                【{{ item.skuId }}】 {{ item.title }}
-              </router-link>
-            </div>
-          </div>
-
-          <div class="hot-words">
-            热卖产品：
-            <!-- <router-link :to="'/productCates?keyword=' + item" class="words" v-for="(item, index) in hotSearchWords" :key="index">
-              {{ item }}
-            </router-link> -->
-            <a
-              :href="item.url"
-              target="_blank"
-              class="words"
-              v-for="(item, index) in index_hotSearchWords"
-              :key="index"
-            >
-              {{ item.title }}
-            </a>
           </div>
         </div>
-        <!--1  顶部banner 分类  -->
+        <!-- 顶部banner 分类  -->
         
-        <!-- <div class="bannerNav-box">
+         <div class="bannerNav-box">
           <div class="bannerNav-box-body">
-            <div class="bannerNav-box-body-left">
-              <div class="BNav-list">
-                <div class="BNav-list-item">
-                  <div class="BNav-list-item-icon">
-                  </div>
-                  <p>实验方案</p>
-                </div>
-                <div class="BNav-list-item">
-                  <div class="BNav-list-item-icon">
-                  </div>
-                  <p>实验方案</p>
-                </div>
-                <div class="BNav-list-item">
-                  <div class="BNav-list-item-icon">
-                  </div>
-                  <p>实验方案</p>
-                </div>
-                <div class="BNav-list-item">
-                  <div class="BNav-list-item-icon">
-                  </div>
-                  <p>实验方案</p>
-                </div>
-                <div class="BNav-list-item">
-                  <div class="BNav-list-item-icon">
-                  </div>
-                  <p>实验方案</p>
-                </div>
-                <div class="BNav-list-item">
-                  <div class="BNav-list-item-icon">
-                  </div>
-                  <p>实验方案</p>
-                </div>
-              </div>
-             </div>
-            <div class="bannerNav-box-body-right">
-              <div class="BNav-from-list">
-                <div class="other-form">
-                  <a href="https://ding.cjfx.cn/f/xrhjcc" target="_blank">
-                    <span class="text">奖学金申请</span> 
-                    <span class="goto">去申请
-                      <span class="jt">
-                        <i class="el-icon-arrow-right"></i>
-                      </span>
-                    </span> 
-                    <span class="yuan">
-                    </span> 
-                    <img src="https://www.solarbio.com/static/img/other_form1.e88495c.png" alt="">
-                  </a>
-                </div>
-                <div class="other-form">
-                  <a href="https://ding.cjfx.cn/f/xrhjcc" target="_blank">
-                    <span class="text">奖学金申请</span> 
-                    <span class="goto">去申请
-                      <span class="jt">
-                        <i class="el-icon-arrow-right"></i>
-                      </span>
-                    </span> 
-                    <span class="yuan">
-                    </span> 
-                    <img src="https://www.solarbio.com/static/img/other_form1.e88495c.png" alt="">
-                  </a>
-                </div>
-                <div class="other-form">
-                  <a href="https://ding.cjfx.cn/f/xrhjcc" target="_blank">
-                    <span class="text">奖学金申请</span> 
-                    <span class="goto">去申请
-                      <span class="jt">
-                        <i class="el-icon-arrow-right"></i>
-                      </span>
-                    </span> 
-                    <span class="yuan">
-                    </span> 
-                    <img src="https://www.solarbio.com/static/img/other_form1.e88495c.png" alt="">
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
+            <div class="BNav-from-list">
+                <div class="other-form"
+                 v-for="(item,index) in gotoActivityList"
+                 :key="index"
 
+                >
+                  <a :href="item.url" target="_blank">
+                    <span class="text">{{item.titile}}</span> 
+                    <span class="goto">
+                      {{item.txtgo}}
+                      <span class="jt">
+                        <i class="el-icon-arrow-right"></i>
+                      </span>
+                    </span> 
+                    <span class="yuan">
+                    </span> 
+                    <img :src="item.img" alt="">
+                  </a>
+                </div>
+              </div>
+          </div>
+        </div>
+        <!--热卖活动-->
+        <div class="hot-Promotion">
+          <div class="hot-Promotion-body">
+            <el-tabs v-model="activePromotion" >
+              <el-tab-pane  name="first">
+                <span slot="label">
+                  <span class="hp-title">限时特惠</span>
+                  <div class="bt-icon"></div>
+                </span>
+                <div class="ht-list">
+                  <div class="ht-list-item"
+                    v-for="(item,index) in limitimeProductList"
+                    :key="index"
+                  >
+                    <div class="ht-list-item-top">
+                      <img :src="item.img" class="ht-list-item-top-img">
+
+                      </img>
+                      <div class="ht-list-item-top-hticon">
+                        <span>限时特惠</span>
+                      </div>
+                    </div>
+                    <div class="ht-list-item-center">
+                      <span class="ht-list-item-center-price">
+                        <span>价格：¥</span><span>{{ item.price }}</span>
+                      </span>
+                      <span class="ht-list-item-center-name">
+                        {{ item.titile }}
+                      </span>
+                      <span class="ht-list-item-center-huohao">
+                        {{ item.skuId }}
+                      </span>
+                    </div>
+                    <div class="ht-list-item-bot">
+                      <div class="ht-list-item-bot-go">
+                        <span>立即查看</span>
+                        <i class="ht-list-item-bot-go-more"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </el-tab-pane>
+              <el-tab-pane  name="second">
+                <span slot="label">
+                  <span class="hp-title">精品推荐</span>
+                  <div class="bt-icon"></div>
+                </span>
+                 <div class="ht-list">
+                  <div class="ht-list-item"
+                    v-for="(item,index) in boutiqueProductList"
+                    :key="index"
+                  >
+                    <div class="ht-list-item-top">
+                      <img :src="item.img" class="ht-list-item-top-img">
+
+                      </img>
+                      <div class="ht-list-item-top-hticon">
+                        <span>限时特惠</span>
+                      </div>
+                    </div>
+                    <div class="ht-list-item-center">
+                      <span class="ht-list-item-center-price">
+                        <span>价格：¥</span><span>{{ item.price }}</span>
+                      </span>
+                      <span class="ht-list-item-center-name">
+                        {{ item.titile }}
+                      </span>
+                      <span class="ht-list-item-center-huohao">
+                        {{ item.skuId }}
+                      </span>
+                    </div>
+                    <div class="ht-list-item-bot">
+                      <div class="ht-list-item-bot-go">
+                        <span>立即查看</span>
+                        <i class="ht-list-item-bot-go-more"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </el-tab-pane>
+              <el-tab-pane  name="third">
+                <span slot="label">
+                  <span class="hp-title">新品推荐</span>
+                  <div class="bt-icon"></div>
+                </span>
+                敬请期待！</el-tab-pane>
+            </el-tabs>
+          </div>
+        </div>
         <!--产品中心-->
         <div class="product-center">
           <div class="product-center-header">
@@ -297,22 +265,7 @@
           <img src="@img/home-adv.jpg" alt="" />
         </div> -->
 
-       <div class="banner-box">
-          <div class="lunbo-wrap">
-            <div class="lunbo-box">
-              <el-carousel  height="450px" trigger="click" :autoplay="true">
-                <el-carousel-item
-                  v-for="(item, index) in index_banners"
-                  :key="index"
-                  @click.native="bannerClick(item)"
-                >
-                  <!-- <img :src="item.image" /> -->
-                  <img :src="item.image" alt="" />
-                </el-carousel-item>
-              </el-carousel>
-            </div>
-          </div>
-        </div>
+     
 
         <!-- 文献收录与精选 -->
         <div class="section-wenxian">
@@ -578,6 +531,29 @@ export default {
       left:'',
       imgX:'',
       imgY:'',
+      gotoActivityList:[
+        {titile:"试用装申请",txtgo:"去申请",url:"/technologyCenter?type=technologyDownload&id=864",img:"https://www.solarbio.com/static/img/other_form1.e88495c.png"},
+        {titile:"试用装反馈",txtgo:"去填写",url:"/technologyCenter?type=technologyDownload&id=864",img:"https://www.solarbio.com/static/img/other_form1.e88495c.png"},
+        {titile:"最新打折活动",txtgo:"去查看",url:"/technologyCenter?type=technologyDownload&id=864",img:"https://www.solarbio.com/static/img/other_form1.e88495c.png"},
+        {titile:"热卖试用装",txtgo:"去查看",url:"/technologyCenter?type=technologyDownload&id=864",img:"https://www.solarbio.com/static/img/other_form1.e88495c.png"},
+        {titile:"文献活动",txtgo:"去查看",url:"/technologyCenter?type=technologyDownload&id=864",img:"https://www.solarbio.com/static/img/other_form1.e88495c.png"},
+        {titile:"使用手册",txtgo:"去查看",url:"/technologyCenter?type=technologyDownload&id=864",img:"https://www.solarbio.com/static/img/other_form1.e88495c.png"},
+      ],
+      activePromotion:"first",
+      limitimeProductList:[
+        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025052713454033852.png",price:"790.00",unit:"20 μ"},
+        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025052713454033852.png",price:"790.00",unit:"20 μ"},
+        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025052713454033852.png",price:"790.00",unit:"20 μ"},
+        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025052713454033852.png",price:"790.00",unit:"20 μ"},
+        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025052713454033852.png",price:"790.00",unit:"20 μ"},
+      ],
+      boutiqueProductList:[
+        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ"},
+        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ"},
+        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ"},
+        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ"},
+        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ"},
+      ]
     };
   },
   
@@ -669,24 +645,24 @@ export default {
         this.$nextTick(() => {
           if (this.is_h5 || this.is_pad) {
           } else {
-            this.video_dp = new DPlayer({
-              container: document.getElementById("dplayer"),
-              autoplay: true,
-              loop: true,
-              lang: "zh-cn",
-              // screenshot: true,
-              // hotkey: true,
-              preload: "auto",
-              // logo: "logo.png",
-              volume: 0,
-              mutex: true,
-              video: {
-                url: res.data.index_video,
-                pic: this.video_poster,
-                thumbnails: "thumbnails.jpg",
-                type: "auto",
-              },
-            });
+            // this.video_dp = new DPlayer({
+            //   container: document.getElementById("dplayer"),
+            //   autoplay: true,
+            //   loop: true,
+            //   lang: "zh-cn",
+            //   // screenshot: true,
+            //   // hotkey: true,
+            //   preload: "auto",
+            //   // logo: "logo.png",
+            //   volume: 0,
+            //   mutex: true,
+            //   video: {
+            //     url: res.data.index_video,
+            //     pic: this.video_poster,
+            //     thumbnails: "thumbnails.jpg",
+            //     type: "auto",
+            //   },
+            // });
           }
 
           //x5-video-player-type="h5"
@@ -1052,7 +1028,7 @@ export default {
 }
 
 .banner-box {
-  margin-top: 80px;
+  margin-top: 290px;
 }
 
 .lunbo-box {

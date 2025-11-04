@@ -536,6 +536,10 @@ export default {
           if (v.param_info) {
             //1 tag
             v.tag_otherNames=this.getOtherNames(v.param_info.another_name);
+            //6 反应物种
+            let reactionSpecies="";
+            reactionSpecies=v.param_info.reaction_species.join(";")
+            v.tag_reactionSpecies=this.getOtherNames(reactionSpecies);
           }
         });
         // this.handleProductImage(image_list);

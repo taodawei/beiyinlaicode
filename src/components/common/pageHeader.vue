@@ -1,5 +1,5 @@
 <template>
-  <div id="header" class="header-box"  :class="headerTheme"  :style="{
+  <div id="header" class="header-box theme-white"   :style="{
                         position: is_page_home?'fixed':'absolute'
                         }">
     <div class="section-1">
@@ -98,26 +98,21 @@
     </div>
 
     <div class="section-2">
-      <div class="header-inner" 
-      :class="[header_theme == 'transparent' ? '' : 'header-inner-top']"
-      >
-        <!-- logo -->
+      <div class="header-inner header-inner-top" >
+        <!-- logo  :class="[header_theme == 'transparent' ? '' : 'header-inner-top']" -->
         <div class="left">
           <div class="logo" @click="toHome">
-            <img v-if="header_theme == 'transparent'" src="@img/home-logo.png" />
-            <img v-else src="@img/logo.png" />
+            <!-- <img v-if="header_theme == 'transparent'" src="@img/home-logo.png" />
+            <img v-else src="@img/logo.png" /> -->
+            <img src="@img/logo.png" />
           </div>
         </div>
 
-        <!-- 搜索 -->
-        <div class="center-search-wrap" v-if="!is_page_home || header_theme == 'white'">
+        <!-- 搜索 v-if="!is_page_home || header_theme == 'white'"-->
+        <div class="center-search-wrap" >
           <div class="center-search-box">
             <div class="center-search">
               <div class="left-select">
-                <!-- <el-select v-model="selectType" placeholder="">
-                <el-option v-for="item in options" :key="item.id" :label="item.title" :value="item.id"> </el-option>
-              </el-select> -->
-
                 <el-select v-model="selectCate" placeholder="">
                   <el-option
                     v-for="item in options_product_cates"
@@ -173,7 +168,7 @@
           </div>
         </div>
 
-        <div class="right-nav" v-if="!is_page_home || header_theme == 'white'">
+        <div class="right-nav" >
           <div class="top-contact">
             <div class="text-phone">
               <span class="el-tag el-tag--danger el-tag--plain">
@@ -195,7 +190,7 @@
           
           
         </div>
-        <div class="right-nav" v-else>
+        <!-- <div class="right-nav" v-else>
             <div class="nav-list">
             <div
               class="nav-item"
@@ -247,41 +242,9 @@
                             </div>
                           </div>
                         </div>
-
-                        <!-- <div class="box-haocai">
-                          <div class="pop-product-group">
-                            
-                            <div class="group-title">
-                              <router-link :to="'/productCates?id=916'"
-                                >其他产品</router-link
-                              >
-                            </div>
-                            <div class="group-list group-leixing">
-                              <div class="list-level2">
-                                <div
-                                  class="item"
-                                  v-for="(level1, index) in haocai_cates"
-                                  :key="index"
-                                  :class="{ active: active_haocai_cate.id == level1.id }"
-                                >
-                                  <router-link
-                                    :to="level1.route"
-                                    @click="toggleHaocai(level1)"
-                                  >
-                                    {{ level1.title }}
-                                  </router-link>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div> -->
-                        
                       </div>
                     </div>
                   </div>
-
-
-                  
                 </template>
                 <template v-else-if="item.title == '技术服务'">
                   <el-popover
@@ -357,10 +320,10 @@
               </template>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
-    <div v-if="!is_page_home || header_theme == 'white'" class="section-3">
+    <div  class="section-3">
       <!-- 导航区 -->
           <div class="nav-list">
             <div
@@ -413,41 +376,9 @@
                             </div>
                           </div>
                         </div>
-
-                        <!-- <div class="box-haocai">
-                          <div class="pop-product-group">
-                            
-                            <div class="group-title">
-                              <router-link :to="'/productCates?id=916'"
-                                >其他产品</router-link
-                              >
-                            </div>
-                            <div class="group-list  group-leixing">
-                              <div class="list-level2">
-                                <div
-                                  class="item"
-                                  v-for="(level1, index) in haocai_cates"
-                                  :key="index"
-                                  :class="{ active: active_haocai_cate.id == level1.id }"
-                                >
-                                  <router-link
-                                    :to="level1.route"
-                                    @click="toggleHaocai(level1)"
-                                  >
-                                    {{ level1.title }}
-                                  </router-link>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div> -->
-                        
                       </div>
                     </div>
                   </div>
-
-
-                  
                 </template>
                 <template v-else-if="item.title == '技术服务'">
                   <el-popover
@@ -492,28 +423,6 @@
                           </div>
                         </div>
                       </div>
-                      <!-- <router-link
-                        :to="sub.route"
-                        class="child-item service-child-item"
-                        v-for="(sub, index) in item.child"
-                        :key="index"
-                      >
-                        <span>
-                          {{ sub.title }}
-                        </span>
-                        <div class="service-child-box">
-                          <div class="service-child-inner">
-                            <router-link
-                              :to="son.route"
-                              class="child-item"
-                              v-for="(son, son_index) in sub.child"
-                              :key="son_index"
-                            >
-                              {{ son.title }}
-                            </router-link>
-                          </div>
-                        </div>
-                      </router-link> -->
                     </div>
                   </el-popover>
                 </template>
@@ -529,38 +438,7 @@
                     <router-link slot="reference" class="nav-link" :to="item.route">
                       {{ item.title }}
                     </router-link>
-
                     <div class="pop-child" v-if="item.child">
-                       <!-- <div class="po-child-body">
-                        <div class="po-child-body-item"
-                         v-for="(sub, index) in item.child"
-                          :key="index"
-                        >
-                          <div class="po-child-body-item-title">
-                            <router-link
-                              :to="sub.route"
-                              class="child-item service-child-item"
-                            >
-                              <span>
-                                {{ sub.title }}
-                              </span>
-                            </router-link>
-                          </div>
-                          <div class="po-child-body-item-list">
-                            <div class="po-child-body-item-list-item"
-                             v-for="(son, son_index) in sub.child"
-                              :key="son_index"
-                            >
-                              <router-link
-                                :to="son.route"
-                                class="child-item"
-                              >
-                                {{ son.title }}
-                              </router-link>
-                            </div>
-                          </div>
-                        </div>
-                      </div> -->
                       <router-link
                         :to="sub.route"
                         class="child-item"
@@ -614,8 +492,6 @@ export default {
       },
       list_wenxian: [],
       topInnerStyle:{},
-      navOtherProductList:[],
-      chanpinCenterNavList:[],
     };
   },
   computed: {
@@ -740,7 +616,6 @@ export default {
     },
   },
   mounted(){
-    // this.initialChanpinNav();
   },
   watch: {
     $route(to, from) {
@@ -785,7 +660,6 @@ export default {
   created() {
     this.keyword = this.$route.query.keyword || "";
     this.setView();
-    // this.initialChanpinNav();
   },
 
   methods: {
@@ -966,28 +840,6 @@ export default {
 
     openModalSearch() {
       this.showSearch = true;
-    },
-    initialChanpinNav(){
-      console.log("haocai_cates:"+this.haocai_cates.length)
-        if(this.haocai_cates.length>0){
-          for(var i=0;i<this.haocai_cates.length;i++){
-            if(this.haocai_cates[i].title=="常用辅助试剂"||this.haocai_cates[i].title=="仪器耗材"){
-              for(var j=0;j<this.haocai_cates[i].channels.length;j++){
-                  this.navOtherProductList.push(this.haocai_cates[i].channels[j]);
-              }
-            }
-          }
-          this.navOtherProductList=this.navOtherProductList.slice(1,this.navOtherProductList.length);
-          for(var i=0;i<this.product_cates.length;i++){
-            if(this.product_cates[i].title!='其他产品'){
-              this.chanpinCenterNavList.push(this.product_cates[i]);
-            }
-          }
-          var newOtherNav=this.haocai_cates[0];
-          
-          newOtherNav.channels.push(this.haocai_cates[1].channels[0]);
-          this.chanpinCenterNavList.push(newOtherNav);
-        }
     }
   },
 };

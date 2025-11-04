@@ -38,7 +38,7 @@
                     </span> 
                     <span class="yuan">
                     </span> 
-                    <img :src="item.img" alt="">
+                    <img :src="require('@img/index/'+ item.img +'')" alt="">
                   </a>
                 </div>
               </div>
@@ -50,8 +50,14 @@
             <el-tabs v-model="activePromotion" >
               <el-tab-pane  name="first">
                 <span slot="label">
-                  <span class="hp-title">限时特惠</span>
-                  <div class="bt-icon"></div>
+                  <div class="hp-head-box">
+                    <span class="hp-title">限时特惠</span>
+                    <div class="bt-icon"></div>
+                    <div class="limit-radio">
+                      <span>11月11日结束</span>
+                      
+                    </div>
+                  </div>
                 </span>
                 <div class="ht-list">
                   <div class="ht-list-item"
@@ -59,11 +65,11 @@
                     :key="index"
                   >
                     <div class="ht-list-item-top">
-                      <img :src="item.img" class="ht-list-item-top-img">
+                      <img :src="require('@img/index/'+ item.img +'')" class="ht-list-item-top-img">
 
                       </img>
                       <div class="ht-list-item-top-hticon">
-                        <span>限时特惠</span>
+                        <span>{{item.toptig}}</span>
                       </div>
                     </div>
                     <div class="ht-list-item-center">
@@ -101,7 +107,7 @@
 
                       </img>
                       <div class="ht-list-item-top-hticon">
-                        <span>限时特惠</span>
+                        <span>{{item.toptig}}</span>
                       </div>
                     </div>
                     <div class="ht-list-item-center">
@@ -532,27 +538,27 @@ export default {
       imgX:'',
       imgY:'',
       gotoActivityList:[
-        {titile:"试用装申请",txtgo:"去申请",url:"/technologyCenter?type=technologyDownload&id=864",img:"https://www.solarbio.com/static/img/other_form1.e88495c.png"},
-        {titile:"试用装反馈",txtgo:"去填写",url:"/technologyCenter?type=technologyDownload&id=864",img:"https://www.solarbio.com/static/img/other_form1.e88495c.png"},
-        {titile:"最新打折活动",txtgo:"去查看",url:"/technologyCenter?type=technologyDownload&id=864",img:"https://www.solarbio.com/static/img/other_form1.e88495c.png"},
-        {titile:"热卖试用装",txtgo:"去查看",url:"/technologyCenter?type=technologyDownload&id=864",img:"https://www.solarbio.com/static/img/other_form1.e88495c.png"},
-        {titile:"文献活动",txtgo:"去查看",url:"/technologyCenter?type=technologyDownload&id=864",img:"https://www.solarbio.com/static/img/other_form1.e88495c.png"},
-        {titile:"使用手册",txtgo:"去查看",url:"/technologyCenter?type=technologyDownload&id=864",img:"https://www.solarbio.com/static/img/other_form1.e88495c.png"},
+        {titile:"发文有礼",txtgo:"去发文",url:"/technologyCenter?type=technologyDownload&id=864",img:"hotproduct_1.png"},
+        {titile:"实验视频",txtgo:"去观看",url:"/technologyCenter?type=technologyDownload&id=864",img:"hotproduct_2.png"},
+        {titile:"技术干货",txtgo:"去查看",url:"/technologyCenter?type=technologyDownload&id=864",img:"hotproduct_3.png"},
+        {titile:"试用申请",txtgo:"去申请",url:"/technologyCenter?type=technologyDownload&id=864",img:"hotproduct_4.png"},
+        {titile:"试用反馈",txtgo:"去反馈",url:"/technologyCenter?type=technologyDownload&id=864",img:"hotproduct_5.png"},
+        {titile:"文献中心",txtgo:"去查看",url:"/technologyCenter?type=technologyDownload&id=864",img:"hotproduct_6.png"},
       ],
       activePromotion:"first",
       limitimeProductList:[
-        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025052713454033852.png",price:"790.00",unit:"20 μ"},
-        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025052713454033852.png",price:"790.00",unit:"20 μ"},
-        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025052713454033852.png",price:"790.00",unit:"20 μ"},
-        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025052713454033852.png",price:"790.00",unit:"20 μ"},
-        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025052713454033852.png",price:"790.00",unit:"20 μ"},
+        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"20251104-142833.png",price:"790.00",unit:"20 μ",toptig:'限时特惠'},
+        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"20251104-142833.png",price:"790.00",unit:"20 μ",toptig:'限时特惠'},
+        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"20251104-142833.png",price:"790.00",unit:"20 μ",toptig:'限时特惠'},
+        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"20251104-142833.png",price:"790.00",unit:"20 μ",toptig:'限时特惠'},
+        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"20251104-142833.png",price:"790.00",unit:"20 μ",toptig:'限时特惠'},
       ],
       boutiqueProductList:[
-        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ"},
-        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ"},
-        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ"},
-        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ"},
-        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ"},
+        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ",toptig:'精品推荐'},
+        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ",toptig:'精品推荐'},
+        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ",toptig:'精品推荐'},
+        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ",toptig:'精品推荐'},
+        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ",toptig:'精品推荐'},
       ]
     };
   },
@@ -637,7 +643,7 @@ export default {
 
   methods: {
     destroyVideo() {
-      this.video_dp.destroy();
+      // this.video_dp.destroy();
     },
     initVideo() {
       this.$api("index_config").then((res) => {

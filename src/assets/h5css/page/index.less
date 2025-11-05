@@ -540,12 +540,18 @@
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: baseline;
-    
+    .product-center-box:nth-child(2){
+      width: 330px;
+    }
+    .product-center-box:nth-child(3){
+      width: 580px;
+    }
     .product-center-box{
       background-color: #fff;
       width: 440px;
       height: 100%;
       border-radius: 12px;
+      // background-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgb(252, 173, 173));
       // background: radial-gradient(circle at center, #5b1401 0, #ea3200 100%);
       // background: radial-gradient(circle at center, rgba(6, 35, 165, 1) 0, rgba(15, 43, 90, 0.1) 100%);
       margin: 20px 0px;
@@ -579,7 +585,7 @@
         justify-content:flex-start;
         align-content: flex-start;
         padding: 20px;
-        height: 280px;
+        height: 180px;
         &-product{
           margin: 8px;
           a{
@@ -897,7 +903,7 @@
       &-item{
         height: 460px;
         width: 263px;
-        border-radius: 24px;
+        border-radius: 14px;
         -webkit-box-shadow: 0 1px 10px 0 rgba(102, 98, 98, .1);
         box-shadow: 0 1px 10px 0 rgba(102, 98, 98, .1);
         &-top{
@@ -908,6 +914,7 @@
             height: 260px;
             overflow: hidden;
             transition: all 0.4s ease;
+            border-radius: 14px 14px 0px 0px;
           }
           &-hticon{
             position: absolute;
@@ -926,7 +933,7 @@
         }
         &-center{
           // background-color: #fff1f2;
-          padding: 20px 10px;
+          padding: 15px 10px;
           display: flex;
           flex-direction: column;
           justify-content:space-around;

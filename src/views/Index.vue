@@ -84,10 +84,12 @@
                       </span>
                     </div>
                     <div class="ht-list-item-bot">
-                      <div class="ht-list-item-bot-go">
-                        <span>立即查看</span>
-                        <i class="ht-list-item-bot-go-more"></i>
-                      </div>
+                      <router-link :to="'/goodsDetail/' + item.skuId"  target="_blank">
+                        <div class="ht-list-item-bot-go" >
+                          <span>立即查看</span>
+                          <i class="ht-list-item-bot-go-more"></i>
+                        </div>
+                       </router-link>
                     </div>
                   </div>
                 </div>
@@ -122,10 +124,12 @@
                       </span>
                     </div>
                     <div class="ht-list-item-bot">
-                      <div class="ht-list-item-bot-go">
+                      <router-link :to="'/goodsDetail/' + item.skuId"  target="_blank">
+                      <div class="ht-list-item-bot-go" >
                         <span>立即查看</span>
                         <i class="ht-list-item-bot-go-more"></i>
                       </div>
+                      </router-link>
                     </div>
                   </div>
                 </div>
@@ -424,7 +428,7 @@
               <div class="swiper-wrapper">
                 <div class="swiper-slide wow fadeInUp animated">
                     <div class="img">
-                        <img src="@img/index_prize.png" alt="企业应用SaaS">
+                        <img src="@img/index_prize.png" alt="实验流程块">
                     </div>
                     <div class="title">
                         <h2 class="fnt_14">实验流程块</h2>
@@ -450,7 +454,7 @@
                 </div>
                 <div class="swiper-slide wow fadeInUp  animated">
                     <div class="img">
-                        <img src="@img/index_prize.png" alt="财务云">
+                        <img src="@img/index_prize.png" alt="实验结果好">
                     </div>
                     <div class="title">
                         <h2 class="fnt_14">实验结果好</h2>
@@ -463,7 +467,7 @@
                 </div>
                 <div class="swiper-slide wow fadeInUp animated">
                     <div class="img">
-                        <img src="@img/index_prize.png" alt="ERP、财务满意度">
+                        <img src="@img/index_prize.png" alt="实验样本省">
                     </div>
                     <div class="title">
                       <h2 class="fnt_14">实验样本省</h2>
@@ -538,12 +542,12 @@ export default {
       imgX:'',
       imgY:'',
       gotoActivityList:[
-        {titile:"发文有礼",txtgo:"去发文",url:"/technologyCenter?type=technologyDownload&id=864",img:"hotproduct_1.png"},
-        {titile:"实验视频",txtgo:"去观看",url:"/technologyCenter?type=technologyDownload&id=864",img:"hotproduct_2.png"},
-        {titile:"技术干货",txtgo:"去查看",url:"/technologyCenter?type=technologyDownload&id=864",img:"hotproduct_3.png"},
-        {titile:"试用申请",txtgo:"去申请",url:"/technologyCenter?type=technologyDownload&id=864",img:"hotproduct_4.png"},
-        {titile:"试用反馈",txtgo:"去反馈",url:"/technologyCenter?type=technologyDownload&id=864",img:"hotproduct_5.png"},
-        {titile:"文献中心",txtgo:"去查看",url:"/technologyCenter?type=technologyDownload&id=864",img:"hotproduct_6.png"},
+        {titile:"发文有礼",txtgo:"去发文",url:"/technologyService/29",img:"hotproduct_1.png"},
+        {titile:"实验视频",txtgo:"去观看",url:"/technologyCenter?type=technologyOnline&id=861",img:"hotproduct_2.png"},
+        {titile:"技术干货",txtgo:"去查看",url:"/news/31",img:"hotproduct_3.png"},
+        {titile:"试用申请",txtgo:"去申请",url:"/news/31",img:"hotproduct_4.png"},
+        {titile:"试用反馈",txtgo:"去反馈",url:"/technologyCenter?type=technologyDownload&id=888",img:"hotproduct_5.png"},
+        {titile:"文献中心",txtgo:"去查看",url:"/news/33",img:"hotproduct_6.png"},
       ],
       activePromotion:"first",
       limitimeProductList:[
@@ -737,7 +741,7 @@ export default {
         that.$store.commit("set_header_theme", "transparent");
         // $header.classList.remove('theme-white');
       }
-      if(countup>2500&&countup<=2600){
+      if(countup>3700&&countup<=4000){
         const refname = 'refcountfz';
         this.$refs['refcountfz'].reset();
         this.$refs['refcountfz'].start();
@@ -749,7 +753,7 @@ export default {
         this.$refs['refcountyz'].start();
         // $target.start();
       }
-      // //console.log("滚动监听", new Date(), scrollTop);
+      // console.log("滚动监听", new Date(), scrollTop);
     },
 
     setView() {
@@ -902,7 +906,7 @@ export default {
       }
     },
 
-    bannerClick(item) {
+    hotProductClick(item) {
       //console.log({ ...item });
 
       if (item.url) {
@@ -1040,15 +1044,15 @@ export default {
 .lunbo-box {
   position: relative;
   width: 100%;
-  height: 355px;
+  height: 500px;
 
   /deep/ .el-carousel__container {
-    height: 355px;
+    height: 500px;
   }
 
   /deep/ img {
     width: 100%;
-    height: 355px;
+    height: 500px;
     cursor: pointer;
   }
 }
@@ -1056,15 +1060,15 @@ export default {
 /deep/ .banner-box .lunbo-box {
   position: relative;
   width: 100%;
-  height: 355px;
+  height: 500px;
 
   /deep/ .el-carousel__container {
-    height: 355px;
+    height: 500px;
   }
 
   /deep/ img {
     width: 100%;
-    height: 355px;
+    height: 500px;
     cursor: pointer;
   }
 }

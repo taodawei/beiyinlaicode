@@ -370,7 +370,7 @@ export default {
 .page-top {
   display: none;
   position: relative;
-  padding-top: 150px;
+  padding-top: 92px;
   .page-top-banner {
     img {
       width: 100%;

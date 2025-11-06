@@ -88,7 +88,7 @@ export default {
 .page {
   text-align: center;
   font-size: 14px;
-
+  margin-top: 92px;
   .inner {
     width: @width;
     // width: 100%;

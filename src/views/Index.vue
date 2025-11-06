@@ -11,7 +11,6 @@
                   :key="index"
                   @click.native="bannerClick(item)"
                 >
-                  <!-- <img :src="item.image" /> -->
                   <img :src="item.image" alt="" />
                 </el-carousel-item>
               </el-carousel>
@@ -19,14 +18,12 @@
           </div>
         </div>
         <!-- 顶部banner 分类  -->
-        
          <div class="bannerNav-box">
           <div class="bannerNav-box-body">
             <div class="BNav-from-list">
                 <div class="other-form"
                  v-for="(item,index) in gotoActivityList"
                  :key="index"
-
                 >
                   <a :href="item.url" target="_blank">
                     <span class="text">{{item.titile}}</span> 
@@ -146,8 +143,9 @@
         <!--产品中心-->
         <div class="product-center">
           <div class="product-center-header">
-            <h2>产品中心</h2>
-            <h3>质量高于一切，用专业的态度做专业的品牌</h3>
+            <p>产品中心</p>
+            <i class=""></i>
+            <p>质量高于一切，用专业的态度做专业的品牌</p>
           </div>
           <div class="product-center-body">
               <div class="product-center-box" 
@@ -209,6 +207,29 @@
               </div> -->
           </div>
         </div>
+        <!--研发平台-->
+         <div class="dev-platform-box">
+          <div class="dev-platform">
+            <div class="dev-platform-titile">
+              <p>研发平台</p>
+              <i class="dev-platform-bkbox"></i>
+              <p>汇聚科研精英的生物试剂研发平台，以技术创新与高效协作加速试剂研发进程</p>
+            </div>
+            <div class="dev-platform-swiper">
+              <el-carousel :interval="4000" type="card" height="520px">
+                <el-carousel-item v-for="item in 8" :key="item">
+                  <el-image
+                    style="width: 700px; height: 450px;border-radius: 22px;box-shadow: 0 1px 1rem 0 rgba(102, 98, 98, 0.1);"
+                    :src="require('@img/index/dpbanner_'+ item +'.png')" 
+                    fit="fill">
+                  </el-image>
+                  <p class="dev-platform-name">{{ devPlatform[item] }}</p>
+                </el-carousel-item>
+              </el-carousel>
+            </div>
+          </div>
+        </div>
+
         <!-- 主营业务 -->
         <div class="section-yewu">
           <div class="section-title">
@@ -269,7 +290,7 @@
             </div>
           </div>
         </div>
-
+       
         <!-- 广告 -->
         <!-- <div class="adv-box">
           <img src="@img/home-adv.jpg" alt="" />
@@ -481,7 +502,6 @@
           </div>
           </div>
         </div>
-       
       </div>
     </div>
   </div>
@@ -563,7 +583,8 @@ export default {
         {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ",toptig:'精品推荐'},
         {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ",toptig:'精品推荐'},
         {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ",toptig:'精品推荐'},
-      ]
+      ],
+      devPlatform:["","病理平台","动物平台","基因工程抗体平台","抗体验证平台","分子及蛋白表达平台","抗体筛选平台","细胞平台","快速抗体制备平台"]
     };
   },
   
@@ -741,7 +762,7 @@ export default {
         that.$store.commit("set_header_theme", "transparent");
         // $header.classList.remove('theme-white');
       }
-      if(countup>3700&&countup<=4000){
+      if(countup>4300&&countup<=4600){
         const refname = 'refcountfz';
         this.$refs['refcountfz'].reset();
         this.$refs['refcountfz'].start();
@@ -955,7 +976,7 @@ export default {
     handleSearchInput() {
       this.searchLock = false;
     },
-  }
+  },
 };
 </script>
 
@@ -1038,7 +1059,7 @@ export default {
 }
 
 .banner-box {
-  margin-top: 290px;
+  margin-top: 228px;
 }
 
 .lunbo-box {

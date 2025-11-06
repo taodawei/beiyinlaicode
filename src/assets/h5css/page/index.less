@@ -493,9 +493,39 @@
   background: url(../../img/product_bg.00eb0d0.png) no-repeat;
   background-size: 100% 100%;
   &-header{
-    h2{
-      margin: 20px 0px;
-    }
+     display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      width: 1400px;
+      margin: auto;
+      p{
+        color: #999898;
+        padding-top: 10px;
+        margin-bottom: 10px;
+        font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+        font-size: 18px;
+      }
+      p:first-child{
+        position: relative;
+        padding: 0 72px 0 24px;
+        position: relative;
+        color:#000;
+        z-index: 9;
+        font-size: 36px;
+        font-weight: bold;
+        color: #333333;
+      }
+      i{
+        background-color: #ea3200;
+        height: 12px;
+        width: 130px;
+        border-radius: 1.2rem;
+        position: absolute;
+        bottom: 48px;
+        opacity: 0.3;
+        left: 610px;
+      }
   }
   .product-center-box:nth-child(1)  {
     .box-header-icon{
@@ -1003,6 +1033,60 @@
     }
   }
 }
+.dev-platform-box{
+  margin-top: 30px;
+  width: 100%;
+  .dev-platform{
+    width: 1400px;
+    margin:auto;
+    &-titile{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      p{
+        color: #999898;
+        padding-top: 10px;
+        margin-bottom: 10px;
+        font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+        font-size: 18px;
+      }
+      p:first-child{
+        position: relative;
+        padding: 0 72px 0 24px;
+        position: relative;
+        color:#000;
+        z-index: 9;
+        font-size: 36px;
+        font-family: Microsoft YaHei-Bold, Microsoft YaHei;
+        font-weight: bold;
+        color: #333333;
+      }
+      i{
+        background-color: #ea3200;
+        height: 12px;
+        width: 130px;
+        border-radius: 1.2rem;
+        position: absolute;
+        bottom: 48px;
+        opacity: 0.3;
+        left: 610px;
+      }
+    }
+    &-swiper{
+      margin-top: 15px;
+    }
+  }
+}
+.is-active .dev-platform-name{
+  font-size: 28px;
+  color: #7f7e7e;
+}
+.dev-platform-name{
+  font-size: 22px;
+  font-weight: 500;
+  color: #a6a5a5;
+}
 /deep/.el-tabs__item:hover {
   color: #ea3200;
   cursor: pointer;
@@ -1012,4 +1096,7 @@
 }
 /deep/.el-tabs__active-bar{
   background-color: #ea3200;
+}
+/deep/.el-carousel__indicators--outside button{
+   background-color: #ea3200;
 }

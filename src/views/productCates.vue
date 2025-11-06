@@ -402,7 +402,8 @@ export default {
 
 .page-top {
   position: relative;
-  padding-top: 150px;
+  padding-top: 92px;
+  // margin-top: 92px;
   .page-top-banner {
     img {
       width: 100%;

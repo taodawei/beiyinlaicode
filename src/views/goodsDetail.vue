@@ -1638,7 +1638,7 @@ export default {
 <style scoped lang="less">
 .page-top {
   position: relative;
-  padding-top: 150px;
+  padding-top: 90px;
   .page-top-banner {
     img {
       width: 100%;

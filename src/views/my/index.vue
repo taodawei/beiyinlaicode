@@ -228,6 +228,7 @@ export default {
 
 <style scoped lang="less">
 .page-user-wrap {
+  margin-top: 92px;
   background: #fff;
 
   background: #f7f7f7;

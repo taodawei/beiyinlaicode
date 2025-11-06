@@ -1,7 +1,5 @@
 <template>
-  <div id="header" class="header-box theme-white"   :style="{
-                        position: is_page_home?'fixed':'absolute'
-                        }">
+  <div id="header" class="header-box theme-white"   :style="{position: is_page_home?'fixed':'absolute'}">
     <div class="section-1">
       <div class="header-info">
         <div class="info-left">
@@ -25,10 +23,6 @@
               </a>
             </div>
           </div>
-          <!-- <img class="img-1" src="@img/icon-phone.png" alt="" />
-          <span class="text-1">{{ webConfig.hotLine }}</span>
-          <img class="img-2" src="@img/icon-env.png" alt="" />
-          <span class="text-2">{{ webConfig.email }}</span> -->
         </div>
         <div class="info-right">
           <div class="top-certifs">
@@ -92,11 +86,25 @@
               </div>
             </div>
           </div>
-          
+          <span class="cut-line">|</span>
+          <div class="user-right">
+            <router-link v-if="!is_login" class="login" to="/login"> 登录 </router-link>
+            <router-link v-else class="login" to="/userIndex">
+              {{ baseInfo.username }}
+            </router-link>
+            <span class="cut-line">|</span>
+            <router-link v-if="!is_login" class="register" to="/register">
+              注册
+            </router-link>
+            <a v-else class="register" href="javascript:void(0)" @click="logout"> 退出 </a>
+
+            <!-- <router-link class="shopcart" to="/shoppingCart">
+              购物车 ({{ shopcart_count || 0 }})
+            </router-link> -->
+          </div>
         </div>
       </div>
     </div>
-
     <div class="section-2">
       <div class="header-inner header-inner-top" >
         <!-- logo  :class="[header_theme == 'transparent' ? '' : 'header-inner-top']" -->
@@ -169,6 +177,15 @@
         </div>
 
         <div class="right-nav" >
+          <div class="shop-box">
+            <router-link class="shopcart" to="/shoppingCart">
+              <el-badge :value="shopcart_count || 0 " class="item">
+                <el-button type="danger" icon="el-icon-shopping-cart-2" circle>
+                </el-button>
+                <p>购物车</p>
+              </el-badge>
+            </router-link>
+          </div>
           <div class="top-contact">
             <div class="text-phone">
               <span class="el-tag el-tag--danger el-tag--plain">
@@ -1040,8 +1057,15 @@ export default {
         padding: 0 12px;
         color: #e8e8e8;
       }
+      .user-right{
+        display: flex;
+        justify-content: space-around;
+        a{
+          color:#ea3200;
+        }
+      }
       .top-qrcodes{
-        width:300px;
+        width:200px;
         height: 100%;
         display: flex;
         flex-direction: row;
@@ -1121,7 +1145,7 @@ export default {
   box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.16);
 }
 .header-inner-top{
-  height: 160px!important;
+  height: 120px!important;
 }
 .header-inner {
   width: 1400px;
@@ -1302,7 +1326,7 @@ export default {
   right: 0;
   z-index: 100;
   background: transparent;
-  margin-top: 20px;
+  margin-top: 21px;
   // padding-top: 20px;
   transform: translate(0, -20px);
 }
@@ -1575,7 +1599,7 @@ export default {
   }
 }
 .section-3{
-    height: 70px;
+    height: 50px;
     // background: #f2f2f2;
     border-top: solid 1px #888;
     .nav-list{
@@ -1586,14 +1610,14 @@ export default {
         >a{
           font-size: 22px;
           font-weight: 600;
-          height: 7rem;
-          line-height: 7rem;
+          height: 50px;
+          line-height: 50px;
         }
         >span>span>a{
           font-size: 22px;
           font-weight: 600;
-          height: 7rem;
-          line-height: 7rem;
+          height: 50px;
+          line-height: 50px;
         }
       }
     }
@@ -1664,36 +1688,54 @@ export default {
     }
   }
 }
-.top-contact{
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
-  .text-phone{
-    .el-icon-phone-outline{
-      font-size: 18px;
+.right-nav{
+  display: flex;
+  align-items:flex-end;
+  .shop-box{
+    margin-right: 30px;
+    // margin-top: 10px;
+    padding-bottom: 17px;
+    .shopcart:hover{
+      font-size: 28px;
     }
-    .text-1{
-      font-size: 18px;
-    }
-  }
-  .text-email{
-    .el-icon-message{
-      font-size: 18px;
-    }
-    .text-2{
-      font-size: 18px;
-    }
-  }
-  .text-work {
     p{
+      color:#303133;
       font-size: 18px;
-      color: #303133;
-      line-height: 32px;
+      margin-top: 15px;
+    }
+  }
+  .top-contact{
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-start;
+    .text-phone{
+      .el-icon-phone-outline{
+        font-size: 18px;
+      }
+      .text-1{
+        font-size: 18px;
+      }
+    }
+    .text-email{
+      .el-icon-message{
+        font-size: 18px;
+      }
+      .text-2{
+        font-size: 18px;
+      }
+    }
+    .text-work {
+      p{
+        font-size: 18px;
+        color: #303133;
+        line-height: 32px;
+      }
     }
   }
 }
+
 .po-child-body{
   padding: 20px;
   display: flex;
@@ -1736,6 +1778,20 @@ export default {
   }
   &-item:last-child{
     border-right: solid 0px #ccc;
+  }
+}
+/deep/.el-icon-shopping-cart-2::before{
+  font-size: 24px;
+  font-weight: 600;
+  transition: all .12s ease;
+}
+/deep/.el-badge__content{
+  height: 2rem;
+  line-height: 1.5rem;
+}
+/deep/.el-button--danger:hover{
+  .el-icon-shopping-cart-2::before{
+    font-size: 28px;
   }
 }
 @media screen and (max-width: 1600px) {

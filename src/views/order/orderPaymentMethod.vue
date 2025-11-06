@@ -106,7 +106,7 @@
           <div class="item" v-for="(item, index) in product_list" :key="index">
             <div class="item-detail">
               <div class="item-1">
-                <img :src="item.image" />
+                <img :src="item.img" />
               </div>
               <div class="item-2">
                 <div class="goods-title">
@@ -1310,7 +1310,7 @@ export default {
   padding-top: 40px;
   text-align: center;
   font-size: 14px;
-
+  margin-top: 92px;
   .inner {
     width: @width;
     margin: 0 auto;

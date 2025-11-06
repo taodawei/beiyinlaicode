@@ -167,7 +167,7 @@ export default {
 .page {
   position: relative;
   // background: rgba(255, 76, 41, 0.95);
-
+  margin-top: 92px;
   .mask {
     background: url(~@img/login-bg.png) 100% 100% no-repeat;
     background-size: cover;

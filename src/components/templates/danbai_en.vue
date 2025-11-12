@@ -313,11 +313,16 @@ export default {
   created() {
     this.setView();
   },
-  beforeUpdate(){
+  mounted(){
     setTimeout(() => {
       window.print();
-    }, 1000);
+    }, 1800);
   },
+  // beforeUpdate(){
+  //   setTimeout(() => {
+  //     window.print();
+  //   }, 1000);
+  // },
   methods: {
     setView() {
       // this.$api("brand_book", {

@@ -37,9 +37,9 @@
               <div class="product-title">
                 {{ detail.title }} ({{ detail.skuId }})
 
-                <span class="state-xiajia" v-if="detail.product_status == -1">
+                <!-- <span class="state-xiajia" v-if="detail.product_status == -1">
                   (该产品已下架)
-                </span>
+                </span> -->
               </div>
               <div class="product-other-action">
                 <div v-if="+detail.paper_num" class="action-item" @click="toWenxian">

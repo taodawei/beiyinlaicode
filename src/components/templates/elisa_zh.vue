@@ -367,11 +367,16 @@ export default {
   created() {
     this.setView();
   },
-  beforeUpdate(){
+  mounted(){
     setTimeout(() => {
       window.print();
-    }, 1000);
+    }, 1800);
   },
+  // beforeUpdate(){
+  //   setTimeout(() => {
+  //     window.print();
+  //   }, 1000);
+  // },
   methods: {
     setView() {},
   },
@@ -383,7 +388,7 @@ export default {
   .code-box {
     .img-box {
       img {
-        width: 30rem !important;
+        width: 75rem !important;
       }
     }
   }

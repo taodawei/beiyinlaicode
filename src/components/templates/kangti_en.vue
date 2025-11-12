@@ -327,10 +327,15 @@ export default {
   created() {
     this.setView();
   },
-  beforeUpdate(){
+  // beforeUpdate(){
+  //   setTimeout(() => {
+  //     window.print();
+  //   }, 1800);
+  // },
+  mounted(){
     setTimeout(() => {
       window.print();
-    }, 1000);
+    }, 1800);
   },
   methods: {
     setView() {

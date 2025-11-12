@@ -177,11 +177,11 @@
 
                       <div class="price">￥ {{ +item.price_sale }}</div>
 
-                      <div class="guige-xiajia" v-if="item.status == -1">(已下架)</div>
+                      <!-- <div class="guige-xiajia" v-if="item.status == -1">(已下架)</div> -->
                     </button>
                   </div>
-
-                  <div class="shuliang-box">
+                  <!--下架商品不显示购物按钮-->
+                  <div v-if="detail.product_status != -1" class="shuliang-box">
                     <div class="sel-num-title">数量：</div>
 
                     <div class="shuliang">
@@ -201,8 +201,11 @@
                       </div>
                     </div>
                   </div>
-
-                  <div class="btn-box">
+                  <div  v-if="detail.product_status == -1" class="product-takedown" >
+                    <span>商品已下架</span>
+                  </div>
+                  <!--下架商品不显示购物按钮-->
+                  <div v-if="detail.product_status != -1" class="btn-box">
                     <div class="huoqi">{{ huoqi_text }}</div>
                     <!-- <button class="btn-buy" @click="payNow">立即购买</button> -->
                     <button class="btn-add-cart btn-ripple" @click="shopcart_add">
@@ -211,7 +214,7 @@
                     </button>
                   </div>
 
-                  <div class="phone-tip">
+                  <div  v-if="detail.product_status != -1"  class="phone-tip">
                     <el-popover placement="bottom" trigger="click">
                       <div class="pop-kefu">
                         <div class="pop-kefu-inner">
@@ -2137,7 +2140,19 @@ export default {
               }
             }
           }
-
+          .product-takedown{
+            width: 266px;
+            height: 143px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span{
+              color: #fff;
+              background-color: #333333;
+              padding: 15px 25px;
+              border-radius: 12px;
+            }
+          }
           .params {
             margin-top: 20px;
             .flex();

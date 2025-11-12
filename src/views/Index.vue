@@ -43,45 +43,62 @@
         </div>
         <!--热卖活动-->
         <div class="hot-Promotion">
+          <div class="product-center-header">
+            <p>最新活动</p>
+            <i class=""></i>
+            <p>活动商品持续上新，速来挑选心仪好物！</p>
+          </div>
           <div class="hot-Promotion-body">
             <el-tabs v-model="activePromotion" >
-              <el-tab-pane  name="first">
+              <el-tab-pane  v-for="(item,index) in hotProductList" :key="index" :name="item.name">
                 <span slot="label">
                   <div class="hp-head-box">
-                    <span class="hp-title">限时特惠</span>
+                    <span class="hp-title">{{item.titile}}</span>
                     <div class="bt-icon"></div>
-                    <div class="limit-radio">
-                      <span>11月11日结束</span>
-                      
+                    <div class="limit-radio" v-if="item.isShowTip">
+                      <!-- <span>11月11日结束</span> -->
                     </div>
                   </div>
                 </span>
                 <div class="ht-list">
                   <div class="ht-list-item"
-                    v-for="(item,index) in limitimeProductList"
-                    :key="index"
+                    v-for="(pro,pindex) in item.products"
+                    :key="pindex"
                   >
                     <div class="ht-list-item-top">
-                      <img :src="require('@img/index/'+ item.img +'')" class="ht-list-item-top-img">
-
-                      </img>
+                      <el-image
+                        style="width: 260px; height: 260px"
+                        v-if="pro.imgbendi" 
+                        :src="require('@img/index/'+ pro.img +'')" 
+                        class="ht-list-item-top-img"
+                        fit="contain">
+                      </el-image>
+                      <el-image
+                        style="width: 260px; height: 260px"
+                        v-else 
+                        :src="pro.img" 
+                        class="ht-list-item-top-img"
+                        fit="contain">
+                      </el-image>
+                      <!-- <img v-if="pro.imgbendi" :src="require('@img/index/'+ pro.img +'')" class="ht-list-item-top-img"></img>
+                      <img v-else :src="pro.img" class="ht-list-item-top-img"></img> -->
                       <div class="ht-list-item-top-hticon">
-                        <span>{{item.toptig}}</span>
+                        <span>{{pro.toptig}}</span>
                       </div>
                     </div>
                     <div class="ht-list-item-center">
                       <span class="ht-list-item-center-price">
-                        <span>价格：¥</span><span>{{ item.price }}</span>
+                        <span>价格：¥</span><span>{{ pro.price }}</span>
                       </span>
                       <span class="ht-list-item-center-name">
-                        {{ item.titile }}
+                        {{ pro.titile }}
                       </span>
                       <span class="ht-list-item-center-huohao">
-                        {{ item.skuId }}
+                        {{ pro.skuId }}
                       </span>
                     </div>
                     <div class="ht-list-item-bot">
-                      <router-link :to="'/goodsDetail/' + item.skuId"  target="_blank">
+                      <router-link :to="'/goodsDetail/' + pro.skuId"  target="_blank">
                         <div class="ht-list-item-bot-go" >
                           <span>立即查看</span>
                           <i class="ht-list-item-bot-go-more"></i>
@@ -91,7 +108,7 @@
                   </div>
                 </div>
               </el-tab-pane>
-              <el-tab-pane  name="second">
+              <!-- <el-tab-pane  name="second">
                 <span slot="label">
                   <span class="hp-title">精品推荐</span>
                   <div class="bt-icon"></div>
@@ -136,7 +153,7 @@
                   <span class="hp-title">新品推荐</span>
                   <div class="bt-icon"></div>
                 </span>
-                敬请期待！</el-tab-pane>
+                敬请期待！</el-tab-pane> -->
             </el-tabs>
           </div>
         </div>
@@ -290,13 +307,6 @@
             </div>
           </div>
         </div>
-       
-        <!-- 广告 -->
-        <!-- <div class="adv-box">
-          <img src="@img/home-adv.jpg" alt="" />
-        </div> -->
-
-     
 
         <!-- 文献收录与精选 -->
         <div class="section-wenxian">
@@ -570,19 +580,42 @@ export default {
         {titile:"文献中心",txtgo:"去查看",url:"/news/33",img:"hotproduct_6.png"},
       ],
       activePromotion:"first",
-      limitimeProductList:[
-        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"20251104-142833.png",price:"790.00",unit:"20 μ",toptig:'限时特惠'},
-        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"20251104-142833.png",price:"790.00",unit:"20 μ",toptig:'限时特惠'},
-        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"20251104-142833.png",price:"790.00",unit:"20 μ",toptig:'限时特惠'},
-        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"20251104-142833.png",price:"790.00",unit:"20 μ",toptig:'限时特惠'},
-        {skuId:"PAB36508",titile:"[KO Validated] HDAC1 Polyclonal Antibody",img:"20251104-142833.png",price:"790.00",unit:"20 μ",toptig:'限时特惠'},
-      ],
-      boutiqueProductList:[
-        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ",toptig:'精品推荐'},
-        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ",toptig:'精品推荐'},
-        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ",toptig:'精品推荐'},
-        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ",toptig:'精品推荐'},
-        {skuId:"WB9205",titile:"广谱磷酸酶抑制剂混合物(100×,储存液)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"790.00",unit:"20 μ",toptig:'精品推荐'},
+      hotProductList:[
+        {titile:'限时特惠',name:"first",products:[
+          {skuId:"BTK065",titile:"甘油三酯(TG)含量检测试剂盒(GPO-PAP法)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/img/BTK065/BTK065_1.jpg",price:"400.00",unit:"100T/93S",toptig:'生化打包活动价',imgbendi:false},
+          {skuId:"BTK063",titile:"总胆固醇(TC)检测试剂盒(COD-PAP法)",img:"	https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025061613395822265.png",price:"460.00",unit:"100T/96S",toptig:'生化打包活动价',imgbendi:false},
+          {skuId:"RMAB50759",titile:"xCT Rabbit mAb",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/img/RMAB50759/RMAB50759_1.jpg",price:"1270.00",unit:"50 μL",toptig:'抗体买赠清单内',imgbendi:false},
+          {skuId:"RMAB50052",titile:"STING Rabbit mAb",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/img/RMAB50052/RMAB50052_1.jpg",price:"1270.00",unit:"50 μL",toptig:'抗体买赠清单内',imgbendi:false},
+          {skuId:"PW9243",titile:"通用型抗体稀释液 ",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/img/PW9243/PW9243_1.jpg",price:"118.00",unit:"100 mL",toptig:'抗体买赠清单内',imgbendi:false},
+        ],isShowTip:true},
+        {titile:'热销产品',name:"second",products:[
+          {skuId:"MAB51137",titile:"alpha Smooth Muscle Actin (3G2) Mouse mAb",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/img/MAB51137/MAB51137_1.jpg",price:"790.00",unit:"20 μL",toptig:'热销抗体列表',imgbendi:false},
+          {skuId:"RMAB48852",titile:"Phospho-AKT (Ser473) Rabbit mAb",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/img/RMAB48852/RMAB48852_1.jpg",price:"1270.00",unit:"50 μL",toptig:'热销抗体列表',imgbendi:false},
+          {skuId:"RMAB50711",titile:"AKT Rabbit mAb",img:"	https://bio-swamp.oss-cn-nanjing.aliyuncs.com/img/RMAB50711/RMAB50711_1.jpg",price:"790.00",unit:"20 μL",toptig:'热销抗体列表',imgbendi:false},
+          {skuId:"MU30044",titile:"Mouse Interleukin6",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/img/MU30044/MU30044_1.jpg",price:"1600.00",unit:"48 T",toptig:'热销ELISA列表',imgbendi:false},
+          {skuId:"MU30030",titile:"Mouse Tumor Necrosis Factor-α（TNF-α）ELISA Kit ",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/img/MU30030/MU30030_1.jpg",price:"1600.00",unit:"48 T",toptig:'热销ELISA列表',imgbendi:false},
+        ],isShowTip:false},
+        {titile:'全年特惠',name:"three",products:[
+          {skuId:"PAB36508",titile:"HRP-conjugated Goat Anti-Mouse IgG (H+L) ",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/img/PAB36508/PAB36508_1.jpg",price:"790.00",unit:"20 μL",toptig:'全年特惠',imgbendi:false},
+          {skuId:"SAB48169",titile:"HRP-conjugated Goat Anti-Rabbit IgG (H+L)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/img/SAB48169/SAB48169_1.jpg",price:"158.00",unit:"100 μL",toptig:'全年特惠',imgbendi:false},
+          {skuId:"MAB45855",titile:"GAPDH Monoclonal Antibody",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/img/MAB45855/MAB45855_1.jpg",price:"580.00",unit:"50 μL",toptig:'全年特惠',imgbendi:false},
+          {skuId:"BTK022",titile:"丙二醛(MDA)含量检测试剂盒",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/img/BTK022/BTK022_1.jpg",price:"149.00",unit:"100T/94S 原价：370元",toptig:'全年特惠',imgbendi:false},
+          {skuId:"BTK032",titile:"总超氧化物歧化酶(SOD)活性检测试剂盒(WST-8法)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025061613424017727.png",price:"580.00",unit:"100T/92S",toptig:'全年特惠',imgbendi:false},
+        ],isShowTip:false},
+        {titile:'橙色星期三',name:"fov",products:[
+          {skuId:"WB9201",titile:"RIPA裂解液(强，含抑制剂)",img:"20251104-142833.png",price:"790.00",unit:"20 μL",toptig:'星期三特惠',imgbendi:true},
+          {skuId:"BTK051",titile:"L-乳酸(L-LA)含量检测试剂盒",img:"20251104-142833.png",price:"820.00",unit:"50T/44S",toptig:'星期三特惠',imgbendi:true},
+          {skuId:"PW9220",titile:"5×即沉SDS-PAGE 上样缓冲液",img:"20251104-142833.png",price:"108.00",unit:"1mL×5 支",toptig:'星期三特惠',imgbendi:true},
+          {skuId:"BTK023",titile:"活性氧(ROS)检测试剂盒(荧光法)",img:"20251104-142833.png",price:"390.00",unit:"100T/100S",toptig:'星期三特惠',imgbendi:true},
+          {skuId:"PW9212",titile:"彩色预染蛋白Marker（10-250 kDa，三色）",img:"20251104-142833.png",price:"446.00",unit:"2 × 250 µL",toptig:'星期三特惠',imgbendi:true},
+        ],isShowTip:false},
+        {titile:'新品上市',name:"five",products:[
+          {skuId:"BTK256",titile:"γ-氨基丁酸(GABA)含量检测试剂盒",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025061613420259849.png",price:"405.00",unit:"50T/44S",toptig:'新品上市',imgbendi:false},
+          {skuId:"BTK258",titile:"蔗糖酶活性检测试剂盒",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025061613420259849.png",price:"520.00",unit:"50T/48S",toptig:'新品上市',imgbendi:false},
+          {skuId:"WB9211",titile:"磷酸酶抑制剂混合物(100×)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2024051715111393193.jpg",price:"118.00",unit:"1 mL",toptig:'新品上市',imgbendi:false},
+          {skuId:"CW031",titile:"DPBS缓冲液(1×，PH7.4，不含钙镁，细胞培养级)(即用型)",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025091812020611438.jpg",price:"39.00",unit:"500mL",toptig:'新品上市',imgbendi:false},
+          {skuId:"CW032",titile:"0.25%胰蛋白酶-EDTA消化液，溶于D-Hanks' 液，含酚红",img:"https://bio-swamp.oss-cn-nanjing.aliyuncs.com/888/888_2025091812020611438.jpg",price:"49.00",unit:"100mL 原价：49元",toptig:'新品上市',imgbendi:false},
+        ],isShowTip:false},
       ],
       devPlatform:["","病理平台","动物平台","基因工程抗体平台","抗体验证平台","分子及蛋白表达平台","抗体筛选平台","细胞平台","快速抗体制备平台"]
     };

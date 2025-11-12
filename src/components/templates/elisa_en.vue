@@ -546,6 +546,11 @@ export default {
   created() {
     this.setView();
   },
+  beforeUpdate(){
+    setTimeout(() => {
+      window.print();
+    }, 1000);
+  },
   methods: {
     setView() {},
   },

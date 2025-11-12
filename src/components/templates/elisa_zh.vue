@@ -57,7 +57,6 @@
             {{detail[10]}}
             呈正相关。 用酶标仪在450 nm波长下测定吸光度（OD值），通过标准曲线计算样品中
             {{detail[11]}}浓度。
-            浓度。
           </div>
 
           <div class="section-title">注意事项</div>
@@ -367,6 +366,11 @@ export default {
   },
   created() {
     this.setView();
+  },
+  beforeUpdate(){
+    setTimeout(() => {
+      window.print();
+    }, 1000);
   },
   methods: {
     setView() {},

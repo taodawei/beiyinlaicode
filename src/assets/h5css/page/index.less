@@ -571,7 +571,7 @@
     flex-wrap: wrap;
     align-items: baseline;
     .product-center-box:nth-child(2){
-      width: 330px;
+      width: 350px;
     }
     .product-center-box:nth-child(3){
       width: 580px;
@@ -668,7 +668,7 @@
 }
 .bannerNav-box{
   width: 100%;
-  background: #f6f7f9;
+  background: #fff;
   padding: 10px 0;
   &-body{
     width: 1400px;
@@ -873,24 +873,29 @@
 }
 .hot-Promotion{
   width: 100%;
-  margin-top: 20px;
+  margin-top: 40px;
   &-body{
     width: 1400px;
     margin: auto;
     .hp-head-box{
-      padding-top: 60px;
+      // padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       .limit-radio{
         position: absolute;
         font-size: 14px;
         color: #333;
-        background: url(data:image/png;base64,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) no-repeat;
+        background: url(../../img/index/20251107-101252.png) no-repeat;
         background-size: 100% 100%;
         padding: 10px 15px 15px;
-        z-index: 2;
-        right: -70px;
-        top: 27px;
-        height: 39px;
+        z-index: -1;
+        left: 55px;
+        bottom: 12px;
+        height: 60px;
+        width: 60px;
         -webkit-text-fill-color: #333;
+        transition: all .16s ease-in;
         span{
           font-size: 14px;
           color: #e6080a;
@@ -910,16 +915,22 @@
     }
     
     .is-active{
+      .limit-radio{
+        left: 65px;
+        bottom: 8px;
+        height: 80px;
+        width: 80px;
+      }
       .hp-title{
         font-size: 20px;
       }
       .bt-icon{
         background-color: #ea3200;
         height: 0.8rem;
-        width: 60px;
+        width: 70px;
         border-radius: 1.2rem;
         position: relative;
-        left: 10px;
+        // left: 10px;
         bottom: 18px;
         opacity: 0.3;
         display: flex;
@@ -951,11 +962,12 @@
             border-top-left-radius: 12px;
             border-bottom-right-radius: 12px;
             // border: 1px solid #efa852;
-            background-color: #fbc104;
+            background-color: #ea3200;
             color: #fff;
             padding: 3px 10px;
             top: 12px;
-            left: 170px;
+            right: 10px;
+            word-break: keep-all;
           }
           &-img:hover{
             transform: scale(1.1,1.1);
@@ -968,6 +980,8 @@
           flex-direction: column;
           justify-content:space-around;
           align-items: self-start;
+          height: 134px;
+          background-color: #fff8f6;
           &-price{
             span:first-child{
               color: #ea3200;
@@ -984,6 +998,11 @@
             font-size: 18px;
             color: #333;
             text-align: left;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
           &-huohao{
             color: #999898;
@@ -991,7 +1010,7 @@
         }
         &-bot{
           padding: 10px;
-          
+          background-color: #fff8f6;
           &-go{
             cursor: pointer;
             font-weight: 500;
@@ -1086,6 +1105,12 @@
   font-size: 22px;
   font-weight: 500;
   color: #a6a5a5;
+}
+/deep/.el-tabs__item{
+  height: 40px;
+}
+/deep/.el-tabs__nav{
+  padding-top: 25px;
 }
 /deep/.el-tabs__item:hover {
   color: #ea3200;

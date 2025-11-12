@@ -178,6 +178,7 @@
                       <img :src="item.default_img" :alt="item.title" />
                     </div>
                   </el-image>
+                  <div v-if="isTakeDown(item.inventorys)" class="product-takedown"><span>商品已下架</span>></div>
                   <!-- <img v-if="item.img" :alt="item.title" :src="item.img" :title="item.titile"></img>
                   <img v-else :alt="item.title" :src="item.default_img" :title="item.titile"></img> -->
                 </router-link>
@@ -792,6 +793,16 @@ export default {
        }
 
        return otherName;
+    },
+    //判断商品是否下架
+    isTakeDown(inventorys){
+      var takeDown=false;
+      if(inventorys.length>0){
+        inventorys.forEach(element => {
+            element.status==-1?takeDown=true:takeDown;
+        });
+      }
+      return takeDown;
     }
   },
 };
@@ -894,6 +905,23 @@ export default {
         }
         img:hover{
           transform: scale(1.1, 1.1);
+        }
+        .product-takedown{
+          width: 132px;
+          height: 132px;
+          position: relative;
+          background-color: #a5a5a5;
+          opacity: 0.6;
+          bottom:135px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          span{
+            color: #fff;
+            background-color: #333333;
+            padding: 5px;
+            border-radius: 12px;
+          }
         }
       }
     }

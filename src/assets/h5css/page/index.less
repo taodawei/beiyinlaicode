@@ -1101,6 +1101,12 @@
   font-size: 28px;
   color: #7f7e7e;
 }
+.dev-platform-img{
+  width: 700px; 
+  height: 450px;
+  border-radius: 22px;
+  box-shadow: 0 1px 1rem 0 rgba(102, 98, 98, 0.1);
+}
 .dev-platform-name{
   font-size: 22px;
   font-weight: 500;
@@ -1124,4 +1130,96 @@
 }
 /deep/.el-carousel__indicators--outside button{
    background-color: #ea3200;
+}
+
+@media screen and (max-width: 1199px) {
+  .bannerNav-box{
+    width: 100%;
+    &-body{
+      width: 100%;
+      .BNav-from-list{
+        justify-content: space-around;
+        flex-wrap: wrap;
+        .other-form{
+          margin: 5px 1px;
+          margin-right: 0%;
+        }
+      }
+    }
+  }
+  .product-center-header{
+      position: relative;
+      i{
+        width: 130px;
+        position: relative;
+        left: 0px;
+        display: none;
+      }
+  }
+  .hot-Promotion{
+    width: 100%;
+    &-body{
+      width: 100%;
+      .ht-list{
+        flex-wrap: wrap;
+        &-item{
+          width: 200px;
+          height: 350px;
+          margin-bottom: 10px;
+          &-top{
+            &-img{
+              width: 180px;
+              height: 160px;
+            }
+          }
+          &-center{
+            padding:5px 2px;
+          }
+        }
+      }
+    }
+  }
+  .product-center{
+    &-body{
+      // flex-wrap: wrap;
+      justify-content: center;
+      .product-center-box{
+        width: 380px!important;
+        .box-body{
+          height: 100%;
+          padding:5px;
+        }
+      }
+      // .product-center-box:first-child{
+      //   width: 380px!important;
+      // }
+      // .product-center-box:nth-child(2){
+      //   width: 380px!important;
+      // }
+    }
+  }
+  .dev-platform-box{
+    display: none;
+    .dev-platform-swiper{
+      width: 100%;
+      .dev-platform-img{
+        width: 180px; 
+        height: 120px;
+        border-radius: 22px;
+        box-shadow: 0 1px 1rem 0 rgba(102, 98, 98, 0.1);
+      }
+      .dev-platform-name{
+        font-size: 18px;
+      }
+    }
+  }
+  .index_sorft{
+    display: none;
+  }
+  /deep/.el-tabs__nav{
+    white-space: pre-line;
+  }
+  /deep/.el-tabs__item{
+    padding: 3px;
+  }
 }

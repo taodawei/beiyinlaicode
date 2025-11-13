@@ -179,8 +179,6 @@
                     </div>
                   </el-image>
                   <div v-if="isTakeDown(item.inventorys)" class="product-takedown"><span>商品已下架</span>></div>
-                  <!-- <img v-if="item.img" :alt="item.title" :src="item.img" :title="item.titile"></img>
-                  <img v-else :alt="item.title" :src="item.default_img" :title="item.titile"></img> -->
                 </router-link>
               </div>
             </div>
@@ -263,6 +261,45 @@
               </div>
             </div>
           </div>
+        </div>
+        <div v-else>
+          <el-empty description="没有查询到相关内容..."></el-empty>
+        </div>
+         <div class="m-product-list" v-if="product_list.length>0">
+          <router-link :to="item.route"  v-for="(item, index) in product_list" :key="index" target="_blank">
+            <div class="m-product-box">
+              <div class="m-product-box-top">
+                <div class="m-product-box-top-left">
+                  <span v-html="item.html_skuId"></span>
+                  <span v-html="item.html_title"></span>
+                  <div class="m-guige">
+                    <span>规格/价格：</span>
+                    <span v-html="item.key_vals"></span>
+                    <span v-html="item.price_sale"></span>
+                  </div>
+                </div>
+                <div class="m-product-box-top-right">
+                   <el-image :src="item.img" :alt="item.title" >
+                    <div slot="error" class="m-image-slot">
+                      <img :src="item.default_img" :alt="item.title" />
+                    </div>
+                  </el-image>
+                  <div v-if="isTakeDown(item.inventorys)" class="m-product-takedown"><span>商品已下架</span>></div>
+                </div>
+              </div>
+              <div class="m-product-box-bottom">
+                <span>别名：</span>
+                <el-tag
+                    v-for="nameTag in mobileShowTags(item.tag_otherNames)"
+                    :type="nameTag.tagType"
+                    effect="light"
+                    round
+                  >
+                  <span v-html="nameTag.titile"></span>
+                  </el-tag>
+              </div>
+            </div>
+          </router-link>
         </div>
         <div v-else>
           <el-empty description="没有查询到相关内容..."></el-empty>
@@ -794,6 +831,15 @@ export default {
 
        return otherName;
     },
+    mobileShowTags(listTags){
+      if(listTags.length>5){
+        listTags= listTags.slice(0,4);
+        listTags.push({titile:"更多别名...",tagType:this.randomTag()});
+        return listTags;
+      }else{
+        return listTags;
+      }
+    },
     //判断商品是否下架
     isTakeDown(inventorys){
       var takeDown=false;
@@ -1314,6 +1360,9 @@ export default {
       }
     }
   }
+}
+.m-product-list{
+  display: none;
 }
 </style>
 

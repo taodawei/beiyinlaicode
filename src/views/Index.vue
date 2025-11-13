@@ -67,14 +67,12 @@
                   >
                     <div class="ht-list-item-top">
                       <el-image
-                        style="width: 260px; height: 260px"
                         v-if="pro.imgbendi" 
                         :src="require('@img/index/'+ pro.img +'')" 
                         class="ht-list-item-top-img"
                         fit="contain">
                       </el-image>
                       <el-image
-                        style="width: 260px; height: 260px"
                         v-else 
                         :src="pro.img" 
                         class="ht-list-item-top-img"
@@ -233,10 +231,10 @@
               <p>汇聚科研精英的生物试剂研发平台，以技术创新与高效协作加速试剂研发进程</p>
             </div>
             <div class="dev-platform-swiper">
-              <el-carousel :interval="4000" type="card" height="520px">
+              <el-carousel :interval="40000" type="card" height="520px">
                 <el-carousel-item v-for="item in 8" :key="item">
                   <el-image
-                    style="width: 700px; height: 450px;border-radius: 22px;box-shadow: 0 1px 1rem 0 rgba(102, 98, 98, 0.1);"
+                    class="dev-platform-img"
                     :src="require('@img/index/dpbanner_'+ item +'.png')" 
                     fit="fill">
                   </el-image>

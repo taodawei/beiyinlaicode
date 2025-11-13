@@ -257,6 +257,11 @@ export default {
     z-index: 99!important;
     display: block;
 }
+@media screen and (max-width: 1199px) {
+  .dS-box{
+    display: none;
+  }
+}
 .dS-box{
     .dS-logo{
         width: 60px;

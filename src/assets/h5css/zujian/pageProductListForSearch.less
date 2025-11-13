@@ -271,5 +271,110 @@
       }
     }
   }
-
+}
+@media screen and (max-width: 1199px) {
+  .page{
+    background-color: #f6faff;
+  }
+  .info-list{
+      .product-list{
+      display: none;
+    }
+  .m-product-list{
+      display: block;
+      .m-product-box{
+        box-shadow:2px 2px 8px #bbb8b8;
+        border: 1px solid #ebeef5;
+        background-color: #f6faff;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        padding: 12px 10px;
+        &-top{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          &-left{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            >span:first-child{
+              font-size: 16px;
+              font-weight: 600;
+              color: #333333;
+            }
+            >span:nth-child(2){
+              display: -webkit-box;
+              -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+              font-size: 14px;
+              text-overflow: ellipsis;font-size: 14px;
+              color: #808080;
+            }
+            .m-guige{
+              display: flex;
+              span{
+                font-size: 14px;
+                color:cornflowerblue;
+              }
+            }
+          }
+          &-right{
+            position: relative;
+            .el-image{
+              width: 90px;
+              height: 80px;
+              // border-radius: 100px;
+              margin-right: 20px;
+              background-size: 100% 100%;
+              img{
+                width: 90px;
+                height: 80px;
+                background-size: 100% 100%;
+                // border-radius: 100px;
+              }
+              // .el-image__inner{
+              //   width: 60px;
+              //   height: 60px;
+              //   border-radius: 100px;
+              // }
+            }
+            .m-product-takedown{
+              width: 90px;
+              height: 80px;
+              position: absolute;
+              background-color: #878787;
+              opacity: 0.6;
+              bottom:0px;
+              border-radius: 100px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              span{
+                color: #fff;
+                // background-color: #333333;
+                padding: 5px;
+                // border-radius: 12px;
+              }
+            }
+          }
+        }
+        &-bottom{
+          margin-top: 10px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: baseline;
+          flex-wrap: wrap;
+          >span:first-child{
+            font-size: 14px;
+            color: #808080;
+          }
+          .el-tag{
+            margin-right: 8px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+  }
 }

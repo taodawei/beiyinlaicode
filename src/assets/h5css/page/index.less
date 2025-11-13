@@ -1143,12 +1143,22 @@
         .other-form{
           margin: 5px 1px;
           margin-right: 0%;
+           a{
+            width: 178px;
+            height: 82px;
+           }
         }
       }
     }
   }
   .product-center-header{
       position: relative;
+      p:first-child{
+        font-size: 18px;
+      }
+      p:last-child{
+        font-size: 16px;
+      }
       i{
         width: 130px;
         position: relative;
@@ -1158,13 +1168,28 @@
   }
   .hot-Promotion{
     width: 100%;
+    margin-top: 10px;
     &-body{
       width: 100%;
+      .hp-head-box{
+        .limit-radio{
+          left: 45px;
+          bottom: 10px;
+        }
+        .hp-title{
+          font-size: 16px;
+        }
+        .is-active{
+          .limit-radio{
+          }
+        }
+      }
       .ht-list{
         flex-wrap: wrap;
+        justify-content: space-around;
         &-item{
-          width: 200px;
-          height: 350px;
+          width: 180px;
+          height: 320px;
           margin-bottom: 10px;
           &-top{
             &-img{
@@ -1174,12 +1199,33 @@
           }
           &-center{
             padding:5px 2px;
+            height: 100px;
+            &-price{
+              span:first-child{
+                // color: #ea3200;
+                font-weight: 400;
+                font-size: 12px;
+              }
+              span:last-child{
+                color: #ea3200;
+                font-weight: 600;
+                font-size: 14px;
+              }
+            }
+            &-name{
+              font-size: 14px;
+            }
+            &-huohao{
+              font-size: 12px;
+            }
           }
         }
       }
     }
   }
   .product-center{
+    margin-top: 10px;
+    padding: 0px;
     &-body{
       // flex-wrap: wrap;
       justify-content: center;

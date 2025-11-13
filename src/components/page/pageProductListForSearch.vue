@@ -244,20 +244,47 @@
                       </div>
                   </div>
                 </div>
-                <div class="product-box-table-footer">
-                  <template v-if="isHasOtherName(item)">
-                      <span>其他名称：</span>
-                      <el-tag
-                        v-for="nameTag in item.tag_otherNames"
-                        :type="nameTag.tagType"
-                        effect="dark"
-                        round
-                      >
-                      <!-- {{ nameTag }} -->
-                      <div v-html="nameTag.titile"></div>
-                      </el-tag>
-                    </template>
-                </div>
+                
+                <template v-if="isHasOtherName(item)">
+                  <div class="product-box-table-footer">
+                    <span>其他名称：</span>
+                    <el-tag
+                      v-for="nameTag in item.tag_otherNames"
+                      :type="nameTag.tagType"
+                      effect="light"
+                      round
+                    >
+                    <div v-html="nameTag.titile"></div>
+                    </el-tag>
+                  </div>
+                </template>
+                
+                <template v-if="item.tag_reactionSpecies.length>0">
+                  <div class="product-box-table-footer">
+                  <span>反应物种：</span>
+                  <el-tag
+                    v-for="nameTag in item.tag_reactionSpecies"
+                    :type="nameTag.tagType"
+                    effect="dark"
+                    round
+                  >
+                  <div v-html="nameTag.titile"></div>
+                  </el-tag>
+                  </div>
+                </template>
+                <template v-if="item.html_application.length>0">
+                  <div class="product-box-table-footer">
+                  <span>应用：</span>
+                  <el-tag
+                    v-for="nameTag in getOtherNames(item.html_application)"
+                    :type="nameTag.tagType"
+                    effect="dark"
+                    round
+                  >
+                  <div v-html="nameTag.titile"></div>
+                  </el-tag>
+                  </div>
+                </template>
               </div>
             </div>
           </div>
@@ -313,6 +340,7 @@
           :total="count"
           :current-page="pagination.page"
           :page-size="pagination.pagenum"
+          :pager-count="5"
           @current-change="handleChangePage"
         >
         </el-pagination>
@@ -1106,7 +1134,7 @@ export default {
           }
         }
         &-footer{
-          padding: 15px 5px;
+          padding: 2px 5px;
           display: flex;
           flex-wrap: wrap;
           justify-content: flex-start;
